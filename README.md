@@ -9,5 +9,5 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
 -	  Connexion à l’annuaire IS pour récupérer les numéros des collaborateurs. 
 -	  Récupération des documents utiles (guide du collaborateur, template note de frais).
 -	  Effectuer un suivi TL (volonté de l’utilisateur) le collaborateur peut consulter ses suivis 
-- 	Adresse utiles : VSTS, portail azure, adresse du portail, espace project. 
+- 	Liste des adresse utiles. 
 - 	Listing du matériel/gestion du matériel
