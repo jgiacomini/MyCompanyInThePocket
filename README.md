@@ -9,5 +9,5 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
 -	  Affichage d'un annuaire pour récupérer les informations des collaborateurs. 
 -	  Récupération des documents utiles (guide du collaborateur, template note de frais).
 -	  Effectuer un suivi TL (volonté de l’utilisateur) le collaborateur peut consulter ses suivis 
-- 	Liste des adresse utiles. 
+- 	Liste des sites web utiles de l'entreprise. 
 - 	Listing du matériel/gestion du matériel
