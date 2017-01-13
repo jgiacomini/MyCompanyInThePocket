@@ -5,7 +5,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
 L’idée est de la construire avec les personnes participant au Hub Xamarin. 	 
 
 #Quelles sont les fonctionnalités ?	 
--	  Intégration de l’ACRA 
+-	  Intégration du CRA
 -	  Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
 -	  Connexion à l’annuaire IS pour récupérer les numéros des collaborateurs. 
 -	  Récupération des documents utiles (guide du collaborateur, template note de frais).
