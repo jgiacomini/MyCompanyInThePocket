@@ -1,3 +1,4 @@
+using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 
 namespace MyCompanyInThePocket.Core
@@ -11,7 +12,8 @@ namespace MyCompanyInThePocket.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.FirstViewModel>();
+            RegisterAppStart<ViewModels.SplashScreenViewModel>();
         }
+
     }
 }

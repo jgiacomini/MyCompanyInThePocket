@@ -111,9 +111,6 @@ namespace MyCompanyInThePocket.Droid
 			// aapt resource value: 0x7f040001
 			public const int MvxBindingTagUnique = 2130968577;
 			
-			// aapt resource value: 0x7f040002
-			public const int MyButton = 2130968578;
-			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -128,13 +125,10 @@ namespace MyCompanyInThePocket.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int FirstView = 2130903040;
+			public const int SplashScreen = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
-			
-			// aapt resource value: 0x7f030002
-			public const int SplashScreen = 2130903042;
+			public const int SplashScreenView = 2130903041;
 			
 			static Layout()
 			{
