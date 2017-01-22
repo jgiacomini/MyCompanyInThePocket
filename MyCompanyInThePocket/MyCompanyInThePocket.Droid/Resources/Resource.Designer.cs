@@ -26,6 +26,9 @@ namespace MyCompanyInThePocket.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Id.agentWebView = global::MyCompanyInThePocket.Droid.Resource.Id.agentWebView;
+			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Layout.WebAuthenticationBroker = global::MyCompanyInThePocket.Droid.Resource.Layout.WebAuthenticationBroker;
+			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.String.ApplicationName = global::MyCompanyInThePocket.Droid.Resource.String.ApplicationName;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::MyCompanyInThePocket.Droid.Resource.Attribute.MvxBind;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MyCompanyInThePocket.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MyCompanyInThePocket.Droid.Resource.Attribute.MvxGroupItemTemplate;
@@ -47,6 +50,8 @@ namespace MyCompanyInThePocket.Droid
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MyCompanyInThePocket.Droid.Resource.Styleable.MvxListView;
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MyCompanyInThePocket.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MyCompanyInThePocket.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MyCompanyInThePocket.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MyCompanyInThePocket.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -87,10 +92,7 @@ namespace MyCompanyInThePocket.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
-			
-			// aapt resource value: 0x7f020001
-			public const int splash = 2130837505;
+			public const int splash = 2130837504;
 			
 			static Drawable()
 			{
@@ -105,11 +107,14 @@ namespace MyCompanyInThePocket.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int MvvmCrossTagId = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int MvvmCrossTagId = 2131034112;
 			
-			// aapt resource value: 0x7f040001
-			public const int MvxBindingTagUnique = 2130968577;
+			// aapt resource value: 0x7f050001
+			public const int MvxBindingTagUnique = 2131034113;
+			
+			// aapt resource value: 0x7f050002
+			public const int agentWebView = 2131034114;
 			
 			static Id()
 			{
@@ -130,6 +135,9 @@ namespace MyCompanyInThePocket.Droid
 			// aapt resource value: 0x7f030001
 			public const int SplashScreenView = 2130903041;
 			
+			// aapt resource value: 0x7f030002
+			public const int WebAuthenticationBroker = 2130903042;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -143,11 +151,11 @@ namespace MyCompanyInThePocket.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060001
-			public const int ApplicationName = 2131099649;
+			// aapt resource value: 0x7f040001
+			public const int ApplicationName = 2130968577;
 			
-			// aapt resource value: 0x7f060000
-			public const int Hello = 2131099648;
+			// aapt resource value: 0x7f040000
+			public const int Hello = 2130968576;
 			
 			static String()
 			{
@@ -162,8 +170,8 @@ namespace MyCompanyInThePocket.Droid
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int Theme_Splash = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int Theme_Splash = 2131099648;
 			
 			static Style()
 			{

@@ -12,10 +12,14 @@ namespace MyCompanyInThePocket.Core.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
 
-        public string Label { get; set; }
+        public string Title { get; set; }
+
+        public string Type { get; set; }
+
+        public bool AllDayEvent { get; set; }
     }
 }

@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# sharepoint code x	token do not share this pleaase
+OnlineRepositories/

@@ -5,6 +5,6 @@ namespace MyCompanyInThePocket.Core.Helpers
 {
     public interface ISqliteConnectionFactory
     {
-        Task<SQLiteAsyncConnection> GetConnectionAsync();
+        SQLiteAsyncConnection GetConnection();
     }
 }

@@ -85,7 +85,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DebugTrace.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

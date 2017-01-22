@@ -1,26 +1,30 @@
 ﻿using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Models;
+using MyCompanyInThePocket.Core.Repositories.MockRepositories;
 using SQLite.Net.Async;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Services
 {
     public class DatabaseService : IDatabaseService
     {
-        #region Fields
+        #region Constantes
         private const int _DB_VERSION = 1;
         #endregion
 
         #region Fields
         private readonly ISqliteConnectionFactory _sqliteConnectionFactory;
+        private readonly IAuthentificationPlatformFactory _authentificationPlatformFactory;
         private SQLiteAsyncConnection _connection;
         #endregion
 
-        public DatabaseService(ISqliteConnectionFactory sqliteConnectionFactory)
+        public DatabaseService(ISqliteConnectionFactory sqliteConnectionFactory, IAuthentificationPlatformFactory authentificationPlatformFactory)
         {
             _sqliteConnectionFactory = sqliteConnectionFactory;
+            _authentificationPlatformFactory = authentificationPlatformFactory;
         }
 
         /// <summary>
@@ -29,45 +33,48 @@ namespace MyCompanyInThePocket.Core.Services
         /// <returns></returns>
         public async Task InitializeDbAsync()
         {
-            int databaseVersion = 1;
+            int databaseVersion = 0;
 
-            _connection = await _sqliteConnectionFactory.GetConnectionAsync();
-
+            _connection = _sqliteConnectionFactory.GetConnection();
             int.TryParse(await GetPragmaVersionAsync(), out databaseVersion);
 
             if (databaseVersion != _DB_VERSION)
             {
-                await CreateTableAsync();
+                await CreateTablesAsync();
             }
+
+            await UpdatePragmaVersion(_DB_VERSION);
+
+            var meetingService = new MeetingRepository();
+            var meetings = await meetingService.GetMeetingAsync();
         }
 
         /// <summary>
         /// Creates the table asynchronous.
         /// </summary>
         /// <returns>return a task</returns>
-        private async Task CreateTableAsync()
+        private async Task CreateTablesAsync()
         {
             var tables = GetListOfTables();
-            foreach (var table in tables)
-            {
-                await _connection.CreateTablesAsync(table);
-            }
+            await _connection.CreateTablesAsync(tables.ToArray());
         }
 
         /// <summary>
         /// Gets the list of tables.
         /// </summary>
         /// <returns>return list of table types</returns>
-        private List<Type> GetListOfTables()
+        private Type[] GetListOfTables()
         {
             var list = new List<Type>();
             list.Add(typeof(Meeting));
             list.Add(typeof(UseFullDocument));
             list.Add(typeof(UseFullLink));
             list.Add(typeof(User));
-            return list;
+            return list.ToArray();
         }
 
+        #region PragmaVersion
+        
         /// <summary>
         /// Gets the pragma version.
         /// </summary>
@@ -79,5 +86,17 @@ namespace MyCompanyInThePocket.Core.Services
         {
             return await _connection.ExecuteScalarAsync<string>("PRAGMA user_version");
         }
+
+        /// <summary>
+        /// Updates the pragma version.
+        /// </summary>
+        /// <param name="updateVersion">The update version.</param>
+        /// <returns></returns>
+        private Task<int> UpdatePragmaVersion(int updateVersion)
+        {
+            return _connection.ExecuteAsync($"PRAGMA user_version = {updateVersion}");
+        }
+        #endregion
+
     }
 }

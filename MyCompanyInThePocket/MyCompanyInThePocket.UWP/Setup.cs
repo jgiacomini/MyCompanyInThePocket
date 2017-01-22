@@ -21,6 +21,8 @@ namespace MyCompanyInThePocket.UWP
         protected override void InitializeLastChance()
         {
             Mvx.RegisterType<ISqliteConnectionFactory, UWPSqliteConnectionFactory>();
+            Mvx.RegisterType<IAuthentificationPlatformFactory, AuthentificationPlatformFactory>();
+
             base.InitializeLastChance();
         }
     }
