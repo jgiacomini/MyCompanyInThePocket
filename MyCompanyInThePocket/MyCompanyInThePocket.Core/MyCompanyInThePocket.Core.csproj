@@ -46,15 +46,19 @@
     <Compile Include="Models\UseFullLink.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DatabaseRepositories\MeetingRepository.cs" />
+    <Compile Include="Repositories\DatabaseRepositories\DatabaseMeetingRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IOnlineMeetingRepository.cs" />
     <Compile Include="Repositories\MockRepositories\MeetingRepository.cs" />
     <Compile Include="Repositories\OnlineRepositories\AuthentificationService.cs" />
-    <Compile Include="Repositories\OnlineRepositories\IOnlineRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IOnlineRepository.cs" />
     <Compile Include="Repositories\OnlineRepositories\MeetingRepository.cs" />
     <Compile Include="Repositories\OnlineRepositories\OnlineSettings.cs" />
     <Compile Include="Services\DatabaseService.cs" />
-    <Compile Include="Services\IDatabaseService.cs" />
+    <Compile Include="Services\Interface\IDatabaseService.cs" />
+    <Compile Include="Services\Interface\IMeetingService.cs" />
+    <Compile Include="Services\MeetingsService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\MainScreenViewModel.cs" />
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

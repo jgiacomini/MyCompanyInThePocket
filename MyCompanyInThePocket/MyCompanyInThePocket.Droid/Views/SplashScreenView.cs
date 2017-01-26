@@ -4,8 +4,8 @@ using MvvmCross.Droid.Views;
 
 namespace MyCompanyInThePocket.Droid.Views
 {
-    [Activity(Label = "View for SplashScreenView", NoHistory = true)]
-    public class SplashScreenView : MvxActivity
+    [Activity(Label = "")]
+    public class MainScreenView : MvxActivity
     {
         protected override void OnCreate(Bundle bundle)
         {

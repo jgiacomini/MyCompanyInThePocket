@@ -1,5 +1,7 @@
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 using MyCompanyInThePocket.Core.Services;
+using MyCompanyInThePocket.Core.Services.Interface;
 using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.ViewModels
@@ -24,6 +26,11 @@ namespace MyCompanyInThePocket.Core.ViewModels
             {
                 CurrentState = "Initialisation";
                 await _databaseService.InitializeDbAsync();
+
+                IMeetingService meetingService = Mvx.Resolve<IMeetingService>();
+                await meetingService.GetMeetignsAsync();
+                // l'application est initialisé on ouvre la page principale.
+                ShowViewModel<MainScreenViewModel>();
             }
             catch (System.Exception ex)
             {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyCompanyInThePocket.Core.Repositories.DatabaseRepositories
+namespace MyCompanyInThePocket.Core.ViewModels
 {
-    public class MeetingRepository
+    public class MainScreenViewModel : BaseViewModel
     {
     }
 }

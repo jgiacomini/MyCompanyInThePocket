@@ -1,12 +1,12 @@
 ﻿using MyCompanyInThePocket.Core.Models;
-using MyCompanyInThePocket.Core.Repositories.OnlineRepositories;
+using MyCompanyInThePocket.Core.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Repositories.MockRepositories
 {
-    internal class MeetingRepository : IOnlineRepository
+    internal class MeetingRepository : IOnlineMeetingRepository
     {
 
         public MeetingRepository()
@@ -21,7 +21,6 @@ namespace MyCompanyInThePocket.Core.Repositories.MockRepositories
 
             for (int day = 0; day < 31; day++)
             {
-
                 var currentDay = DateTime.Now.AddDays(day);
 
                 if (currentDay.DayOfWeek == DayOfWeek.Friday)
@@ -39,7 +38,7 @@ namespace MyCompanyInThePocket.Core.Repositories.MockRepositories
                     continue;
                 }
 
-                for (int hour = 10; day < 18; hour++)
+                for (int hour = 10; hour < 18; hour++)
                 {
                     var meeting = new Meeting();
 
