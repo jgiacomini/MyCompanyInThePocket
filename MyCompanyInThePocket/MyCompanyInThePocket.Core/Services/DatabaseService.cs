@@ -1,6 +1,5 @@
 ﻿using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Models;
-using MyCompanyInThePocket.Core.Repositories.MockRepositories;
 using SQLite.Net.Async;
 using System;
 using System.Collections.Generic;
@@ -44,9 +43,6 @@ namespace MyCompanyInThePocket.Core.Services
             }
 
             await UpdatePragmaVersion(_DB_VERSION);
-
-            var meetingService = new MeetingRepository();
-            var meetings = await meetingService.GetMeetingAsync();
         }
 
         /// <summary>
