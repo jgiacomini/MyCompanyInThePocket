@@ -34,7 +34,7 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
     * [ ] iOS
     * [ ] Android
     * [ ] Windows 10
-  * Ouverture de document
+  * [ ] Ouverture de document
 
 #Fonctionnalités V2  :
 -	  Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
