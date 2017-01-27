@@ -7,33 +7,33 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
 #Fonctionnalités V1  : 
 
 *   Rendez-vous : (Jérôme)
-  * Récupération sur le serveur (DONE)
-  *	Récupération MOCK (DONE)
-  *	Sauvegarde base de données locale (DONE)
-  *	Possibilité de voir les rendez-vous d'autres personnes. 
-  *	Intégration de ces rendez-vous dans le calendrier de l’OS (IN PROGRESS)
-  *	Affichage des rendez-vous :
-    * iOS
-    * Android
-    * Windows 10
+  * [x]  Récupération sur le serveur (DONE)
+  *	[x] Récupération MOCK (DONE)
+  *	[x] Sauvegarde base de données locale (DONE)
+  * [ ]	Possibilité de voir les rendez-vous d'autres personnes. 
+  * [ ] Intégration de ces rendez-vous dans le calendrier de l’OS (IN PROGRESS)
+  * Affichage des rendez-vous :
+    * [ ] iOS
+    * [ ] Android
+    * [ ] Windows 10
     
 *   Récupération des liens utile : (Charles)
-  * Récupération sur le serveur 
-  * Récupération MOCK (DONE)
-  * Sauvegarde base de données locale (IN PROGRESS)
+  * [x] Récupération sur le serveur 
+  * [x] Récupération MOCK (DONE)
+  * [ ] Sauvegarde base de données locale (IN PROGRESS)
   * Affichage :
-    * iOS
-    * Android
-    * Windows 10
+    * [ ] iOS
+    * [ ] Android
+    * [ ] Windows 10
     
 *	Récupération des documents utile : (Charles)
- * Récupération sur le serveur 
-  * Récupération MOCK (DONE)
-  * Sauvegarde base de données locale (IN PROGRESS)
-  * Affichage :
-    * iOS
-    * Android
-    * Windows 10
+ * [ ] Récupération sur le serveur 
+ * [ ] Récupération MOCK (DONE)
+ * [ ] Sauvegarde base de données locale (IN PROGRESS)
+ * Affichage :
+    * [ ] iOS
+    * [ ] Android
+    * [ ] Windows 10
   * Ouverture de document
 
 #Fonctionnalités V2  :
