@@ -13,28 +13,28 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
   *	Possibilité de voir les rendez-vous d'autres personnes. 
   *	Intégration de ces rendez-vous dans le calendrier de l’OS (IN PROGRESS)
   *	Affichage des rendez-vous :
-    *iOS
-    *Android
-    *Windows 10
+    * iOS
+    * Android
+    * Windows 10
     
 *   Récupération des liens utile : (Charles)
   * Récupération sur le serveur 
   * Récupération MOCK (DONE)
   * Sauvegarde base de données locale (IN PROGRESS)
   * Affichage :
-    *iOS
-    *Android
-    *Windows 10
+    * iOS
+    * Android
+    * Windows 10
     
 *	Récupération des documents utile : (Charles)
  * Récupération sur le serveur 
   * Récupération MOCK (DONE)
   * Sauvegarde base de données locale (IN PROGRESS)
   * Affichage :
-    *iOS
-    *Android
-    *Windows 10
-    *Ouverture du document
+    * iOS
+    * Android
+    * Windows 10
+  * Ouverture de document
 
 #Fonctionnalités V2  :
 -	  Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
