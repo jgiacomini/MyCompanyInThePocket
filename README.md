@@ -6,7 +6,7 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
 
 #Fonctionnalités V1  : 
 
-*   Rendez-vous :
+*   Rendez-vous : (Jérôme)
   * Récupération sur le serveur (DONE)
   *	Récupération MOCK (DONE)
   *	Sauvegarde base de données locale (DONE)
@@ -17,7 +17,7 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
     *Android
     *Windows 10
     
-*   Récupération des liens utile :
+*   Récupération des liens utile : (Charles)
   * Récupération sur le serveur 
   * Récupération MOCK (DONE)
   * Sauvegarde base de données locale (IN PROGRESS)
@@ -26,7 +26,7 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
     *Android
     *Windows 10
     
-•	Récupération des documents utile :
+*	Récupération des documents utile : (Charles)
  * Récupération sur le serveur 
   * Récupération MOCK (DONE)
   * Sauvegarde base de données locale (IN PROGRESS)
