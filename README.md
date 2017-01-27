@@ -4,12 +4,40 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
 
 L’idée est de la construire avec les personnes participant au Hub Xamarin. 	 
 
-#Quelles sont les fonctionnalités ?	 
+#Fonctionnalités V1  : 
 
--   Récupération des rendez vous du mois courant, possibilité de voir les rendez vous d'autres personnes. (IN PROGRESS)
+*   Rendez-vous :
+  * Récupération sur le serveur (DONE)
+  *	Récupération MOCK (DONE)
+  *	Sauvegarde base de données locale (DONE)
+  *	Possibilité de voir les rendez-vous d'autres personnes. 
+  *	Intégration de ces rendez-vous dans le calendrier de l’OS (IN PROGRESS)
+  *	Affichage des rendez-vous :
+    *iOS
+    *Android
+    *Windows 10
+    
+*   Récupération des liens utile :
+  * Récupération sur le serveur 
+  * Récupération MOCK (DONE)
+  * Sauvegarde base de données locale (IN PROGRESS)
+  * Affichage :
+    *iOS
+    *Android
+    *Windows 10
+    
+•	Récupération des documents utile :
+ * Récupération sur le serveur 
+  * Récupération MOCK (DONE)
+  * Sauvegarde base de données locale (IN PROGRESS)
+  * Affichage :
+    *iOS
+    *Android
+    *Windows 10
+    *Ouverture du document
+
+#Fonctionnalités V2  :
 -	  Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
 -	  Affichage d'un annuaire pour récupérer les informations des collaborateurs. 
--	  Récupération des documents utiles (guide du collaborateur, template note de frais).
 -	  Effectuer un suivi de collaborateur (le collaborateur peut consulter ses suivis, la manager peut créer/modifier un suivit)
-- 	Liste des sites web utiles de l'entreprise. (IN PROGRESS)
 - 	Listing du matériel/gestion du matériel
