@@ -37,6 +37,7 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
   * [ ] Ouverture de document
 
 #Fonctionnalités V2  :
+-   Création de Widgets pour iOS et Android.
 -	  Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
 -	  Affichage d'un annuaire pour récupérer les informations des collaborateurs. 
 -	  Effectuer un suivi de collaborateur (le collaborateur peut consulter ses suivis, la manager peut créer/modifier un suivit)
