@@ -30,6 +30,11 @@ L’idée est de la construire avec les personnes participant au Hub Xamarin.
  * [ ] Récupération sur le serveur 
  * [ ] Récupération MOCK (DONE)
  * [ ] Sauvegarde base de données locale (IN PROGRESS)
+ 
+* 	Page de Settings : 
+ * [ ] Bouton de déconnexion
+ * [ ] Bouton permettant d'activer les rendez vous dans le calendrier.
+
  * Affichage :
     * [ ] iOS
     * [ ] Android
