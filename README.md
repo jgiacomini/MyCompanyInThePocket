@@ -2,8 +2,6 @@
 
 C’est un application cross plateforme Windows/Android/iOS qui fournit la possibilité d’avoir des informations pratiques lié à la vie de l’entreprise. Elle servira aussi comme bac à sable géant pour découvrir la techno Xamarin. 
 
-L’idée est de la construire avec les personnes participant au Hub Xamarin. 	 
-
 #Fonctionnalités V1  : 
 
 *   Rendez-vous : (Jérôme)
