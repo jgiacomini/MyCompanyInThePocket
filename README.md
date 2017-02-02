@@ -51,7 +51,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
 - 	Listing du matériel/gestion du matériel (Soriya / Michel ?)
 
 
-#Comment forker :
+#Comment contribuer au projet :
 - Dans GitHub : cliquer sur Fork en haut à droite.
 - Configurer votre repo local sur votre fork (celui de votre compte)
 - Ajouter dans VS un "remote" qui pointe sur le repo original (celui de Jérôme). Nommez-le "upstream" par exemple. (https://writeabout.net/2016/01/31/sync-your-git-github-fork-upstream-repository-from-within-visual-studio/)
