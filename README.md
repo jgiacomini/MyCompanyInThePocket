@@ -3,6 +3,10 @@
 C’est un application cross plateforme Windows/Android/iOS qui fournit la possibilité d’avoir des informations pratiques lié à la vie de l’entreprise. Elle servira aussi comme bac à sable géant pour découvrir la techno Xamarin. 
 
 #Fonctionnalités V1  : 
+*   Page de présentation de IS in the pocket :
+    * [ ] iOS
+    * [ ] Android (Jon)
+    * [ ] Windows 10
 
 *   Rendez-vous : (Jérôme)
   * [x]  Récupération sur le serveur (DONE)
