@@ -6,7 +6,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
 *   Page de présentation de IS in the pocket :
     * [ ] iOS
     * [ ] Android (Jon)
-    * [ ] Windows 10
+    * [ ] Windows 10  (Jon)
 
 *   Rendez-vous : (Jérôme)
   * [x]  Récupération sur le serveur (DONE)

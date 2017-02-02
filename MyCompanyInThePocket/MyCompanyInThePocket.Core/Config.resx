@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Authority" xml:space="preserve">
-    <value />
+    <value>https://login.windows.net/common</value>
   </data>
   <data name="ClientId" xml:space="preserve">
-    <value />
+    <value>d4ff9d88-582f-4f21-86ff-8d6ed1986a3b</value>
   </data>
   <data name="ReturnUri" xml:space="preserve">
-    <value />
+    <value>ms-appx-web://Microsoft.AAD.BrokerPlugin/S-1-15-2-868482074-2349976311-845459658-562622403-2702059385-90433763-2521767136</value>
   </data>
   <data name="ServiceResourceId" xml:space="preserve">
-    <value />
+    <value>https://infinitesquare.sharepoint.com/</value>
   </data>
 </root>

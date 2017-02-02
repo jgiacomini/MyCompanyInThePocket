@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Services
 {
-    public class MeetingsService : IMeetingService
+    internal class MeetingsService : IMeetingService
     {
         private readonly IOnlineMeetingRepository _onlineMeetingReposity;
 
@@ -19,9 +19,7 @@ namespace MyCompanyInThePocket.Core.Services
         {
             get
             {
-
-                // TODO : check connectivity
-                return true;
+                return Plugin.Connectivity.CrossConnectivity.Current.IsConnected;
             }
         }
 
@@ -34,7 +32,7 @@ namespace MyCompanyInThePocket.Core.Services
             {
                 meetings = await onlineRepository.GetMeetingAsync();
             }
-            
+
             // TODO : mettre à jour la bdd et lire les données
             return meetings;
         }
