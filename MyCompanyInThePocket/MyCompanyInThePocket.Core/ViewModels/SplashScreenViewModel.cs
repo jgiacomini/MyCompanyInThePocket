@@ -30,11 +30,18 @@ namespace MyCompanyInThePocket.Core.ViewModels
                 var meetings = await meetingService.GetMeetingsAsync();
 
                 // l'application est initialisé on ouvre la page principale.
-                ShowViewModel<MainScreenViewModel>();
+
+
+                // TODO : check si connecté
+                ShowViewModel<StartupViewModel>();
             }
             catch (System.Exception ex)
             {
                 ErrorMessage = "Erreur durant l'initialisation de l'application";
+                await Mvx.Resolve<IMessageService>()
+                     .ShowErrorToastAsync(ex, "Erreur durant l'initialisation de l'application"
+
+                     );
                 // TODO : log something
             }
             finally

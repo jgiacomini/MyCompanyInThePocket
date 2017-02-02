@@ -39,6 +39,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Config.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringValues.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -63,13 +67,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Config.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\StringValues.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringValues.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\DatabaseService.cs" />
     <Compile Include="Services\Interface\IDatabaseService.cs" />
     <Compile Include="Services\Interface\IMeetingService.cs" />
+    <Compile Include="Services\Interface\IMessageService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenViewModel.cs" />
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />
+    <Compile Include="ViewModels\StartupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

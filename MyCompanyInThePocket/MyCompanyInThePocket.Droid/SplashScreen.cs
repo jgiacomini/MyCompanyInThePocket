@@ -5,7 +5,7 @@ using MvvmCross.Droid.Views;
 namespace MyCompanyInThePocket.Droid
 {
     [Activity(
-        Label = "MyCompanyInThePocket.Droid"
+        Label = "My Company In The Pocket"
         , MainLauncher = true
         , Theme = "@style/Theme.Splash"
         , NoHistory = true
