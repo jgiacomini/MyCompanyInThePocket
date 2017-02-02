@@ -240,6 +240,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-# sharepoint code x	token do not share this pleaase
-OnlineRepositories/
+/MyCompanyInThePocket/MyCompanyInThePocket.Core/Resource__dot_not_commit.resx
