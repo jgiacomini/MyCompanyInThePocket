@@ -9,6 +9,6 @@ namespace MyCompanyInThePocket.Core.Repositories.Interfaces
 {
     public interface IOnlineUseFullLinkRepository
     {
-        Task<IEnumerable<UseFullLink>> GetUseFullLinksAsync();
+        Task<List<UseFullLink>> GetUseFullLinksAsync();
     }
 }

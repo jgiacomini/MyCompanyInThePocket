@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MyCompanyInThePocket.Core.Models;
+using MyCompanyInThePocket.Core.Repositories.Interfaces;
+using MyCompanyInThePocket.Core.Services.Interface;
+using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MyCompanyInThePocket.Core.Models;
-using Plugin.Connectivity;
-using MyCompanyInThePocket.Core.Repositories.Interfaces;
 
 namespace MyCompanyInThePocket.Core.Services
 {
@@ -18,9 +19,9 @@ namespace MyCompanyInThePocket.Core.Services
             _onlineUseFullLinkRepository = onlineUseFullLinkRepository;
         }
 
-        public async Task<IEnumerable<UseFullLink>> GetUseFullLinksAsync()
+        public async Task<List<UseFullLink>> GetUseFullLinksAsync()
         {
-            IEnumerable<UseFullLink> useFullLinks;
+            List<UseFullLink> useFullLinks;
             if (IsConnected())
             {
                 useFullLinks = await _onlineUseFullLinkRepository.GetUseFullLinksAsync();
