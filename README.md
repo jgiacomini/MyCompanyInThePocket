@@ -5,7 +5,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
 #Fonctionnalités V1  : 
 *   Page de présentation de IS in the pocket :
     * [ ] iOS
-    * [ ] Android (Jon)
+    * [x] Android (Jon)
     * [ ] Windows 10  (Jon)
 
 *   Rendez-vous : (Jérôme)
