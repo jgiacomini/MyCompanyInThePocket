@@ -28,7 +28,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
                 await _databaseService.InitializeDbAsync();
 
                 IMeetingService meetingService = Mvx.Resolve<IMeetingService>();
-                await meetingService.GetMeetignsAsync();
+                await meetingService.GetMeetingsAsync();
                 // l'application est initialisé on ouvre la page principale.
                 ShowViewModel<MainScreenViewModel>();
             }

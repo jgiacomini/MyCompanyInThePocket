@@ -8,7 +8,7 @@ using MyCompanyInThePocket.Core.Models;
 
 namespace MyCompanyInThePocket.Core.Repositories.MockRepositories
 {
-    internal class UseFullLinkRepository : IOnlineUseFullLinkRepository
+    internal class UseFullLinkRepository
     {
         public async Task<IEnumerable<UseFullLink>> GetUseFullLinksAsync()
         {
