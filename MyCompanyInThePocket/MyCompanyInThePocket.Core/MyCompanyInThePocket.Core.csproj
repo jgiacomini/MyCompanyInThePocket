@@ -61,6 +61,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenViewModel.cs" />
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />
+    <Compile Include="ViewModels\StartupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
