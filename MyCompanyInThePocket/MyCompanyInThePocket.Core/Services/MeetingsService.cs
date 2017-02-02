@@ -34,9 +34,8 @@ namespace MyCompanyInThePocket.Core.Services
             {
                 meetings = await onlineRepository.GetMeetingAsync();
             }
-
+            
             // TODO : mettre à jour la bdd et lire les données
-
             return meetings;
         }
     }

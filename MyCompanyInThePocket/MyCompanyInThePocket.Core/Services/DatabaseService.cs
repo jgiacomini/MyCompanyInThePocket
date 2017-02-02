@@ -35,6 +35,7 @@ namespace MyCompanyInThePocket.Core.Services
             int databaseVersion = 0;
 
             _connection = _sqliteConnectionFactory.GetConnection();
+
             int.TryParse(await GetPragmaVersionAsync(), out databaseVersion);
 
             if (databaseVersion != _DB_VERSION)

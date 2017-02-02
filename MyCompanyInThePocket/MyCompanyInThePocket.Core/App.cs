@@ -8,12 +8,6 @@ namespace MyCompanyInThePocket.Core
 {
     public class App : MvvmCross.Core.ViewModels.MvxApplication
     {
-#if DEBUG
-        private const bool UseMock = true;
-#else
-        private const bool UseMock = false;
-#endif
-
         public override void Initialize()
         {
             CreatableTypes()
@@ -23,14 +17,11 @@ namespace MyCompanyInThePocket.Core
 
             RegisterAppStart<ViewModels.SplashScreenViewModel>();
 
-            if(UseMock)
-            {
-                Mvx.RegisterSingleton<IOnlineMeetingRepository>(new MyCompanyInThePocket.Core.Repositories.MockRepositories.MeetingRepository());
-            }
-            else
-            {
-                Mvx.RegisterSingleton<IOnlineMeetingRepository>(new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.MeetingRepository(Mvx.Resolve<IAuthentificationPlatformFactory>()));
-            }
+#if DEBUG
+            Mvx.RegisterSingleton<IOnlineMeetingRepository>(new MyCompanyInThePocket.Core.Repositories.MockRepositories.MeetingRepository());
+#else
+            Mvx.RegisterSingleton<IOnlineMeetingRepository>(new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.MeetingRepository(Mvx.Resolve<IAuthentificationPlatformFactory>()));
+#endif
         }
 
     }
