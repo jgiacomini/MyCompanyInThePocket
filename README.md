@@ -49,3 +49,11 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
 -	  Affichage d'un annuaire pour récupérer les informations des collaborateurs. 
 -	  Effectuer un suivi de collaborateur (le collaborateur peut consulter ses suivis, la manager peut créer/modifier un suivit)
 - 	Listing du matériel/gestion du matériel (Soriya / Michel ?)
+
+
+#Comment contribuer au projet :
+- Dans GitHub : cliquer sur Fork en haut à droite.
+- Configurer votre repo local sur votre fork (celui de votre compte)
+- Ajouter dans VS un "remote" qui pointe sur le repo original (celui de Jérôme). Nommez-le "upstream" par exemple. (https://writeabout.net/2016/01/31/sync-your-git-github-fork-upstream-repository-from-within-visual-studio/)
+- Ensuite, travaillez sur une branche de votre repo et faites des Pull Request sur le repo principal.
+
