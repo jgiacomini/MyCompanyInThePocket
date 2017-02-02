@@ -4,7 +4,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 using MyCompanyInThePocket.Core.Helpers;
 using MvvmCross.Platform;
+using MyCompanyInThePocket.Core.Services.Interface;
 using MyCompanyInThePocket.UWP.Helpers;
+using MyCompanyInThePocket.Droid.Services;
 
 namespace MyCompanyInThePocket.Droid
 {
@@ -23,13 +25,14 @@ namespace MyCompanyInThePocket.Droid
         {
             return new DebugTrace();
         }
-
-
+        
         protected override void InitializeLastChance()
         {
+            base.InitializeLastChance();
+
             Mvx.RegisterType<ISqliteConnectionFactory, DroidSqliteConnectionFactory>();
             Mvx.RegisterType<IAuthentificationPlatformFactory, AuthentificationPlatformFactory>();
-            base.InitializeLastChance();
+            Mvx.RegisterType<IMessageService, AndroidMessageService>();
         }
     }
 }

@@ -6,13 +6,10 @@
              android:layout_height="match_parent"
              >
 
-  <android.support.v4.view.ViewPager
-    android:id="@+id/Startup_ViewPager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="45dp"
-    >
-  </android.support.v4.view.ViewPager>
+  <android.support.v4.view.ViewPager android:id="@+id/Startup_ViewPager"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="match_parent"
+                                     android:paddingBottom="45dp"/>
 
   <LinearLayout
     android:id="@+id/Startup_CircleIndicatorParent"
@@ -43,34 +40,18 @@
       android:layout_height="10dp"
       android:background="@drawable/circle"/>
   </LinearLayout>
-
-  <LinearLayout
-    android:orientation="horizontal"
+  <Button
+    android:id="@+id/Startup_SignInButton"
     android:layout_gravity="bottom"
-    android:gravity="bottom"
+    android:gravity="center"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    <Button
-      android:id="@+id/Startup_RegisterButton"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:textSize="26dp"
-      android:textColor="#FFFFFF"
-      android:background="#4E4E4E"
-      android:layout_weight="1"
-      android:text="@string/Startup_Register_Text"
+    android:layout_height="wrap_content"
+    android:textSize="26dp"
+    android:layout_weight="1"
+    android:textColor="#FFFFFF"
+    android:background="@color/MainColor"
+    android:text="@string/Startup_SignIn_Text"
       />
-    <Button
-      android:id="@+id/Startup_SignInButton"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:textSize="26dp"
-      android:layout_weight="1"
-      android:textColor="#FFFFFF"
-      android:background="@color/MainColor"
-      android:text="@string/Startup_SignIn_Text"
-      />
-  </LinearLayout>
   <WebView  android:id="@+id/Startup_WebView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

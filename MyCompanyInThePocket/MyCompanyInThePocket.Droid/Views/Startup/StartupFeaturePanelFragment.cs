@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android;
-using Android.App;
-using Android.Content;
-using Android.Graphics;
+
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using MyCompanyInThePocket.Droid;
 using Square.Picasso;
 
 namespace TVST.Droid.UI.Views.Fragments
@@ -32,7 +25,7 @@ namespace TVST.Droid.UI.Views.Fragments
             _titleView = toReturn.FindViewById<TextView>(Resource.Id.Startup_FeatureTitle);
             _descriptionView = toReturn.FindViewById<TextView>(Resource.Id.Startup_FeatureDescription);
             _imageView = toReturn.FindViewById<ImageView>(Resource.Id.Startup_FeatureImage);
-            
+
             return toReturn;
         }
 
