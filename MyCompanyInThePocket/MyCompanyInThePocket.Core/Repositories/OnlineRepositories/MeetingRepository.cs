@@ -1,4 +1,5 @@
-﻿using MyCompanyInThePocket.Core.Helpers;
+﻿using MvvmCross.Platform;
+using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Models;
 using MyCompanyInThePocket.Core.Repositories.Interfaces;
 using Newtonsoft.Json;
@@ -15,8 +16,9 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
     {
         private AuthentificationService _authentificationService;
 
-        public MeetingRepository(IAuthentificationPlatformFactory authentificationPlatformFactory)
+        public MeetingRepository()
         {
+            var authentificationPlatformFactory = Mvx.Resolve<IAuthentificationPlatformFactory>();
             _authentificationService = new AuthentificationService(authentificationPlatformFactory);
         }
 
