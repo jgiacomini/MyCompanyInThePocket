@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Plugin.CurrentActivity;
 
 namespace MyCompanyInThePocket.UWP.Helpers
 {
@@ -12,8 +13,7 @@ namespace MyCompanyInThePocket.UWP.Helpers
     {
         public IPlatformParameters GetPlatformParameter()
         {
-            return null;
-            //return new PlatformParameters(PromptBehavior.Auto, false);
+            return new PlatformParameters(CrossCurrentActivity.Current.Activity, false);
         }
     }
 }
