@@ -15,8 +15,6 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-[Xx]64/
-[Xx]86/
 [Bb]uild/
 bld/
 [Bb]in/
@@ -240,5 +238,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-/MyCompanyInThePocket/MyCompanyInThePocket.Core/Resource__dot_not_commit.resx
 /MyCompanyInThePocket/MyCompanyInThePocket.Core/Config__dot_not_commit.resx
