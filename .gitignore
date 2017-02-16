@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /MyCompanyInThePocket/MyCompanyInThePocket.Core/Resource__dot_not_commit.resx
+/MyCompanyInThePocket/MyCompanyInThePocket.Core/Config__dot_not_commit.resx

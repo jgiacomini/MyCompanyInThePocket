@@ -117,16 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Authority" xml:space="preserve">
-    <value>https://login.windows.net/common</value>
+  <data name="Startup_FlipViewItem1_Content_Text" xml:space="preserve">
+    <value>Plus besoin de chercher, tout est ici...</value>
   </data>
-  <data name="ClientId" xml:space="preserve">
-    <value>d4ff9d88-582f-4f21-86ff-8d6ed1986a3b</value>
+  <data name="Startup_FlipViewItem1_Title_Text" xml:space="preserve">
+    <value>LIENS UTILES</value>
   </data>
-  <data name="ReturnUri" xml:space="preserve">
-    <value>ms-appx-web://Microsoft.AAD.BrokerPlugin/S-1-15-2-868482074-2349976311-845459658-562622403-2702059385-90433763-2521767136</value>
+  <data name="Startup_FlipViewItem2_Content_Text" xml:space="preserve">
+    <value>Les mains en l'air ! Tout vos rendez-vous affichés ici...</value>
   </data>
-  <data name="ServiceResourceId" xml:space="preserve">
-    <value>https://infinitesquare.sharepoint.com/</value>
+  <data name="Startup_FlipViewItem2_Title_Text" xml:space="preserve">
+    <value>RENDEZ-VOUS</value>
+  </data>
+  <data name="Startup_FlipViewItem3_Content_Text" xml:space="preserve">
+    <value>Tous les documents à connaître sont ici...</value>
+  </data>
+  <data name="Startup_FlipViewItem3_Title_Text" xml:space="preserve">
+    <value>DOCUMENTS</value>
+  </data>
+  <data name="Startup_FlipViewItem4_Content_Text" xml:space="preserve">
+    <value>Ici une super feature qui n'attends que vous.</value>
+  </data>
+  <data name="Startup_FlipViewItem4_Title_Text" xml:space="preserve">
+    <value>FEATURE4</value>
   </data>
 </root>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="MainColor">#007DB6</color>
+  <color name="Foreground">#000000</color>
+  <color name="ForegroundInversed">#FFFFFF</color>
+
+  <color name="Background">#FFFFFF</color>
+
+</resources>
