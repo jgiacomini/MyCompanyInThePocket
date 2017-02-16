@@ -9,7 +9,7 @@ namespace MyCompanyInThePocket.Core.Models
 {
     public class UseFullLink
     {
-        [PrimaryKey,AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Link { get; set; }
 
