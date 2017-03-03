@@ -2,7 +2,7 @@ using MvvmCross.iOS.Views;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public partial class SplashScreenView : MvxViewController
+    public partial class SplashScreenView : BaseViewController
     {
         public SplashScreenView()
         {
