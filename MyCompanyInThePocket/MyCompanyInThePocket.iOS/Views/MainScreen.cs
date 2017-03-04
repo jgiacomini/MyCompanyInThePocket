@@ -13,5 +13,11 @@ namespace MyCompanyInThePocket.iOS.Views
         {
             base.ViewDidLoad();
         }
+
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+			NavigationController.SetNavigationBarHidden(false, true);
+		}
     }
 }

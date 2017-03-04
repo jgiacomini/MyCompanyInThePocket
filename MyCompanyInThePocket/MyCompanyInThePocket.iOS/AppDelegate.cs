@@ -26,8 +26,9 @@ namespace MyCompanyInThePocket.iOS
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
 
+			var navigationController = ((UINavigationController)Window.RootViewController);
+			navigationController.SetNavigationBarHidden(true, false);
             Window.MakeKeyAndVisible();
-
             return true;
         }
 
