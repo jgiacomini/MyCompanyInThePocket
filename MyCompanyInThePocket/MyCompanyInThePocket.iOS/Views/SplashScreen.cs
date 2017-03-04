@@ -1,18 +1,20 @@
-using MvvmCross.iOS.Views;
+using MyCompanyInThePocket.Core.ViewModels;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public partial class SplashScreenView : BaseViewController
+	public partial class SplashScreenView : BaseScreen<SplashScreenViewModel>
     {
         public SplashScreenView()
         {
-
 			Title = "Splashscreen";
         }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-        }
+
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			ViewModel.InitializeAsync();
+		}
     }
 }

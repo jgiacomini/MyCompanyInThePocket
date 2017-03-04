@@ -16,7 +16,7 @@ namespace MyCompanyInThePocket.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.SplashScreenViewModel>();
+			RegisterAppStart<ViewModels.SplashScreenViewModel>();
 
             if (_useMock)
             {

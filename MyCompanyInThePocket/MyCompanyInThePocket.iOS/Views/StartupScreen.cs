@@ -1,12 +1,12 @@
-﻿using System;
-using MvvmCross.iOS.Views;
-
+﻿using MyCompanyInThePocket.Core.ViewModels;
+using MyCompanyInThePocket.iOS.Views;
 namespace MyCompanyInThePocket.iOS
 {
-	public class StartupScreen : BaseViewController
+	public class StartupScreen : BaseScreen<StartupViewModel>
 	{
 		public StartupScreen()
 		{
+			Title = "StartupScreen";
 		}
 	}
 }

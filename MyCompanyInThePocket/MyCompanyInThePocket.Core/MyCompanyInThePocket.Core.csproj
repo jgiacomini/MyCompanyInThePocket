@@ -61,7 +61,6 @@
     <Compile Include="Repositories\OnlineRepositories\AuthentificationService.cs" />
     <Compile Include="Repositories\Interfaces\IOnlineRepository.cs" />
     <Compile Include="Repositories\OnlineRepositories\MeetingRepository.cs" />
-    <Compile Include="Repositories\OnlineRepositories\OnlineSettings.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,6 +80,8 @@
     <Compile Include="ViewModels\MainScreenViewModel.cs" />
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />
     <Compile Include="ViewModels\StartupViewModel.cs" />
+    <Compile Include="Settings\ApplicationSettings.cs" />
+    <Compile Include="Settings\OnlineSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -142,6 +143,9 @@
     <Reference Include="Plugin.Settings">
       <HintPath>..\packages\Xam.Plugins.Settings.2.5.4\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Settings\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

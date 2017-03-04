@@ -29,22 +29,20 @@ namespace MyCompanyInThePocket.Core.ViewModels
             {
                 CurrentState = "Initialisation";
                 await _databaseService.InitializeDbAsync();
-                var meetingService = Mvx.Resolve<IMeetingService>();
-                var meetings = await meetingService.GetMeetingsAsync();
-
-                // l'application est initialisé on ouvre la page principale.
-
-
-                // TODO : check si connecté
-                ShowViewModel<StartupViewModel>();
+				if (ApplicationSettings.LaunchStartupScreen)
+				{
+					ShowViewModel<StartupViewModel>();
+				}
+				else
+				{
+					ShowViewModel<MainScreenViewModel>();
+				}
             }
             catch (System.Exception ex)
             {
                 ErrorMessage = "Erreur durant l'initialisation de l'application";
                 await Mvx.Resolve<IMessageService>()
-                     .ShowErrorToastAsync(ex, "Erreur durant l'initialisation de l'application"
-
-                     );
+                     .ShowErrorToastAsync(ex, "Erreur durant l'initialisation de l'application");
                 // TODO : log something
             }
             finally

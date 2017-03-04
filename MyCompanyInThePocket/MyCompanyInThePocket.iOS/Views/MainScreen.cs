@@ -1,10 +1,8 @@
-using Foundation;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.iOS.Views;
+using MyCompanyInThePocket.Core.ViewModels;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public class MainScreenView : BaseViewController
+	public class MainScreenView : BaseScreen<MainScreenViewModel>
     {
         public MainScreenView()
         {
