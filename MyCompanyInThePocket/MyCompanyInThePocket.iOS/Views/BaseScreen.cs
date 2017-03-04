@@ -11,6 +11,7 @@ namespace MyCompanyInThePocket.iOS.Views
 	{
 		public BaseScreen()
 		{
+			View.BackgroundColor = UIColor.White;
 			CurrentViewController.Current = this;
 		}
 	}

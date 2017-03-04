@@ -14,6 +14,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
         #region Fields
         private string _currentState;
         private string _errorMessage;
+		private bool _hasError;
         private readonly IDatabaseService _databaseService;
         #endregion
 
@@ -28,7 +29,8 @@ namespace MyCompanyInThePocket.Core.ViewModels
             try
             {
                 CurrentState = "Initialisation";
-                await _databaseService.InitializeDbAsync();
+				await _databaseService.InitializeDbAsync();
+
 				if (ApplicationSettings.LaunchStartupScreen)
 				{
 					ShowViewModel<StartupViewModel>();
@@ -40,6 +42,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
             }
             catch (System.Exception ex)
             {
+				HasError = true;
                 ErrorMessage = "Erreur durant l'initialisation de l'application";
                 await Mvx.Resolve<IMessageService>()
                      .ShowErrorToastAsync(ex, "Erreur durant l'initialisation de l'application");
@@ -52,6 +55,11 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
         }
 
+		public bool HasError
+		{
+			get { return _hasError; }
+			set { SetProperty(ref _hasError, value); }
+		}
 
         public string ErrorMessage
         {

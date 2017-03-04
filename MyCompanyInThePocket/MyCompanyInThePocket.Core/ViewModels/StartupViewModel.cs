@@ -5,15 +5,15 @@ namespace MyCompanyInThePocket.Core.ViewModels
     {
 		public StartupViewModel()
 		{
-			GoToMainPageCommand = new MvxCommand(GoToMainPage);
+			GoToNextPageCommand = new MvxCommand(GoToNextPage);
 		}
 
-		public IMvxCommand GoToMainPageCommand
+		public IMvxCommand GoToNextPageCommand
 		{
 			get; private set;
 		}
 
-		private void GoToMainPage()
+		private void GoToNextPage()
 		{
 			ApplicationSettings.LaunchStartupScreen = false;
 			ShowViewModel<MainScreenViewModel> ();
