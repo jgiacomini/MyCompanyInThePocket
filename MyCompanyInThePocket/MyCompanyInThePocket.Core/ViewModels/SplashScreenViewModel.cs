@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
+	/// <summary>
+	/// Splash screen view model.
+	/// </summary>
     public class SplashScreenViewModel : BaseViewModel
     {
         #region Fields

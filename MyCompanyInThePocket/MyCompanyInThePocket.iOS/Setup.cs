@@ -1,7 +1,9 @@
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
+using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
+using MyCompanyInThePocket.Core.Helpers;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS
@@ -27,5 +29,13 @@ namespace MyCompanyInThePocket.iOS
         {
             return new DebugTrace();
         }
-    }
+
+		protected override void InitializeLastChance()
+		{
+			Mvx.RegisterType<ISqliteConnectionFactory, IOSSqliteConnectionFactory>();
+			Mvx.RegisterType<IAuthentificationPlatformFactory, IOSAuthentificationPlatformFactory>();
+			base.InitializeLastChance();
+		}
+
+	}
 }
