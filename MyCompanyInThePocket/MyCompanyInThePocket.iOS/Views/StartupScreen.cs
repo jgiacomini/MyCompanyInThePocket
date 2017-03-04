@@ -12,7 +12,7 @@ namespace MyCompanyInThePocket.iOS.Views
 
 		public StartupScreen()
 		{
-			Title = "StartupScreen";
+			NoHistory = true;
 		}
 
 		public override void ViewDidLoad()

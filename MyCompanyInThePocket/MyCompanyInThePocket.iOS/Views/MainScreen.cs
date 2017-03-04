@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using MyCompanyInThePocket.Core.ViewModels;
+using UIKit;
 
 namespace MyCompanyInThePocket.iOS.Views
 {

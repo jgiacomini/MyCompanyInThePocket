@@ -14,7 +14,7 @@ namespace MyCompanyInThePocket.iOS.Views
 
         public SplashScreenView()
         {
-			Title = "Splashscreen";
+			NoHistory = true;
 		}
 
 		public async override void ViewDidLoad()

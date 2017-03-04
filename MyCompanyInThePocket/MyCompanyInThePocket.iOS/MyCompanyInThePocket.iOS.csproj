@@ -101,6 +101,7 @@
     <Compile Include="Helpers\IOSAuthentificationPlatformFactory.cs" />
     <Compile Include="Helpers\CurrentViewController.cs" />
     <Compile Include="Views\BaseScreen.cs" />
+    <Compile Include="Views\IBaseScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
