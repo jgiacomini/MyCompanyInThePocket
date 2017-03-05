@@ -100,8 +100,13 @@
     <Compile Include="Helpers\IOSSQLiteConnectionFactory.cs" />
     <Compile Include="Helpers\IOSAuthentificationPlatformFactory.cs" />
     <Compile Include="Helpers\CurrentViewController.cs" />
-    <Compile Include="Views\BaseScreen.cs" />
-    <Compile Include="Views\IBaseScreen.cs" />
+    <Compile Include="Views\ScreenHelper.cs" />
+    <Compile Include="Views\BaseScreen\BaseScreen.cs" />
+    <Compile Include="Views\BaseScreen\BaseTabBarScreen.cs" />
+    <Compile Include="Services\iOSMessageService.cs" />
+    <Compile Include="Views\Meetings\MeetingsScreen.cs" />
+    <Compile Include="Views\SettingsScreen.cs" />
+    <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -191,6 +196,26 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Views\BaseScreen\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Meetings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TabBar\ic_menu_abonnements.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_abonnements%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_abonnements%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_messages.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_messages%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_messages%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_setttings.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_settings%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_settings%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_search.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_search%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_search%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_timeline.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_timeline%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_timeline%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -6,14 +6,9 @@ using System;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-	public class StartupScreen : BaseScreen<StartupViewModel>
+	public class StartupScreen : BaseScreen<StartupViewModel>, INoHistoryScreen
 	{
 		private UIButton _buttonNextPage;
-
-		public StartupScreen()
-		{
-			NoHistory = true;
-		}
 
 		public override void ViewDidLoad()
 		{

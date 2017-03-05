@@ -82,6 +82,8 @@
     <Compile Include="ViewModels\StartupViewModel.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\OnlineSettings.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\MeetingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

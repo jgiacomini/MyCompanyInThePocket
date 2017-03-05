@@ -4,6 +4,7 @@ using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MyCompanyInThePocket.Core.Helpers;
+using MyCompanyInThePocket.Core.Services.Interface;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS
@@ -34,6 +35,8 @@ namespace MyCompanyInThePocket.iOS
 		{
 			Mvx.RegisterType<ISqliteConnectionFactory, IOSSqliteConnectionFactory>();
 			Mvx.RegisterType<IAuthentificationPlatformFactory, IOSAuthentificationPlatformFactory>();
+			Mvx.RegisterType<IMessageService, iOSMessageService>();
+
 			base.InitializeLastChance();
 		}
 

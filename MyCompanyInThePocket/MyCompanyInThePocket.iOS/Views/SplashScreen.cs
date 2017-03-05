@@ -6,7 +6,7 @@ using System;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-	public partial class SplashScreenView : BaseScreen<SplashScreenViewModel>
+	public partial class SplashScreenView : BaseScreen<SplashScreenViewModel>, INoHistoryScreen
     {
 		private UILabel _currentStateLabel;
 		private UILabel _errorLabel;
@@ -14,7 +14,6 @@ namespace MyCompanyInThePocket.iOS.Views
 
         public SplashScreenView()
         {
-			NoHistory = true;
 		}
 
 		public async override void ViewDidLoad()
@@ -54,8 +53,6 @@ namespace MyCompanyInThePocket.iOS.Views
 
 			set.Apply();
 			await ViewModel.InitializeAsync();
-
-
 		}
     }
 }

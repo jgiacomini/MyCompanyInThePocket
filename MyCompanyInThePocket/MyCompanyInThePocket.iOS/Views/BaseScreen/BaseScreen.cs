@@ -7,15 +7,9 @@ using System.Linq;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-	public class BaseScreen<TViewModel> : MvxViewController<TViewModel>, IBaseScreen
+	public abstract class BaseScreen<TViewModel> : MvxViewController<TViewModel>, INoHistoryScreen
 		where TViewModel : class, IMvxViewModel
 	{
-
-		public bool NoHistory
-		{
-			get;
-			set;
-		}
 
 		public BaseScreen()
 		{
@@ -26,14 +20,7 @@ namespace MyCompanyInThePocket.iOS.Views
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-			var controllers = NavigationController.ViewControllers.OfType<IBaseScreen>().ToList();
-			foreach (var item in controllers)
-			{
-				if (item.NoHistory && item.GetType() != this.GetType())
-				{
-					(item as UIViewController).RemoveFromParentViewController();
-				}
-			}
+			ScreenHelper.RemoveNoHistoryPage(NavigationController, this);
 		}
 
 		public override void ViewWillDisappear(bool animated)

@@ -1,8 +1,7 @@
 ﻿using System;
 namespace MyCompanyInThePocket.iOS
 {
-	public interface IBaseScreen
+	public interface INoHistoryScreen
 	{
-		bool NoHistory { get; }
 	}
 }
