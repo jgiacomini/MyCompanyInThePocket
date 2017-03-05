@@ -7,7 +7,7 @@ namespace MyCompanyInThePocket.Core
 {
     public class App : MvvmCross.Core.ViewModels.MvxApplication
     {
-        private bool _useMock = true;
+		private bool _useMock = true;
 
         public override void Initialize()
         {

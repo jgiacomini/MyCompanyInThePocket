@@ -36,9 +36,9 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 		string GetShortDate(DateTimeOffset date, string[] names)
 		{
-			return $"{names[(int)date.DayOfWeek]} {date.Day:D2}/{date.Month:D2}/{date.Year}";
+			var year = date.ToString("yy");
+			return $"{names[(int)date.DayOfWeek]} {date.Day:D2}/{date.Month:D2}/{year}";
 		}
-
 
 		public string Title
 		{
