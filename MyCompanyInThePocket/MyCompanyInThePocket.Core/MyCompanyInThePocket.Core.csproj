@@ -83,7 +83,8 @@
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\OnlineSettings.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\MeetingsViewModel.cs" />
+    <Compile Include="ViewModels\Meeting\MeetingsViewModel.cs" />
+    <Compile Include="ViewModels\Meeting\MeetingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Settings\" />
+    <Folder Include="ViewModels\Meeting\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Views;
 using MyCompanyInThePocket.Core.Resources;
@@ -14,7 +13,7 @@ namespace MyCompanyInThePocket.iOS.Views
         public MainScreenView()
         {
 			Title = "MainScreen";
-			this.ViewControllerSelected +=	Handle_ViewControllerSelected;
+			this.ViewControllerSelected += Handle_ViewControllerSelected;
         }
 
 		void Handle_ViewControllerSelected(object sender, UITabBarSelectionEventArgs e)
@@ -45,23 +44,19 @@ namespace MyCompanyInThePocket.iOS.Views
 		{
 			// Création de l'écran correspondant au viewModel;
 			var screen = this.CreateViewControllerFor(viewModel) as UIViewController;
-			SetTitleAndTabBarItem(screen, title, imageName);
-			return screen;
-		}
 
-		private void SetTitleAndTabBarItem(UIViewController screen, string title, string imageName)
-		{
-			screen.Title = title;
 
 			var image = UIImage.FromBundle($"TabBar/{imageName}.png");
-
-			screen.TabBarItem = new UITabBarItem(title, image ,_nbTabBarCreated);
+			screen.Title = title;
+			screen.TabBarItem = new UITabBarItem(title, image, _nbTabBarCreated);
 			_nbTabBarCreated++;
+			return screen;
 		}
 
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
+			// On réaffiche la bar de navigation
 			NavigationController.SetNavigationBarHidden(false, true);
 		}
     }

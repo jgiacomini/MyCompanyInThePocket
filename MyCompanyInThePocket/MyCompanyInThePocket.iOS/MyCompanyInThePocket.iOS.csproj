@@ -107,6 +107,7 @@
     <Compile Include="Views\Meetings\MeetingsScreen.cs" />
     <Compile Include="Views\SettingsScreen.cs" />
     <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
+    <Compile Include="Views\Meetings\MeetingCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
