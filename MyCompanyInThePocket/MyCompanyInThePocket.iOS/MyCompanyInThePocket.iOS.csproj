@@ -213,9 +213,9 @@
     <BundleResource Include="Resources\TabBar\ic_menu_search.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_search%402x.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_search%403x.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_timeline.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_timeline%402x.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_timeline%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_meetings.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_meetings%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_meetings%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

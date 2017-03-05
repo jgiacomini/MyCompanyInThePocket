@@ -30,9 +30,9 @@ namespace MyCompanyInThePocket.iOS.Views
 			var viewControllers =
 				new UIViewController[]
 				{
-					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_timeline", ViewModel.MeetingsVM),
-					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_timeline", ViewModel.MeetingsVM),
-					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_timeline", ViewModel.MeetingsVM),
+					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
+					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
+					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
 					CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
 				};
 			ViewControllers = viewControllers;
@@ -53,7 +53,7 @@ namespace MyCompanyInThePocket.iOS.Views
 		{
 			screen.Title = title;
 
-			var image = UIImage.FromBundle($"Resources/TabBar/{imageName}.png");
+			var image = UIImage.FromBundle($"TabBar/{imageName}.png");
 
 			screen.TabBarItem = new UITabBarItem(title, image ,_nbTabBarCreated);
 			_nbTabBarCreated++;
