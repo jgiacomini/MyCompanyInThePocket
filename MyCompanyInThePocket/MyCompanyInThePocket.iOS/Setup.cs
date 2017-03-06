@@ -4,6 +4,10 @@ using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MyCompanyInThePocket.Core.Helpers;
+<<<<<<< HEAD
+=======
+using MyCompanyInThePocket.Core.Services.Interface;
+>>>>>>> jgiacomini/master
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS
@@ -36,5 +40,15 @@ namespace MyCompanyInThePocket.iOS
         {
             return new DebugTrace();
         }
-    }
+
+		protected override void InitializeLastChance()
+		{
+			Mvx.RegisterType<ISqliteConnectionFactory, IOSSqliteConnectionFactory>();
+			Mvx.RegisterType<IAuthentificationPlatformFactory, IOSAuthentificationPlatformFactory>();
+			Mvx.RegisterType<IMessageService, iOSMessageService>();
+
+			base.InitializeLastChance();
+		}
+
+	}
 }

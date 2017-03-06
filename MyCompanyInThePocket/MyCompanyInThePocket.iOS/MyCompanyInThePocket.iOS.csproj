@@ -19,7 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
@@ -96,9 +96,25 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <Content Include="Entitlements.plist" />
     <None Include="packages.config" />
+<<<<<<< HEAD
     <Compile Include="Helpers\SqliteConnectionFactory.cs" />
     <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Helpers\AuthentificationPlatformFactory.cs" />
+=======
+    <Compile Include="Views\StartupScreen.cs" />
+    <Compile Include="Helpers\IOSSQLiteConnectionFactory.cs" />
+    <Compile Include="Helpers\IOSAuthentificationPlatformFactory.cs" />
+    <Compile Include="Helpers\CurrentViewController.cs" />
+    <Compile Include="Views\ScreenHelper.cs" />
+    <Compile Include="Views\BaseScreen\BaseScreen.cs" />
+    <Compile Include="Views\BaseScreen\BaseTabBarScreen.cs" />
+    <Compile Include="Services\iOSMessageService.cs" />
+    <Compile Include="Views\Meetings\MeetingsScreen.cs" />
+    <Compile Include="Views\SettingsScreen.cs" />
+    <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
+    <Compile Include="Views\Meetings\MeetingCell.cs" />
+    <Compile Include="Views\Meetings\MeetingView.cs" />
+>>>>>>> jgiacomini/master
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -170,6 +186,18 @@
     <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
       <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
+=======
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.FluentLayouts.Touch">
+      <HintPath>..\packages\Cirrious.FluentLayout.2.5.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
+    </Reference>
+>>>>>>> jgiacomini/master
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyCompanyInThePocket.Core\MyCompanyInThePocket.Core.csproj">
@@ -179,6 +207,29 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="Views\BaseScreen\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Meetings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TabBar\ic_menu_abonnements.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_abonnements%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_abonnements%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_messages.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_messages%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_messages%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_setttings.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_settings%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_settings%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_search.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_search%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_search%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_meetings.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_meetings%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_meetings%403x.png" />
+>>>>>>> jgiacomini/master
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

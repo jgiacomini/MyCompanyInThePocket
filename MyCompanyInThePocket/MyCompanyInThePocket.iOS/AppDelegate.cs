@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using System.Diagnostics.Contracts;
+using Foundation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
@@ -15,9 +16,9 @@ namespace MyCompanyInThePocket.iOS
             set;
         }
 
-        public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             var setup = new Setup(this, Window);
             setup.Initialize();
@@ -25,8 +26,9 @@ namespace MyCompanyInThePocket.iOS
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
 
+			var navigationController = ((UINavigationController)Window.RootViewController);
+			navigationController.SetNavigationBarHidden(true, false);
             Window.MakeKeyAndVisible();
-
             return true;
         }
 

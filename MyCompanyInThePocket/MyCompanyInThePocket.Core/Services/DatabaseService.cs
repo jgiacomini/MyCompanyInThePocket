@@ -16,14 +16,12 @@ namespace MyCompanyInThePocket.Core.Services
 
         #region Fields
         private readonly ISqliteConnectionFactory _sqliteConnectionFactory;
-        private readonly IAuthentificationPlatformFactory _authentificationPlatformFactory;
         private SQLiteAsyncConnection _connection;
         #endregion
 
-        public DatabaseService(ISqliteConnectionFactory sqliteConnectionFactory, IAuthentificationPlatformFactory authentificationPlatformFactory)
+        public DatabaseService(ISqliteConnectionFactory sqliteConnectionFactory)
         {
             _sqliteConnectionFactory = sqliteConnectionFactory;
-            _authentificationPlatformFactory = authentificationPlatformFactory;
         }
 
         /// <summary>
@@ -75,7 +73,6 @@ namespace MyCompanyInThePocket.Core.Services
         /// <summary>
         /// Gets the pragma version.
         /// </summary>
-        /// <param name="connection">The connection.</param>
         /// <returns>
         /// Table version number
         /// </returns>

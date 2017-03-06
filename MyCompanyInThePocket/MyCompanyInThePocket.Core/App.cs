@@ -7,7 +7,7 @@ namespace MyCompanyInThePocket.Core
 {
     public class App : MvvmCross.Core.ViewModels.MvxApplication
     {
-        private bool _useMock = true;
+		private bool _useMock = true;
 
         public override void Initialize()
         {
@@ -16,7 +16,7 @@ namespace MyCompanyInThePocket.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.SplashScreenViewModel>();
+			RegisterAppStart<ViewModels.SplashScreenViewModel>();
 
             if (_useMock)
             {
