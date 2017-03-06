@@ -8,9 +8,9 @@ using MyCompanyInThePocket.Core.Models;
 
 namespace MyCompanyInThePocket.Core.Repositories.MockRepositories
 {
-    internal class UseFullLinkRepository
+    internal class UseFullLinkRepository : IOnlineUseFullLinkRepository
     {
-        public async Task<IEnumerable<UseFullLink>> GetUseFullLinksAsync()
+        public async Task<List<UseFullLink>> GetUseFullLinksAsync()
         {
             await Task.Delay(2000);
 

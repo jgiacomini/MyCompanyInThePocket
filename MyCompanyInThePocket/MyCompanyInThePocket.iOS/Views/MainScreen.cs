@@ -10,11 +10,11 @@ namespace MyCompanyInThePocket.iOS.Views
 	{
 		private int _nbTabBarCreated;
 
-        public MainScreenView()
-        {
+		public MainScreenView()
+		{
 			Title = "MainScreen";
 			this.ViewControllerSelected += Handle_ViewControllerSelected;
-        }
+		}
 
 		void Handle_ViewControllerSelected(object sender, UITabBarSelectionEventArgs e)
 		{
@@ -26,18 +26,17 @@ namespace MyCompanyInThePocket.iOS.Views
 		{
 			base.ViewWillAppear(animated);
 
-			var viewControllers =
-				new UIViewController[]
-				{
-					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
-					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
-					CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
-					CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
-				};
+			var viewControllers = new UIViewController[]
+			{
+				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
+				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.UseFullLinksVM),
+				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
+				CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
+			};
 			ViewControllers = viewControllers;
 			SelectedViewController = ViewControllers[0];
 			Title = SelectedViewController.Title;
-        }
+		}
 
 
 		private UIViewController CreateTabFor(string title, string imageName, IMvxViewModel viewModel)
@@ -59,5 +58,5 @@ namespace MyCompanyInThePocket.iOS.Views
 			// On réaffiche la bar de navigation
 			NavigationController.SetNavigationBarHidden(false, true);
 		}
-    }
+	}
 }
