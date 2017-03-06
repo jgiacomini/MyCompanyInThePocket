@@ -21,10 +21,12 @@ namespace MyCompanyInThePocket.Core
             if (_useMock)
             {
                 Mvx.RegisterType<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.MeetingRepository());
+				Mvx.RegisterType<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
             }
             else
             {
                 Mvx.RegisterType<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.MeetingRepository());
+				//Mvx.RegisterType<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.UseFullLinkRepository());
             }
         }
 

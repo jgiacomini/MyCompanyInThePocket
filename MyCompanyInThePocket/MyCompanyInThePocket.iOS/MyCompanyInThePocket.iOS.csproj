@@ -96,11 +96,6 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <Content Include="Entitlements.plist" />
     <None Include="packages.config" />
-<<<<<<< HEAD
-    <Compile Include="Helpers\SqliteConnectionFactory.cs" />
-    <Compile Include="Views\BaseViewController.cs" />
-    <Compile Include="Helpers\AuthentificationPlatformFactory.cs" />
-=======
     <Compile Include="Views\StartupScreen.cs" />
     <Compile Include="Helpers\IOSSQLiteConnectionFactory.cs" />
     <Compile Include="Helpers\IOSAuthentificationPlatformFactory.cs" />
@@ -114,7 +109,10 @@
     <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
     <Compile Include="Views\Meetings\MeetingCell.cs" />
     <Compile Include="Views\Meetings\MeetingView.cs" />
->>>>>>> jgiacomini/master
+    <Compile Include="Views\UsefullLinks\UsefullLinkView.cs" />
+    <Compile Include="Views\UsefullLinks\UseFullLinksScreen.cs" />
+    <Compile Include="Views\UsefullLinks\UseFullLinkCell.cs" />
+    <Compile Include="Views\UsefullLinks\UseFullLinksViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -186,8 +184,6 @@
     <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
       <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-=======
     <Reference Include="PCLStorage.Abstractions">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
     </Reference>
@@ -197,7 +193,12 @@
     <Reference Include="Cirrious.FluentLayouts.Touch">
       <HintPath>..\packages\Cirrious.FluentLayout.2.5.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
     </Reference>
->>>>>>> jgiacomini/master
+    <Reference Include="Plugin.Share.Abstractions">
+      <HintPath>..\packages\Plugin.Share.5.0.0\lib\Xamarin.iOS10\Plugin.Share.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share">
+      <HintPath>..\packages\Plugin.Share.5.0.0\lib\Xamarin.iOS10\Plugin.Share.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyCompanyInThePocket.Core\MyCompanyInThePocket.Core.csproj">
@@ -207,11 +208,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
-<<<<<<< HEAD
-=======
     <Folder Include="Views\BaseScreen\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Meetings\" />
+    <Folder Include="Views\UsefullLinks\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\TabBar\ic_menu_abonnements.png" />
@@ -229,7 +229,6 @@
     <BundleResource Include="Resources\TabBar\ic_menu_meetings.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_meetings%402x.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_meetings%403x.png" />
->>>>>>> jgiacomini/master
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -6,11 +6,7 @@ using System;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-<<<<<<< HEAD
-    public partial class SplashScreenView : BaseViewController
-=======
 	public partial class SplashScreenView : BaseScreen<SplashScreenViewModel>, INoHistoryScreen
->>>>>>> jgiacomini/master
     {
 		private UILabel _currentStateLabel;
 		private UILabel _errorLabel;
