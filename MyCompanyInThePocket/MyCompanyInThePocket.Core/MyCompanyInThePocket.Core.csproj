@@ -54,15 +54,11 @@
     <Compile Include="Models\UseFullLink.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DatabaseRepositories\DatabaseMeetingRepository.cs" />
-    <Compile Include="Repositories\DatabaseRepositories\DatabaseUseFullLinkRepository.cs" />
     <Compile Include="Repositories\Interfaces\IOnlineMeetingRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IOnlineUseFullLinkRepository.cs" />
     <Compile Include="Repositories\MockRepositories\MeetingRepository.cs" />
     <Compile Include="Repositories\MockRepositories\UseFullLinkRepository.cs" />
     <Compile Include="Repositories\OnlineRepositories\AuthentificationService.cs" />
-    <Compile Include="Repositories\Interfaces\IOnlineRepository.cs" />
-    <Compile Include="Repositories\OnlineRepositories\MeetingRepository.cs" />
+    <Compile Include="Repositories\OnlineRepositories\OnlineMeetingRepository.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,10 +72,8 @@
     <Compile Include="Services\DatabaseService.cs" />
     <Compile Include="Services\Interface\IDatabaseService.cs" />
     <Compile Include="Services\Interface\IMeetingService.cs" />
-    <Compile Include="Services\Interface\IUseFullLinkService.cs" />
     <Compile Include="Services\Interface\IMessageService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
-    <Compile Include="Services\UseFullLinkService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenViewModel.cs" />
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />
@@ -89,8 +83,14 @@
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Meeting\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\Meeting\MeetingViewModel.cs" />
-    <Compile Include="ViewModels\UsefullLink\UsefullLinksViewModel.cs" />
+    <Compile Include="Repositories\Interfaces\IOnlineUseFullLinkRepository.cs" />
     <Compile Include="ViewModels\UsefullLink\UseFullLinkViewModel.cs" />
+    <Compile Include="ViewModels\UsefullLink\UsefullLinksViewModel.cs" />
+    <Compile Include="Services\Interface\IUseFullLinkService.cs" />
+    <Compile Include="Services\UseFullLinkService.cs" />
+    <Compile Include="Repositories\Database\DbMeetingRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDbMeetingRepository.cs" />
+    <Compile Include="Repositories\OnlineRepositories\MeetingMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -162,7 +162,7 @@
   <ItemGroup>
     <Folder Include="Settings\" />
     <Folder Include="ViewModels\Meeting\" />
-    <Folder Include="ViewModels\UsefullLink\" />
+    <Folder Include="Repositories\Database\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

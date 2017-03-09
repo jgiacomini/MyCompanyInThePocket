@@ -34,8 +34,12 @@ namespace MyCompanyInThePocket.iOS.Views
 				CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
 			};
 			ViewControllers = viewControllers;
-			SelectedViewController = ViewControllers[0];
-			Title = SelectedViewController.Title;
+
+			if (SelectedViewController == null)
+			{
+				SelectedViewController = ViewControllers[0];
+				Title = SelectedViewController.Title;
+			}
 		}
 
 

@@ -17,7 +17,6 @@ namespace MyCompanyInThePocket.iOS
 			Type = new UILabel();
 
 			AddSubviews(Title, DateFormated, Type);
-
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			nfloat margin = 5;
 			this.AddConstraints(

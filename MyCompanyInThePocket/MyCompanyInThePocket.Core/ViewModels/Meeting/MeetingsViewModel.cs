@@ -4,6 +4,7 @@ using MvvmCross.Platform;
 using MyCompanyInThePocket.Core.Services.Interface;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -27,7 +28,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			IsBusy = true;
 			try
 			{
-				var meetings = await _meetingService.GetMeetingsAsync();
+				var meetings = await _meetingService.GetMeetingsAsync(false, CancellationToken.None);
 				Meetings = new ObservableCollection<MeetingViewModel>(meetings.Select(m => new MeetingViewModel(m)));
 				RaisePropertyChanged(nameof(Meetings));
 			}

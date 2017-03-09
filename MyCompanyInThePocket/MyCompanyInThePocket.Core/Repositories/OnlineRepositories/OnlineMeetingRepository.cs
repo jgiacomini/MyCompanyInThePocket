@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 {
-    internal class MeetingRepository : IOnlineRepository, IOnlineMeetingRepository
+    internal class OnlineMeetingRepository : IOnlineMeetingRepository
     {
         private AuthentificationService _authentificationService;
 
-        public MeetingRepository()
+        public OnlineMeetingRepository()
         {
             var authentificationPlatformFactory = Mvx.Resolve<IAuthentificationPlatformFactory>();
             _authentificationService = new AuthentificationService(authentificationPlatformFactory);
@@ -28,7 +28,7 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 
             var client = _authentificationService.GetClient();
 
-            var date = DateTime.Now.AddMonths(-2).ToString("s");
+			var date = DateTime.Now.AddMonths(-1).ToString("s");
             var identity = OnlineSettings.Identity;
 
             var queryString = AuthentificationService.ServiceResourceId + $"ACRA/_api/web/lists/getbytitle('{identity}')/items?$top=1000&$filter=EventDate gt DateTime'{date}'";
@@ -62,28 +62,13 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
                 var sharePointMeetings = data.value.OrderBy(ap => ap.EventDate).ToArray();
 
                 // TODO : exception personalisé lors du mapping
-                var meetings = MapMeetings(sharePointMeetings);
+				var meetings = sharePointMeetings.MapMeetings();
 
                 return meetings;
             }
         }
 
-        private List<Meeting> MapMeetings(CalendarValue[] sharePointMeetings)
-        {
-            var meetings = new List<Meeting>(sharePointMeetings.Length);
-            foreach (var meeting in sharePointMeetings)
-            {
-                var dbMeeting = new Meeting();
-                dbMeeting.EndDate = meeting.EndDate;
-                dbMeeting.StartDate = meeting.EventDate;
-                dbMeeting.Title = meeting.Title;
-                dbMeeting.Type = meeting.TypeCRA;
-                dbMeeting.AllDayEvent = meeting.fAllDayEvent.GetValueOrDefault();
-                meetings.Add(dbMeeting);
-            }
-
-            return meetings;
-        }
+        
     }
 
     #region Generated object
@@ -103,8 +88,8 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
         public string ContentTypeId { get; set; }
         public string Title { get; set; }
         public string Location { get; set; }
-        public DateTimeOffset EventDate { get; set; }
-        public DateTimeOffset EndDate { get; set; }
+        public DateTime EventDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string Description { get; set; }
         public bool? fAllDayEvent { get; set; }
         public bool fRecurrence { get; set; }

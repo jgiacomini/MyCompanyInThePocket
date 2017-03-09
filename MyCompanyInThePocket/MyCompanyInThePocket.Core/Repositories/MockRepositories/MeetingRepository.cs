@@ -53,23 +53,6 @@ namespace MyCompanyInThePocket.Core.Repositories.MockRepositories
 
             return meetings;
         }
-
-        private List<Meeting> MapMeetings(CalendarValue[] sharePointMeetings)
-        {
-            var meetings = new List<Meeting>(sharePointMeetings.Length);
-            foreach (var meeting in sharePointMeetings)
-            {
-                var dbMeeting = new Meeting();
-                dbMeeting.EndDate = meeting.EndDate;
-                dbMeeting.StartDate = meeting.EventDate;
-                dbMeeting.Title = meeting.Title;
-                dbMeeting.Type = meeting.TypeCRA;
-                dbMeeting.AllDayEvent = meeting.fAllDayEvent.GetValueOrDefault();
-                meetings.Add(dbMeeting);
-            }
-
-            return meetings;
-        }
     }
 
     #region Generated object

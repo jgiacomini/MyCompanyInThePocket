@@ -7,7 +7,7 @@ namespace MyCompanyInThePocket.Core
 {
     public class App : MvvmCross.Core.ViewModels.MvxApplication
     {
-		private bool _useMock = true;
+		private bool _useMock = false;
 
         public override void Initialize()
         {
@@ -25,9 +25,10 @@ namespace MyCompanyInThePocket.Core
             }
             else
             {
-                Mvx.RegisterType<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.MeetingRepository());
-				//Mvx.RegisterType<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.UseFullLinkRepository());
-            }
+                Mvx.RegisterType<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.OnlineMeetingRepository());
+				Mvx.RegisterType<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
+			}
+			Mvx.RegisterType<IDbMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.Database.DbMeetingRepository());
         }
 
     }
