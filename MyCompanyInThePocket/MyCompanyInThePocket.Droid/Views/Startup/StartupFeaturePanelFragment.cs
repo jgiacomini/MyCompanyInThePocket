@@ -4,7 +4,7 @@ using Android.Widget;
 using MyCompanyInThePocket.Droid;
 using Square.Picasso;
 
-namespace TVST.Droid.UI.Views.Fragments
+namespace MyCompanyInThePocket.Droid.Views.Startup
 {
     public class StartupFeaturePanelFragment : Android.Support.V4.App.Fragment
     {

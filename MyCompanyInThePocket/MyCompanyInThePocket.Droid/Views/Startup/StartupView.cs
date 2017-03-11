@@ -7,7 +7,6 @@ using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
-using TVST.Droid.UI.Views.Fragments;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MyCompanyInThePocket.Core.ViewModels;
