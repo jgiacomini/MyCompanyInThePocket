@@ -20,17 +20,17 @@ namespace MyCompanyInThePocket.iOS.Views
 			base.ViewWillAppear(animated);
 
 			TableView.RowHeight = 50;
-
-			//this.ViewModel.ReloadCommand
-			var source = new MeetingsViewSource(TableView, ViewModel.Meetings);
+			var refreshControl = new MvxUIRefreshControl();
+			this.RefreshControl = refreshControl;
+			var source = new MeetingsViewSource(TableView);
 			TableView.Source = source;
 
 			var set = this.CreateBindingSet<MeetingsScreen, MeetingsViewModel>();
 			set.Bind(source).To(vm => vm.Meetings);
-			/*set.Bind(_refreshControl).For(r => r.Message).To(vm => vm.TraysUpdateTime);
-			set.Bind(_refreshControl).For(r => r.RefreshCommand).To(vm => vm.ReloadCommand);
-			set.Bind(_refreshControl).For(r => r.IsRefreshing).To(vm => vm.IsBusy);
-			*/
+			set.Bind(refreshControl).For(r => r.Message).To(vm => vm.LastUpdate);
+			set.Bind(refreshControl).For(r => r.RefreshCommand).To(vm => vm.RefreshCommand);
+			set.Bind(refreshControl).For(r => r.IsRefreshing).To(vm => vm.IsBusy);
+
 			set.Apply();
 
 			await ViewModel.InitializeAsync();
@@ -41,12 +41,10 @@ namespace MyCompanyInThePocket.iOS.Views
 
 		public class MeetingsViewSource : MvxTableViewSource
 		{
-			private readonly ObservableCollection<MeetingViewModel> _meetings;
 
-			public MeetingsViewSource(UITableView tableView, ObservableCollection<MeetingViewModel> meetings)
+			public MeetingsViewSource(UITableView tableView)
 				: base(tableView)
 			{
-				_meetings = meetings;
 				tableView.RegisterClassForCellReuse(typeof(MeetingCell), MeetingCell.Key);
 			}
 

@@ -60,5 +60,10 @@ namespace MyCompanyInThePocket.Core.Services
 			var meetingsDB = await _dbMeetingReposittory.GetMeetingsSuperiorOfDateAsync(DateTime.Now.Date, cancellationToken);
 			return meetingsDB;
 		}
+
+		public DateTime GetLastUpdateTime()
+		{
+			return ApplicationSettings.LastACRARefresh;
+		}
 	}
 }

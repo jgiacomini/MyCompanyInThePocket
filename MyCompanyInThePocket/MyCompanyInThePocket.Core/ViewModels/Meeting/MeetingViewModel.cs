@@ -19,25 +19,17 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 		private void InitializeDateFormated()
 		{
-			var culture = new CultureInfo("fr-FR");
-			string[] names = culture.DateTimeFormat.AbbreviatedDayNames;
-
+			
 			// jeu. 02/03/16 - ven. 03/03/16
 			if (_meeting.StartDate.Date != _meeting.EndDate.Date)
 			{
 				//TODO :localisation
-				_dateFormated = $"{GetShortDate(_meeting.StartDate, names)} - {GetShortDate(_meeting.EndDate, names)}";
+				_dateFormated = $"{_meeting.StartDate.ToShortDateString()} - {_meeting.EndDate.ToShortDateString()}";
 			}
 			else
 			{
-				_dateFormated = GetShortDate(_meeting.StartDate, names);
+				_dateFormated = _meeting.StartDate.ToShortDateString();
 			}
-		}
-
-		string GetShortDate(DateTimeOffset date, string[] names)
-		{
-			var year = date.ToString("yy");
-			return $"{names[(int)date.DayOfWeek]} {date.Day:D2}/{date.Month:D2}/{year}";
 		}
 
 		public string Title

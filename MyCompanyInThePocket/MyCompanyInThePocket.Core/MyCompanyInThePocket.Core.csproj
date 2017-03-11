@@ -91,6 +91,7 @@
     <Compile Include="Repositories\Database\DbMeetingRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDbMeetingRepository.cs" />
     <Compile Include="Repositories\OnlineRepositories\MeetingMapper.cs" />
+    <Compile Include="Extension\DateTimeExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -163,6 +164,7 @@
     <Folder Include="Settings\" />
     <Folder Include="ViewModels\Meeting\" />
     <Folder Include="Repositories\Database\" />
+    <Folder Include="Extension\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

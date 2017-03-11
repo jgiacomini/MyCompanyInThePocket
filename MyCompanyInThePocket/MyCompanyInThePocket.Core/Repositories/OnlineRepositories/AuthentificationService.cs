@@ -37,14 +37,17 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 
         public async Task AuthenticateAsync()
         {
-            var authResult = await GetAccessTokenAsync(ServiceResourceId, _plaformFactory.GetPlatformParameter());
+			if (string.IsNullOrWhiteSpace(OnlineSettings.AccessToken))
+			{
+				var authResult = await GetAccessTokenAsync(ServiceResourceId, _plaformFactory.GetPlatformParameter());
 
-            var email = authResult.UserInfo.DisplayableId;
+				var email = authResult.UserInfo.DisplayableId;
 
-            var identity = GetIdentity(email);
-            OnlineSettings.Identity = identity;
-            OnlineSettings.AccessToken = authResult.AccessToken;
-            OnlineSettings.FamilyName = authResult.UserInfo.FamilyName;
+				var identity = GetIdentity(email);
+				OnlineSettings.Identity = identity;
+				OnlineSettings.AccessToken = authResult.AccessToken;
+				OnlineSettings.FamilyName = authResult.UserInfo.FamilyName;
+			}
         }
 
         private string GetIdentity(string email)

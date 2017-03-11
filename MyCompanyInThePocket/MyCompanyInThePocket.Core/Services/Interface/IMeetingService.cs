@@ -10,6 +10,8 @@ namespace MyCompanyInThePocket.Core.Services.Interface
 {
     public interface IMeetingService
     {
-        Task<List<Meeting>> GetMeetingsAsync(bool canRefresh, CancellationToken cancellationToken);
+        Task<List<Meeting>> GetMeetingsAsync(bool forceRefresh, CancellationToken cancellationToken);
+
+		DateTime GetLastUpdateTime();
     }
 }
