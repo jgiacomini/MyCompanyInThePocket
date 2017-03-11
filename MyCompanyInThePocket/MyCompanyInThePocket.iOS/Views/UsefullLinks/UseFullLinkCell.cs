@@ -20,7 +20,8 @@ namespace MyCompanyInThePocket.iOS
 			Add(UseFullLinkView);
 			this.DelayBind(OnCreateBinding);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
-			this.AddConstraints(UseFullLinkView.WithSameWidth(this), UseFullLinkView.WithSameHeight(this));
+			this.AddConstraints(UseFullLinkView.FullHeightOf(this, 2));
+			this.AddConstraints(UseFullLinkView.WithSameWidth(this));
 		}
 
 		void OnCreateBinding()
@@ -32,6 +33,6 @@ namespace MyCompanyInThePocket.iOS
 			bindingSet.Apply();
 		}
 
-		public UseFullLinkView UseFullLinkView { get; set; }
+		public UseFullLinkView UseFullLinkView { get; private set; }
 	}
 }

@@ -2,6 +2,7 @@
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
 using MyCompanyInThePocket.Core;
+using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {
@@ -9,14 +10,18 @@ namespace MyCompanyInThePocket.iOS
 	{
 		public UseFullLinksScreen()
 		{
+			View.BackgroundColor = ApplicationColors.BackgroundColor;
+			// On désactive les barres de séparation native.
+			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 		}
 
 		public override async void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
+
 			TableView.RowHeight = 50;
 
-			var source = new UseFullLinksViewSource(TableView, ViewModel.UseFullLinks);
+			var source = new UseFullLinksViewSource(TableView);
 			TableView.Source = source;
 
 			var set = this.CreateBindingSet<UseFullLinksScreen, UseFullLinksViewModel>();
