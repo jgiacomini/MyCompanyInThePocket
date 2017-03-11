@@ -13,6 +13,11 @@ namespace MyCompanyInThePocket.iOS.Views
 		public MainScreenView()
 		{
 			this.ViewControllerSelected += Handle_ViewControllerSelected;
+			this.TabBar.Translucent = false;
+			this.TabBar.TintColor = ApplicationColors.MainColor;
+			this.TabBar.BackgroundColor = UIColor.White;
+			this.EdgesForExtendedLayout = UIRectEdge.Bottom;
+
 		}
 
 		void Handle_ViewControllerSelected(object sender, UITabBarSelectionEventArgs e)

@@ -112,6 +112,8 @@
     <Compile Include="Views\Settings\SettingsScreen.cs" />
     <Compile Include="Views\SplashScreen\SplashScreen.cs" />
     <Compile Include="Views\StratupScreen\StartupScreen.cs" />
+    <Compile Include="Views\ApplicationColors.cs" />
+    <Compile Include="Extensions\UIColorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -213,6 +215,7 @@
     <Folder Include="Views\Settings\" />
     <Folder Include="Views\SplashScreen\" />
     <Folder Include="Views\StratupScreen\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\TabBar\ic_menu_abonnements.png" />

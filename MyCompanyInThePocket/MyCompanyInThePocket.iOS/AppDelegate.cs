@@ -28,6 +28,9 @@ namespace MyCompanyInThePocket.iOS
 
 			var navigationController = ((UINavigationController)Window.RootViewController);
 			navigationController.SetNavigationBarHidden(true, false);
+			navigationController.NavigationBar.TintColor = UIColor.White;
+			navigationController.NavigationBar.BarTintColor = ApplicationColors.MainColor;
+			navigationController.NavigationBar.BarStyle = UIBarStyle.Black;
             Window.MakeKeyAndVisible();
             return true;
         }

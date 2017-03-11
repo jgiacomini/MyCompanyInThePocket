@@ -13,6 +13,9 @@ namespace MyCompanyInThePocket.iOS.Views
 	{
 		public MeetingsScreen()
 		{
+			View.BackgroundColor = ApplicationColors.BackgroundColor;
+			// On désactive les barres de séparation native.
+			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 		}
 
 		public async override void ViewWillAppear(bool animated)
@@ -51,6 +54,14 @@ namespace MyCompanyInThePocket.iOS.Views
 			protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 			{
 				return (UITableViewCell)TableView.DequeueReusableCell(MeetingCell.Key, indexPath);
+			}
+
+
+			public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
+			{
+				// On désactive la couleur blanche de fond de cellule
+				cell.BackgroundColor = UIColor.Clear;
+				cell.BackgroundView = null;
 			}
 		}
 	}
