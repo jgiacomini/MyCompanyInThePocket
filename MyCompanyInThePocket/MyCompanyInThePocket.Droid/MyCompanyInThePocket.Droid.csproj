@@ -243,7 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugTrace.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helper\AuthentificationPlatformFactory.cs" />
     <Compile Include="Helper\SqliteConnectionFactory.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />

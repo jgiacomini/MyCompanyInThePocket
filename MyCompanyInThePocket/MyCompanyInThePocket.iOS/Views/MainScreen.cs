@@ -48,7 +48,6 @@ namespace MyCompanyInThePocket.iOS.Views
 			// Création de l'écran correspondant au viewModel;
 			var screen = this.CreateViewControllerFor(viewModel) as UIViewController;
 
-
 			var image = UIImage.FromBundle($"TabBar/{imageName}.png");
 			screen.Title = title;
 			screen.TabBarItem = new UITabBarItem(title, image, _nbTabBarCreated);
