@@ -12,7 +12,6 @@ namespace MyCompanyInThePocket.iOS.Views
 
 		public MainScreenView()
 		{
-			Title = "MainScreen";
 			this.ViewControllerSelected += Handle_ViewControllerSelected;
 		}
 
@@ -29,8 +28,8 @@ namespace MyCompanyInThePocket.iOS.Views
 			var viewControllers = new UIViewController[]
 			{
 				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
-				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.UseFullLinksVM),
-				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
+				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_abonnements", ViewModel.UseFullLinksVM),
+				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_abonnements", ViewModel.MeetingsVM),
 				CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
 			};
 			ViewControllers = viewControllers;
@@ -38,8 +37,9 @@ namespace MyCompanyInThePocket.iOS.Views
 			if (SelectedViewController == null)
 			{
 				SelectedViewController = ViewControllers[0];
-				Title = SelectedViewController.Title;
 			}
+
+			Title = SelectedViewController?.Title;
 		}
 
 
