@@ -5,6 +5,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using MyCompanyInThePocket.Core;
 using MvvmCross.Binding.iOS.Views.Gestures;
+using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {
@@ -26,6 +27,7 @@ namespace MyCompanyInThePocket.iOS
 		{
 			var bindingSet = this.CreateBindingSet<UseFullLinkCell, UseFullLinkViewModel>();
 			bindingSet.Bind(UseFullLinkView.Name).For(v => v.Text).To(vm => vm.Name);
+			bindingSet.Bind(UseFullLinkView.Logo).For(v => v.Image).To(vm => vm.Icon).WithConversion("InMemoryImage");
 			bindingSet.Bind(UseFullLinkView.Tap()).For(v => v.Command).To(vm => vm.TapCommand);
 			bindingSet.Apply();
 		}

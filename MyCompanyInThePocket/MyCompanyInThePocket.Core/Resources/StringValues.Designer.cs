@@ -106,5 +106,11 @@ namespace MyCompanyInThePocket.Core.Resources {
                 return ResourceManager.GetString("Main_Settings_Title_Text", resourceCulture);
             }
         }
+        
+        public static string Main_UseFullLinks_Title_Text {
+            get {
+                return ResourceManager.GetString("Main_UseFullLinks_Title_Text", resourceCulture);
+            }
+        }
     }
 }

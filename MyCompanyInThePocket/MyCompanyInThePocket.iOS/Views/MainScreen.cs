@@ -29,7 +29,7 @@ namespace MyCompanyInThePocket.iOS.Views
 			var viewControllers = new UIViewController[]
 			{
 				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
-				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.UseFullLinksVM),
+				CreateTabFor(StringValues.Main_UseFullLinks_Title_Text, "ic_menu_meetings", ViewModel.UseFullLinksVM),
 				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
 				CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
 			};
@@ -38,12 +38,10 @@ namespace MyCompanyInThePocket.iOS.Views
 			Title = SelectedViewController.Title;
 		}
 
-
 		private UIViewController CreateTabFor(string title, string imageName, IMvxViewModel viewModel)
 		{
 			// Création de l'écran correspondant au viewModel;
 			var screen = this.CreateViewControllerFor(viewModel) as UIViewController;
-
 
 			var image = UIImage.FromBundle($"TabBar/{imageName}.png");
 			screen.Title = title;

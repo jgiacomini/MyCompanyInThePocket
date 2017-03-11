@@ -43,6 +43,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringValues.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\azure.png" />
+    <EmbeddedResource Include="Resources\Images\delve.png" />
+    <EmbeddedResource Include="Resources\Images\office365.png" />
+    <EmbeddedResource Include="Resources\Images\outlook.png" />
+    <EmbeddedResource Include="Resources\Images\projets.png" />
+    <EmbeddedResource Include="Resources\Images\vsts.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -91,6 +97,7 @@
     <Compile Include="ViewModels\Meeting\MeetingViewModel.cs" />
     <Compile Include="ViewModels\UsefullLink\UsefullLinksViewModel.cs" />
     <Compile Include="ViewModels\UsefullLink\UseFullLinkViewModel.cs" />
+    <Compile Include="Helpers\ResourcesHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -163,6 +170,7 @@
     <Folder Include="Settings\" />
     <Folder Include="ViewModels\Meeting\" />
     <Folder Include="ViewModels\UsefullLink\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
