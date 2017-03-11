@@ -12,8 +12,12 @@ namespace MyCompanyInThePocket.iOS.Views
 
 		public MainScreenView()
 		{
-			Title = "MainScreen";
 			this.ViewControllerSelected += Handle_ViewControllerSelected;
+			this.TabBar.Translucent = false;
+			this.TabBar.TintColor = ApplicationColors.MainColor;
+			this.TabBar.BackgroundColor = UIColor.White;
+			this.EdgesForExtendedLayout = UIRectEdge.Bottom;
+
 		}
 
 		void Handle_ViewControllerSelected(object sender, UITabBarSelectionEventArgs e)
@@ -29,13 +33,18 @@ namespace MyCompanyInThePocket.iOS.Views
 			var viewControllers = new UIViewController[]
 			{
 				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
-				CreateTabFor(StringValues.Main_UseFullLinks_Title_Text, "ic_menu_meetings", ViewModel.UseFullLinksVM),
-				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
+				CreateTabFor(StringValues.Main_UseFullLinks_Title_Text, "ic_menu_abonnements", ViewModel.UseFullLinksVM),
+				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_abonnements", ViewModel.MeetingsVM),
 				CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
 			};
 			ViewControllers = viewControllers;
-			SelectedViewController = ViewControllers[0];
-			Title = SelectedViewController.Title;
+
+			if (SelectedViewController == null)
+			{
+				SelectedViewController = ViewControllers[0];
+			}
+
+			Title = SelectedViewController?.Title;
 		}
 
 		private UIViewController CreateTabFor(string title, string imageName, IMvxViewModel viewModel)

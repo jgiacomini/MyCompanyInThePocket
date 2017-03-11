@@ -27,8 +27,21 @@ namespace MyCompanyInThePocket.Core
 			}
 		}
 
+		public static DateTime LastACRARefresh
+		{
+			get
+			{
+				return AppSettings.GetValueOrDefault<DateTime>(nameof(LaunchStartupScreen), DateTime.MinValue);
+			}
+			set
+			{
+				AppSettings.AddOrUpdateValue(nameof(LaunchStartupScreen), value);
+			}
+		}
+
 		public static void Clear()
 		{
+			LaunchStartupScreen = false;
 			OnlineSettings.Clear();
 		}
 	}

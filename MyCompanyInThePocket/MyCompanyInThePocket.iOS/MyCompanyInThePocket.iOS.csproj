@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -90,29 +89,31 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\MainScreen.cs" />
-    <Compile Include="Views\SplashScreen.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <Content Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <Compile Include="Views\StartupScreen.cs" />
-    <Compile Include="Helpers\IOSSQLiteConnectionFactory.cs" />
     <Compile Include="Helpers\IOSAuthentificationPlatformFactory.cs" />
+    <Compile Include="Helpers\IOSSQLiteConnectionFactory.cs" />
     <Compile Include="Helpers\CurrentViewController.cs" />
     <Compile Include="Views\ScreenHelper.cs" />
     <Compile Include="Views\BaseScreen\BaseScreen.cs" />
     <Compile Include="Views\BaseScreen\BaseTabBarScreen.cs" />
     <Compile Include="Services\iOSMessageService.cs" />
     <Compile Include="Views\Meetings\MeetingsScreen.cs" />
-    <Compile Include="Views\SettingsScreen.cs" />
     <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
     <Compile Include="Views\Meetings\MeetingCell.cs" />
     <Compile Include="Views\Meetings\MeetingView.cs" />
-    <Compile Include="Views\UsefullLinks\UsefullLinkView.cs" />
-    <Compile Include="Views\UsefullLinks\UseFullLinksScreen.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinkCell.cs" />
+    <Compile Include="Views\UsefullLinks\UseFullLinksScreen.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksViewSource.cs" />
+    <Compile Include="Views\UsefullLinks\UsefullLinkView.cs" />
+    <Compile Include="Views\Settings\SettingsScreen.cs" />
+    <Compile Include="Views\SplashScreen\SplashScreen.cs" />
+    <Compile Include="Views\StratupScreen\StartupScreen.cs" />
+    <Compile Include="Views\ApplicationColors.cs" />
+    <Compile Include="Extensions\UIColorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -211,7 +212,10 @@
     <Folder Include="Views\BaseScreen\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Meetings\" />
-    <Folder Include="Views\UsefullLinks\" />
+    <Folder Include="Views\Settings\" />
+    <Folder Include="Views\SplashScreen\" />
+    <Folder Include="Views\StratupScreen\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\TabBar\ic_menu_abonnements.png" />

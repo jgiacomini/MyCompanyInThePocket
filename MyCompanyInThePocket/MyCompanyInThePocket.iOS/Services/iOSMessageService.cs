@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MvvmCross.Platform;
 using MyCompanyInThePocket.Core.Services.Interface;
+using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {
@@ -9,8 +10,12 @@ namespace MyCompanyInThePocket.iOS
 	{
 		public Task ShowErrorToastAsync(Exception exception, string message)
 		{
-			// TODO : display a popup here...
-
+			var alertView = new UIAlertView("", message
+			                                     #if DEBUG
+                    								+ ": " + exception.Message
+												 #endif
+			                                     , null, "Ok", null);
+			alertView.Show();
 			return Task.FromResult(true);
 		}
 	}

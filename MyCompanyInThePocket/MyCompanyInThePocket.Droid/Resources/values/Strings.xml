@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ApplicationName">MyCompanyInThePocket.Droid</string>
-  <string name="Startup_SignIn_Text">CONNEXION</string>
-
-  
+    <string name="Startup_SignIn_Text">CONNEXION</string>
 </resources>

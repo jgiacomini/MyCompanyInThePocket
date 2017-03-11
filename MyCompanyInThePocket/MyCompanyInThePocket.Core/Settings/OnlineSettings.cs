@@ -1,3 +1,6 @@
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 namespace MyCompanyInThePocket.Core
@@ -15,7 +18,6 @@ namespace MyCompanyInThePocket.Core
         private const string AccessTokenKey = "ADAL" + nameof(AccessToken);
         private const string IdentityKey = "ADAL" + nameof(Identity);
         private const string FamilyNameKey = "ADAL" + nameof(FamilyName);
-
 
         public static string AccessToken
         {
@@ -53,7 +55,7 @@ namespace MyCompanyInThePocket.Core
             }
         }
 
-        public static void Clear()
+		public static void Clear()
         {
 			Identity = null;
             AccessToken = null;

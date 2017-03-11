@@ -15,7 +15,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
   * [ ]	Possibilité de voir les rendez-vous d'autres personnes. 
   * [ ] Intégration de ces rendez-vous dans le calendrier de l’OS (IN PROGRESS)
   * Affichage des rendez-vous :
-    * [ ] iOS
+    * [x] iOS
     * [ ] Android
     * [ ] Windows 10
     
@@ -34,14 +34,13 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
  * [ ] Sauvegarde base de données locale (IN PROGRESS)
  
 * 	Page de Settings : 
- * [ ] Bouton de déconnexion
+ * [ ] Bouton de déconnexion (iOS OK, Android KO, WP KO)
  * [ ] Bouton permettant d'activer les rendez vous dans le calendrier.
 
  * Affichage :
     * [ ] iOS
     * [ ] Android
     * [ ] Windows 10
-  * [ ] Ouverture de document
 
 #Fonctionnalités V2  :
 -   Création de Widgets pour iOS et Android.

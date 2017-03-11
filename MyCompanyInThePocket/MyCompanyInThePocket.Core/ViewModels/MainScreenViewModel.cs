@@ -13,11 +13,17 @@ namespace MyCompanyInThePocket.Core.ViewModels
 		public MainScreenViewModel(IMeetingService meetingService, IUseFullLinkService useFullLinkService)
 		{
 			MeetingsVM = new MeetingsViewModel(meetingService);
-			UseFullLinksVM = new UseFullLinksViewModel(useFullLinkService);
 			SettingsVM = new SettingsViewModel();
+			UseFullLinksVM = new UseFullLinksViewModel(useFullLinkService);
 		}
 
 		public MeetingsViewModel MeetingsVM
+		{
+			get;
+			private set;
+		}
+
+		public SettingsViewModel SettingsVM
 		{
 			get;
 			private set;
@@ -29,10 +35,5 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			private set;
 		}
 
-		public SettingsViewModel SettingsVM
-		{
-			get;
-			private set;
-		}
     }
 }
