@@ -220,13 +220,7 @@
     <Folder Include="Views\Converter\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\TabBar\ic_menu_abonnements.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_abonnements%402x.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_abonnements%403x.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_messages.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_messages%402x.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_messages%403x.png" />
-    <BundleResource Include="Resources\TabBar\ic_menu_setttings.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_settings.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_settings%402x.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_settings%403x.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_search.png" />
@@ -235,6 +229,9 @@
     <BundleResource Include="Resources\TabBar\ic_menu_meetings.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_meetings%402x.png" />
     <BundleResource Include="Resources\TabBar\ic_menu_meetings%403x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_link.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_link%402x.png" />
+    <BundleResource Include="Resources\TabBar\ic_menu_link%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -14,7 +14,7 @@ namespace MyCompanyInThePocket.iOS
 			TopSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
 
 			Logo = new UIImageView();
-			Logo.BackgroundColor = UIColor.Gray;
+			Logo.BackgroundColor = ApplicationColors.MainColor;
 			Name = new UILabel();
 
 			BottomSeparatorView = new UIView();
