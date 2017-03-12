@@ -45,7 +45,7 @@ namespace MyCompanyInThePocket.Core.Repositories.MockRepositories
                     meeting.StartDate = currentDay.AddHours(hour);
                     meeting.EndDate = meeting.StartDate.AddMinutes(20);
                     meeting.Title = $"RENDEZ VOUS jour :{day}, heure {hour}";
-                    meeting.Type = "Mission";
+					meeting.Type = MeetingType.Mission;
                     meeting.AllDayEvent = false;
                     meetings.Add(meeting);
                 }

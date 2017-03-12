@@ -18,11 +18,25 @@ namespace MyCompanyInThePocket.iOS
 
 			LeftRectangleView = new UIView();
 			LeftRectangleView.BackgroundColor = ApplicationColors.MainColor;
+
 			Title = new UILabel();
+			Title.TextColor = ApplicationColors.ForegroundHeaderCellColor;
+
 			DateFormated = new UILabel();
 			DateFormated.Font = DateFormated.Font.WithSize(12);
+			DateFormated.TextColor = ApplicationColors.ForegroundContentCellColor;
+
 			Type = new UILabel();
-			Type.Font = Type.Font.WithSize(12);
+			Type.Font = Type.Font.WithSize(8);
+	
+			Type.Layer.BorderColor = ApplicationColors.MainColor.CGColor;
+			Type.Layer.BorderWidth = 1f;
+			Type.Layer.CornerRadius = 5;
+			Type.ClipsToBounds = true;
+			Type.Layer.MasksToBounds = true;
+
+			Type.TextColor = ApplicationColors.ForegroundContentCellColor;
+			Type.TextAlignment = UITextAlignment.Center;
 			BottomSeparatorView = new UIView();
 			BottomSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
 
@@ -46,6 +60,7 @@ namespace MyCompanyInThePocket.iOS
 				DateFormated.ToRightOf(LeftRectangleView, hmargin),
 				Type.AtBottomOf(this, vmargin),
 				Type.AtRightOf(this, hmargin),
+				Type.Width().EqualTo(60),
 				BottomSeparatorView.WithSameWidth(this),
 				BottomSeparatorView.Height().EqualTo(separatorHeight),
 				BottomSeparatorView.AtBottomOf(this));

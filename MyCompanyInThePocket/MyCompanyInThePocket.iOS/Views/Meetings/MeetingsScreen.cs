@@ -16,13 +16,14 @@ namespace MyCompanyInThePocket.iOS.Views
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+			TableView.RowHeight = 50;
+			TableView.AllowsSelection = false;
 		}
 
 		public async override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
 
-			TableView.RowHeight = 50;
 			var refreshControl = new MvxUIRefreshControl();
 			this.RefreshControl = refreshControl;
 			var source = new MeetingsViewSource(TableView);

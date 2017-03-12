@@ -18,8 +18,19 @@ namespace MyCompanyInThePocket.Core.Models
 
         public string Title { get; set; }
 
-        public string Type { get; set; }
+        public MeetingType Type { get; set; }
 
         public bool AllDayEvent { get; set; }
     }
+
+
+	public enum MeetingType
+	{
+		Mission,
+		AvantVente,
+		CP_RTT,
+		Conference,
+		NonFacture,
+		Unknown
+	}
 }

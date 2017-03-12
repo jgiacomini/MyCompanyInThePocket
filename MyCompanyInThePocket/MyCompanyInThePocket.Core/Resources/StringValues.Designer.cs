@@ -112,5 +112,35 @@ namespace MyCompanyInThePocket.Core.Resources {
                 return ResourceManager.GetString("Main_UseFullLinks_Title_Text", resourceCulture);
             }
         }
+        
+        public static string MeetingType_AvantVente {
+            get {
+                return ResourceManager.GetString("MeetingType_AvantVente", resourceCulture);
+            }
+        }
+        
+        public static string MeetingType_Mission {
+            get {
+                return ResourceManager.GetString("MeetingType_Mission", resourceCulture);
+            }
+        }
+        
+        public static string MeetingType_Conference {
+            get {
+                return ResourceManager.GetString("MeetingType_Conference", resourceCulture);
+            }
+        }
+        
+        public static string MeetingType_CP_RTT {
+            get {
+                return ResourceManager.GetString("MeetingType_CP_RTT", resourceCulture);
+            }
+        }
+        
+        public static string MeetingType_NonFacture {
+            get {
+                return ResourceManager.GetString("MeetingType_NonFacture", resourceCulture);
+            }
+        }
     }
 }

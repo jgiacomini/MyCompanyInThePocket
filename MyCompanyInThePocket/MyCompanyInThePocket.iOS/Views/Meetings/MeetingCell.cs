@@ -19,7 +19,7 @@ namespace MyCompanyInThePocket.iOS
 			Add(MeetingView);
 			this.DelayBind(OnCreateBinding);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
-			this.AddConstraints(MeetingView.FullHeightOf(this, 2));
+			this.AddConstraints(MeetingView.FullHeightOf(this, 3));
 			this.AddConstraints(MeetingView.WithSameWidth(this));
 		}
 

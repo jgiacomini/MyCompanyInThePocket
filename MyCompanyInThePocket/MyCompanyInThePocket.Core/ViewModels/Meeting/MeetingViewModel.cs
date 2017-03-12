@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 using MyCompanyInThePocket.Core.Models;
+using MyCompanyInThePocket.Core.Resources;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -19,7 +20,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 		private void InitializeDateFormated()
 		{
-			
 			// jeu. 02/03/16 - ven. 03/03/16
 			if (_meeting.StartDate.Date != _meeting.EndDate.Date)
 			{
@@ -51,8 +51,28 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 		public string Type
 		{
-			get {
-				return _meeting.Type;
+			get 
+			{
+				switch (_meeting.Type)
+				{
+					case MeetingType.AvantVente :
+						return StringValues.MeetingType_AvantVente;
+
+					case MeetingType.Conference:
+					return StringValues.MeetingType_Conference;
+
+					case MeetingType.CP_RTT:
+					return StringValues.MeetingType_CP_RTT;
+
+					case MeetingType.Mission:
+					return StringValues.MeetingType_Mission;
+
+					case MeetingType.NonFacture:
+					return StringValues.MeetingType_NonFacture;
+						
+					default:
+						return string.Empty;
+				}
 			}
 		}
 
