@@ -147,4 +147,7 @@
   <data name="Main_Settings_Title_Text" xml:space="preserve">
     <value>Préférences</value>
   </data>
+  <data name="Main_UseFullLinks_Title_Text" xml:space="preserve">
+    <value>Liens utiles</value>
+  </data>
 </root>

@@ -9,26 +9,47 @@ namespace MyCompanyInThePocket.iOS
 	{
 		public UseFullLinkView()
 		{
+			BackgroundColor = ApplicationColors.CellBackgroundColor;
+			TopSeparatorView = new UIView();
+			TopSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
+
 			Logo = new UIImageView();
 			Logo.BackgroundColor = UIColor.Gray;
 			Name = new UILabel();
 
-			AddSubviews(Logo, Name);
+			BottomSeparatorView = new UIView();
+			BottomSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
+
+			AddSubviews(TopSeparatorView, Logo, Name, BottomSeparatorView);
 
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
-			nfloat margin = 10;
-			nfloat smallMargin = 2;
+
+			nfloat separatorHeight = 1;
+			nfloat vmargin = 5;
+			nfloat hmargin = 15;
+			nfloat imageSize = 35;
+
 			this.AddConstraints(
-				Logo.AtTopOf(this, margin),
-				Logo.AtLeftOf(this, margin),
-				Logo.Width().EqualTo(20),
-				Logo.Height().EqualTo(20),
-				Name.AtTopOf(this, margin),
-				Name.ToRightOf(Logo, margin));
+				TopSeparatorView.WithSameWidth(this),
+				TopSeparatorView.Height().EqualTo(separatorHeight),
+				TopSeparatorView.AtTopOf(this),
+				Logo.AtTopOf(this, vmargin),
+				Logo.AtLeftOf(this, hmargin),
+				Logo.Width().EqualTo(imageSize),
+				Logo.Height().EqualTo(imageSize),
+				Name.AtTopOf(this, vmargin),
+				Name.ToRightOf(Logo, hmargin),
+				BottomSeparatorView.WithSameWidth(this),
+				BottomSeparatorView.Height().EqualTo(separatorHeight),
+				BottomSeparatorView.AtBottomOf(this));
 		}
 
 		public UIImageView Logo { get; set; }
 
 		public UILabel Name { get; set; }
+
+		public UIView TopSeparatorView { get; set; }
+
+		public UIView BottomSeparatorView { get; set; }
 	}
 }
