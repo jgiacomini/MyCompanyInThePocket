@@ -30,5 +30,11 @@ namespace MyCompanyInThePocket.iOS.Views
 			set.Bind(_buttonNextPage).To(vm => vm.GoToNextPageCommand);
 			set.Apply();
 		}
+
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+			ScreenHelper.ClearAllHistory(NavigationController, this);
+		}
 	}
 }

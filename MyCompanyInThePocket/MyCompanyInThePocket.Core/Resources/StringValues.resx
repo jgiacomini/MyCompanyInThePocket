@@ -150,4 +150,19 @@
   <data name="Main_UseFullLinks_Title_Text" xml:space="preserve">
     <value>Liens utiles</value>
   </data>
+  <data name="MeetingType_AvantVente" xml:space="preserve">
+    <value>Avant vente</value>
+  </data>
+  <data name="MeetingType_Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="MeetingType_Conference" xml:space="preserve">
+    <value>Conférence</value>
+  </data>
+  <data name="MeetingType_CP_RTT" xml:space="preserve">
+    <value>Congé</value>
+  </data>
+  <data name="MeetingType_NonFacture" xml:space="preserve">
+    <value>Non facturé</value>
+  </data>
 </root>

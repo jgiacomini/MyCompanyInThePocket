@@ -11,7 +11,19 @@ namespace MyCompanyInThePocket.iOS.Views
 			var controllers = navigationController.ViewControllers.OfType<INoHistoryScreen>().ToList();
 			foreach (var item in controllers)
 			{
-				if (item.GetType() != currentViewController.GetType())
+				if (item != currentViewController)
+				{
+					(item as UIViewController).RemoveFromParentViewController();
+				}
+			}
+		}
+
+		public static void ClearAllHistory(UINavigationController navigationController, UIViewController currentViewController)
+		{ 
+			var controllers = navigationController.ViewControllers.ToList();
+			foreach (var item in controllers)
+			{
+				if (item != currentViewController)
 				{
 					(item as UIViewController).RemoveFromParentViewController();
 				}
