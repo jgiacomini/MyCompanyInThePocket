@@ -24,6 +24,7 @@ namespace MyCompanyInThePocket.iOS
 		{
 			cell.BackgroundColor = UIColor.Clear;
 			cell.BackgroundView = null;
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 		}
 	}
 }

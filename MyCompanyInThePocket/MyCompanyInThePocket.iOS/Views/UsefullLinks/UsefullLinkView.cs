@@ -14,7 +14,6 @@ namespace MyCompanyInThePocket.iOS
 			TopSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
 
 			Logo = new UIImageView();
-			Logo.BackgroundColor = ApplicationColors.MainColor;
 			Name = new UILabel();
 
 			BottomSeparatorView = new UIView();
@@ -25,19 +24,18 @@ namespace MyCompanyInThePocket.iOS
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
 			nfloat separatorHeight = 1;
-			nfloat vmargin = 5;
 			nfloat hmargin = 15;
-			nfloat imageSize = 35;
+			nfloat imageSize = 25;
 
 			this.AddConstraints(
 				TopSeparatorView.WithSameWidth(this),
 				TopSeparatorView.Height().EqualTo(separatorHeight),
 				TopSeparatorView.AtTopOf(this),
-				Logo.AtTopOf(this, vmargin),
+				Logo.WithSameCenterY(this),
 				Logo.AtLeftOf(this, hmargin),
 				Logo.Width().EqualTo(imageSize),
 				Logo.Height().EqualTo(imageSize),
-				Name.AtTopOf(this, vmargin),
+				Name.WithSameCenterY(this),
 				Name.ToRightOf(Logo, hmargin),
 				BottomSeparatorView.WithSameWidth(this),
 				BottomSeparatorView.Height().EqualTo(separatorHeight),

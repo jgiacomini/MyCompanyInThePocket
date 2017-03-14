@@ -20,11 +20,11 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
     * [ ] Windows 10
     
 *   Récupération des liens utile : (Charles)
-  * [x] Récupération sur le serveur 
+  * [ ] Récupération sur le serveur (V2 ?)
   * [x] Récupération MOCK (DONE)
-  * [ ] Sauvegarde base de données locale (IN PROGRESS)
+  * [ ] Sauvegarde base de données locale (V2 ?)
   * Affichage :
-    * [ ] iOS
+    * [x] iOS
     * [ ] Android
     * [ ] Windows 10
     
