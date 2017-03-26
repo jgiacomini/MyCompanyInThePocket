@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Foundation;
-using MvvmCross.Binding.iOS.Views;
-using MvvmCross.iOS.Views;
+﻿using MvvmCross.iOS.Views;
 using MyCompanyInThePocket.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
@@ -42,28 +38,5 @@ namespace MyCompanyInThePocket.iOS.Views
 			TableView.ReloadData();
 		}
 
-
-		public class MeetingsViewSource : MvxTableViewSource
-		{
-
-			public MeetingsViewSource(UITableView tableView)
-				: base(tableView)
-			{
-				tableView.RegisterClassForCellReuse(typeof(MeetingCell), MeetingCell.Key);
-			}
-
-			protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
-			{
-				return (UITableViewCell)TableView.DequeueReusableCell(MeetingCell.Key, indexPath);
-			}
-
-
-			public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
-			{
-				// On désactive la couleur blanche de fond de cellule
-				cell.BackgroundColor = UIColor.Clear;
-				cell.BackgroundView = null;
-			}
-		}
 	}
 }

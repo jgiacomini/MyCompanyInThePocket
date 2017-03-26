@@ -1,8 +1,4 @@
 ﻿using System;
-using Foundation;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.iOS.Views;
-using MyCompanyInThePocket.Core.ViewModels;
 using Cirrious.FluentLayouts.Touch;
 using UIKit;
 
@@ -21,6 +17,7 @@ namespace MyCompanyInThePocket.iOS
 
 			Title = new UILabel();
 			Title.TextColor = ApplicationColors.ForegroundHeaderCellColor;
+			Title.LineBreakMode = UILineBreakMode.TailTruncation;
 
 			DateFormated = new UILabel();
 			DateFormated.Font = DateFormated.Font.WithSize(12);

@@ -10,24 +10,24 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 {
     internal class AuthentificationService
     {
-        #region Constantes
-        public string Authority { get; private set; }
+		#region Fields
+        private IAuthentificationPlatformFactory _plaformFactory;
+		#endregion
+
+		#region Properties
+		public static string ServiceResourceId
+		{ 
+			get
+			{
+				return Config.ServiceResourceId;
+			}
+		}
+		public string Authority { get; private set; }
         public Uri ReturnUri { get; private set; }
         public string ClientId { get; private set; }
-        public static string ServiceResourceId { get; private set; }
-        public static AuthenticationContext authContext = null;
-        #endregion
+		#endregion
 
-        #region Fields
-        private IAuthentificationPlatformFactory _plaformFactory;
-        #endregion
-
-        static AuthentificationService()
-        {
-            ServiceResourceId = Config.ServiceResourceId;
-        }
-
-        public AuthentificationService(IAuthentificationPlatformFactory plaformFactory)
+		public AuthentificationService(IAuthentificationPlatformFactory plaformFactory)
         {
             Authority = Config.Authority;
             ClientId = Config.ClientId;
@@ -52,18 +52,20 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 
         private string GetIdentity(string email)
         {
-            // TODO : gérer les erreur de parsing... 
+            // TODO : gérer les erreurde parsing... 
             return email.Split('@')[0].ToUpperInvariant();
         }
 
         public void Disconnect()
         {
-            OnlineSettings.Clear();
+			var authContext = new AuthenticationContext(Authority);
+			authContext.TokenCache.Clear();
+			OnlineSettings.Clear();
         }
 
         private async Task<AuthenticationResult> GetAccessTokenAsync(string serviceResourceId, IPlatformParameters param)
         {
-            authContext = new AuthenticationContext(Authority);
+            var authContext = new AuthenticationContext(Authority);
             if (authContext.TokenCache.ReadItems().Any())
                 authContext = new AuthenticationContext(authContext.TokenCache.ReadItems().First().Authority);
             var authResult = await authContext.AcquireTokenAsync(serviceResourceId, ClientId, ReturnUri, param);
