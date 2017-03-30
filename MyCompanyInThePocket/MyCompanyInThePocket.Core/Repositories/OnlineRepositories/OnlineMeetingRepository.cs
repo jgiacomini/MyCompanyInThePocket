@@ -36,7 +36,6 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, queryString);
             HttpResponseMessage response = await client.SendAsync(request);
 
-
             if (!response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.Forbidden ||

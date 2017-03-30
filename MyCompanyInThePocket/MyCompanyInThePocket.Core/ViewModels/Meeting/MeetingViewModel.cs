@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Globalization;
 using MyCompanyInThePocket.Core.Models;
 using MyCompanyInThePocket.Core.Resources;
 
@@ -9,26 +7,21 @@ namespace MyCompanyInThePocket.Core.ViewModels
 	public class MeetingViewModel
 	{
 		private readonly Meeting _meeting;
-
+		private DateTime _date;
 		private string _dateFormated;
 
-		public MeetingViewModel(Meeting meeting)
+		public MeetingViewModel(Meeting meeting, DateTime date)
 		{
+			_date = date;
 			_meeting = meeting;
-			InitializeDateFormated();
+			_dateFormated = _date.ToShortDateString();
 		}
 
-		private void InitializeDateFormated()
+		public DateTime Date
 		{
-			// jeu. 02/03/16 - ven. 03/03/16
-			if (_meeting.StartDate.Date != _meeting.EndDate.Date)
+			get
 			{
-				//TODO :localisation
-				_dateFormated = $"{_meeting.StartDate.ToShortDateString()} - {_meeting.EndDate.ToShortDateString()}";
-			}
-			else
-			{
-				_dateFormated = _meeting.StartDate.ToShortDateString();
+				return _date;
 			}
 		}
 
@@ -39,7 +32,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				return _meeting.Title;
 			}
 		}
-
 
 		public string DateFormatted
 		{

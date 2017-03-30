@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using MvvmCross.Platform;
 using MyCompanyInThePocket.Core.Services.Interface;
-using System.Linq;
-using System.Collections.ObjectModel;
 using System.Threading;
 using MvvmCross.Core.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -18,6 +18,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 		public MeetingsViewModel(IMeetingService meetingService)
 		{
+			Meetings = new SuspendableObservableCollection<GroupedMeetingViewModel>();
 			_meetingService = meetingService;
 			RefreshCommand = new MvxCommand(ForceRefresh);
 			_lastUpdate = _meetingService.GetLastUpdateTime();
@@ -29,7 +30,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			private set;
 		}
 
-		public ObservableCollection<MeetingViewModel> Meetings
+		public SuspendableObservableCollection<GroupedMeetingViewModel> Meetings
 		{
 			get;
 			private set;
@@ -53,7 +54,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				{
 					return string.Empty;
 				}
-
+				// TODO : localisation
 				return $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
 			}
 		}
@@ -63,8 +64,26 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			IsBusy = true;
 			try
 			{
+				Meetings.PauseNotifications();
 				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, CancellationToken.None);
-				Meetings = new ObservableCollection<MeetingViewModel>(meetings.Select(m => new MeetingViewModel(m)));
+				Meetings.Clear();
+
+				var flatMeetings = new List<MeetingViewModel>();
+				foreach (var meeting in meetings)
+				{
+					var currentDate = meeting.StartDate;
+					while (currentDate < meeting.EndDate)
+					{
+						flatMeetings.Add(new MeetingViewModel(meeting, currentDate));
+						currentDate = currentDate.AddDays(1);
+					}
+				}
+
+				foreach (var item in flatMeetings.GroupBy(m=>m.Date))
+				{
+					Meetings.Add(new GroupedMeetingViewModel(item.Key, item.ToList()));
+				}
+
 				_lastUpdate = _meetingService.GetLastUpdateTime();
 
 				RaisePropertyChanged(nameof(Meetings));
@@ -77,6 +96,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 			finally
 			{
+				Meetings.ResumeNotifications();
 				IsBusy = false;
 			}
 		}

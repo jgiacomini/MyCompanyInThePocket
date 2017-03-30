@@ -99,6 +99,8 @@
     <Compile Include="Repositories\Interfaces\IDbMeetingRepository.cs" />
     <Compile Include="Repositories\OnlineRepositories\MeetingMapper.cs" />
     <Compile Include="Extension\DateTimeExtension.cs" />
+    <Compile Include="ViewModels\SuspendableObservableCollection.cs" />
+    <Compile Include="ViewModels\Meeting\GroupedMeetingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
