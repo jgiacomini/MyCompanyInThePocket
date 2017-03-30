@@ -107,6 +107,12 @@ namespace MyCompanyInThePocket.Core.Resources {
             }
         }
         
+        public static string Main_Settings_Logout {
+            get {
+                return ResourceManager.GetString("Main_Settings_Logout", resourceCulture);
+            }
+        }
+        
         public static string Main_UseFullLinks_Title_Text {
             get {
                 return ResourceManager.GetString("Main_UseFullLinks_Title_Text", resourceCulture);
