@@ -37,16 +37,23 @@ namespace MyCompanyInThePocket.iOS
 			BottomSeparatorView = new UIView();
 			BottomSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
 
-			AddSubviews(TopSeparatorView, LeftRectangleView, Title, DateFormated, Type,BottomSeparatorView);
+			AddSubviews(
+						//TopSeparatorView, 
+			            LeftRectangleView,
+			            Title, 
+			            DateFormated, 
+			            Type
+						//,BottomSeparatorView
+						);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			nfloat vmargin = 5;
 			nfloat hmargin = 15;
 
 			nfloat separatorHeight = 1;
 			this.AddConstraints(
-				TopSeparatorView.WithSameWidth(this),
-				TopSeparatorView.Height().EqualTo(separatorHeight),
-				TopSeparatorView.AtTopOf(this),
+				//				TopSeparatorView.WithSameWidth(this),
+				//				TopSeparatorView.Height().EqualTo(separatorHeight),
+				//				TopSeparatorView.AtTopOf(this),
 				LeftRectangleView.AtTopOf(this, vmargin),
 				LeftRectangleView.WithSameHeight(this).Minus(2 * vmargin),
 				LeftRectangleView.Width().EqualTo(4),
@@ -57,10 +64,10 @@ namespace MyCompanyInThePocket.iOS
 				DateFormated.ToRightOf(LeftRectangleView, hmargin),
 				Type.AtBottomOf(this, vmargin),
 				Type.AtRightOf(this, hmargin),
-				Type.Width().EqualTo(60),
-				BottomSeparatorView.WithSameWidth(this),
-				BottomSeparatorView.Height().EqualTo(separatorHeight),
-				BottomSeparatorView.AtBottomOf(this));
+				Type.Width().EqualTo(60));//,
+//				BottomSeparatorView.WithSameWidth(this),
+//				BottomSeparatorView.Height().EqualTo(separatorHeight),
+//				BottomSeparatorView.AtBottomOf(this));
 		}
 
 		public UILabel Title

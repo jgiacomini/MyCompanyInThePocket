@@ -34,6 +34,7 @@ namespace MyCompanyInThePocket.iOS.Views
 			set.Apply();
 
 			await ViewModel.InitializeAsync();
+
 			// Load data
 			TableView.ReloadData();
 		}

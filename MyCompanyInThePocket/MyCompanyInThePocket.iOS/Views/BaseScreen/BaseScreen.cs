@@ -14,6 +14,7 @@ namespace MyCompanyInThePocket.iOS.Views
 		public BaseScreen()
 		{
 			View.BackgroundColor = UIColor.White;
+			EdgesForExtendedLayout = UIRectEdge.None;
 			CurrentViewController.Current = this;
 		}
 

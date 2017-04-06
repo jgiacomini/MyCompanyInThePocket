@@ -24,7 +24,6 @@ namespace MyCompanyInThePocket.iOS.Views
 		public MeetingsViewSource(UITableView tableView)
 			: base(tableView)
 		{
-			
 			tableView.RegisterClassForCellReuse(typeof(MeetingCell), MeetingCell.Key);
 		}
 
@@ -55,24 +54,15 @@ namespace MyCompanyInThePocket.iOS.Views
 			return !groupedData.Any() ? string.Empty : groupedData[(int)section].Date.ToShortDateString();
 		}
 
-		/*
-		public override string[] SectionIndexTitles(UITableView tableView)
+		public override nfloat GetHeightForHeader(UITableView tableView, nint section)
 		{
-			var groupedData = GetGroupedData();
-
-			return !groupedData.Any() ? new string[0] : groupedData.Select(x => x.Date.ToShortDateString()).ToArray();
-		}*/
-
+			return 14;
+		}
+	
 		public override UIView GetViewForHeader(UITableView tableView, nint section)
 		{
-			
-			var label = new UILabel();
-			label.BackgroundColor = ApplicationColors.MainColor;
 			var groupedData = GetGroupedData();
-			label.Text = groupedData[(int)section].Date.ToShortDateString();
-			label.TextAlignment = UITextAlignment.Left;
-
-			return label;
+			return new MeetingCellHeaderView(groupedData[(int)section]);
 		}
 
 		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
