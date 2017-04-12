@@ -9,8 +9,6 @@ namespace MyCompanyInThePocket.iOS
 		public MeetingView()
 		{
 			BackgroundColor = ApplicationColors.CellBackgroundColor;
-			TopSeparatorView = new UIView();
-			TopSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
 
 			LeftRectangleView = new UIView();
 			LeftRectangleView.BackgroundColor = ApplicationColors.MainColor;
@@ -34,26 +32,16 @@ namespace MyCompanyInThePocket.iOS
 
 			Type.TextColor = ApplicationColors.ForegroundContentCellColor;
 			Type.TextAlignment = UITextAlignment.Center;
-			BottomSeparatorView = new UIView();
-			BottomSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
 
-			AddSubviews(
-						//TopSeparatorView, 
-			            LeftRectangleView,
+			AddSubviews(LeftRectangleView,
 			            Title, 
 			            DateFormated, 
-			            Type
-						//,BottomSeparatorView
-						);
+			            Type);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			nfloat vmargin = 5;
 			nfloat hmargin = 15;
 
-			nfloat separatorHeight = 1;
 			this.AddConstraints(
-				//				TopSeparatorView.WithSameWidth(this),
-				//				TopSeparatorView.Height().EqualTo(separatorHeight),
-				//				TopSeparatorView.AtTopOf(this),
 				LeftRectangleView.AtTopOf(this, vmargin),
 				LeftRectangleView.WithSameHeight(this).Minus(2 * vmargin),
 				LeftRectangleView.Width().EqualTo(4),
@@ -64,10 +52,7 @@ namespace MyCompanyInThePocket.iOS
 				DateFormated.ToRightOf(LeftRectangleView, hmargin),
 				Type.AtBottomOf(this, vmargin),
 				Type.AtRightOf(this, hmargin),
-				Type.Width().EqualTo(60));//,
-//				BottomSeparatorView.WithSameWidth(this),
-//				BottomSeparatorView.Height().EqualTo(separatorHeight),
-//				BottomSeparatorView.AtBottomOf(this));
+				Type.Width().EqualTo(60));
 		}
 
 		public UILabel Title
@@ -89,17 +74,6 @@ namespace MyCompanyInThePocket.iOS
 		}
 
 		public UIView LeftRectangleView
-		{
-			get;
-			set;
-		}
-
-		public UIView TopSeparatorView
-		{
-			get;
-			set;
-		}
-		public UIView BottomSeparatorView
 		{
 			get;
 			set;
