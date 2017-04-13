@@ -6,6 +6,7 @@ using System.Threading;
 using MvvmCross.Core.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using MyCompanyInThePocket.Core.Models;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -79,9 +80,35 @@ namespace MyCompanyInThePocket.Core.ViewModels
 					}
 				}
 
-				foreach (var item in flatMeetings.GroupBy(m=>m.Date))
+				var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
+				                                  ToDictionary(m => m.Key, m => m.ToList());
+
+				var finalDate = DateTime.Now.Date.AddMonths(4);
+				var currentGroupedDate = DateTime.Now.Date;
+				while (currentGroupedDate <= finalDate)
 				{
-					Meetings.Add(new GroupedMeetingViewModel(item.Key, item.ToList()));
+					if (groupedMeetings.ContainsKey(currentGroupedDate))
+					{
+						var currentGroup = groupedMeetings[currentGroupedDate];
+						Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, currentGroup.ToList()));
+					}
+					else
+					{
+						var noMeeting = new Meeting();
+						noMeeting.AllDayEvent = true;
+						noMeeting.EndDate = currentGroupedDate;
+						noMeeting.StartDate = currentGroupedDate;
+						// TODO : localisation
+						noMeeting.Title = "Aucun événement";
+						noMeeting.Type = MeetingType.Unknown;
+
+						var noMeetings = new List<MeetingViewModel>();
+						noMeetings.Add(new MeetingViewModel(noMeeting, currentGroupedDate));
+
+						Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, noMeetings));
+					}
+
+					currentGroupedDate = currentGroupedDate.AddDays(1);
 				}
 
 				_lastUpdate = _meetingService.GetLastUpdateTime();

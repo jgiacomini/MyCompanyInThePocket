@@ -103,8 +103,6 @@
     <Compile Include="Services\iOSMessageService.cs" />
     <Compile Include="Views\Meetings\MeetingsScreen.cs" />
     <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
-    <Compile Include="Views\Meetings\MeetingCell.cs" />
-    <Compile Include="Views\Meetings\MeetingView.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinkCell.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksScreen.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksViewSource.cs" />
@@ -116,6 +114,9 @@
     <Compile Include="Extensions\UIColorExtensions.cs" />
     <Compile Include="Views\Converter\MvxInMemoryImageValueConverter.cs" />
     <Compile Include="Views\Meetings\MeetingsViewSource.cs" />
+    <Compile Include="Views\Meetings\Cell\MeetingCell.cs" />
+    <Compile Include="Views\Meetings\Cell\MeetingCellHeaderView.cs" />
+    <Compile Include="Views\Meetings\Cell\MeetingView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.8.999, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -219,6 +220,7 @@
     <Folder Include="Views\StratupScreen\" />
     <Folder Include="Extensions\" />
     <Folder Include="Views\Converter\" />
+    <Folder Include="Views\Meetings\Cell\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\TabBar\ic_menu_settings.png" />
