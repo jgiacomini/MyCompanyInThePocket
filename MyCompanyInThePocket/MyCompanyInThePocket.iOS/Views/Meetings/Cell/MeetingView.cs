@@ -15,14 +15,15 @@ namespace MyCompanyInThePocket.iOS
 
 			Title = new UILabel();
 			Title.TextColor = ApplicationColors.ForegroundHeaderCellColor;
+			Title.Font = UIFont.FromName(ApplicationFontName.ContentBoldFontName,16);
 			Title.LineBreakMode = UILineBreakMode.TailTruncation;
 
 			DateFormated = new UILabel();
-			DateFormated.Font = DateFormated.Font.WithSize(12);
+			DateFormated.Font = UIFont.FromName(ApplicationFontName.ContentFontName,12);
 			DateFormated.TextColor = ApplicationColors.ForegroundContentCellColor;
 
 			Type = new UILabel();
-			Type.Font = Type.Font.WithSize(8);
+			Type.Font = UIFont.FromName(ApplicationFontName.ContentLightFontName,8);
 	
 			Type.Layer.BorderColor = ApplicationColors.MainColor.CGColor;
 			Type.Layer.BorderWidth = 1f;

@@ -10,18 +10,11 @@ namespace MyCompanyInThePocket.iOS
 		{
 			BackgroundColor = ApplicationColors.CellHeaderBackgroundColor;
 
-
-			//var blur = UIBlurEffect.FromStyle(UIBlurEffectStyle.ExtraDark);
-			//var blurView = new UIVisualEffectView(blur);
-			//blurView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
-			//AddSubview(blurView);
-			//blurView.Frame = Frame;
-
 			Label = new UILabel();
 			Label.Text = vm.DateFormated;
 			Label.TextAlignment = UITextAlignment.Left;
 			Label.TextColor = ApplicationColors.CellHeaderForegroundColor;
-			Label.Font = Label.Font.WithSize(12);
+			Label.Font = UIFont.FromName(ApplicationFontName.TitleBoldFontName,12);
 			nfloat hmargin = 15;
 
 			this.AddSubviews(Label);

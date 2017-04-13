@@ -14,11 +14,14 @@ namespace MyCompanyInThePocket.iOS.Views
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			TableView.RowHeight = 50;
 			TableView.AllowsSelection = false;
+
 		}
 
 		public async override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
+
+			ApplicationFontName.DisplayFontsName();
 
 			var refreshControl = new MvxUIRefreshControl();
 			this.RefreshControl = refreshControl;

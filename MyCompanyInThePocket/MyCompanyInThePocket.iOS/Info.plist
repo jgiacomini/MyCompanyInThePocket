@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -37,6 +37,20 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>MyCompanyInThePocket.iOS</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/RobotoSlab-Bold.ttf</string>
+		<string>Fonts/RobotoSlab-Light.ttf</string>
+		<string>Fonts/RobotoSlab-Regular.ttf</string>
+		<string>Fonts/RobotoSlab-Thin.ttf</string>
+		<string>Fonts/Raleway-Bold.ttf</string>
+		<string>Fonts/Raleway-Italic.ttf</string>
+		<string>Fonts/Raleway-Light.ttf</string>
+		<string>Fonts/Raleway-Regular.ttf</string>
+		<string>Fonts/Raleway-Thin.ttf</string>
 	</array>
 </dict>
 </plist>
