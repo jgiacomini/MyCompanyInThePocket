@@ -103,10 +103,8 @@
     <Compile Include="Services\iOSMessageService.cs" />
     <Compile Include="Views\Meetings\MeetingsScreen.cs" />
     <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
-    <Compile Include="Views\UsefullLinks\UseFullLinkCell.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksScreen.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksViewSource.cs" />
-    <Compile Include="Views\UsefullLinks\UsefullLinkView.cs" />
     <Compile Include="Views\Settings\SettingsScreen.cs" />
     <Compile Include="Views\SplashScreen\SplashScreen.cs" />
     <Compile Include="Views\StratupScreen\StartupScreen.cs" />
@@ -117,7 +115,9 @@
     <Compile Include="Views\Meetings\Cell\MeetingCell.cs" />
     <Compile Include="Views\Meetings\Cell\MeetingCellHeaderView.cs" />
     <Compile Include="Views\Meetings\Cell\MeetingView.cs" />
-    <Compile Include="Views\ApplicationFontName.cs" />
+    <Compile Include="Views\ApplicationStyle.cs" />
+    <Compile Include="Views\UsefullLinks\Cell\UseFullLinkCell.cs" />
+    <Compile Include="Views\UsefullLinks\Cell\UsefullLinkView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -223,6 +223,7 @@
     <Folder Include="Views\Converter\" />
     <Folder Include="Views\Meetings\Cell\" />
     <Folder Include="Resources\Fonts\" />
+    <Folder Include="Views\UsefullLinks\Cell\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\TabBar\ic_menu_settings.png" />

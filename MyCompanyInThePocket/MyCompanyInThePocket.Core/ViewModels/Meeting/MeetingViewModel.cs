@@ -8,13 +8,23 @@ namespace MyCompanyInThePocket.Core.ViewModels
 	{
 		private readonly Meeting _meeting;
 		private DateTime _date;
-		private string _dateFormated;
+		private string _durationFormated;
 
 		public MeetingViewModel(Meeting meeting, DateTime date)
 		{
 			_date = date;
 			_meeting = meeting;
-			_dateFormated = _date.ToShortDateString();
+
+			if (_meeting.AllDayEvent)
+			{
+				//TODO : localisation
+				_durationFormated = "JOUR ENTIER";
+			}
+			else
+			{
+				//TODO : afficher heure de début + durée
+				_durationFormated = _date.ToString("HH:mm:ss");  
+			}
 		}
 
 		public DateTime Date
@@ -33,11 +43,11 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 		}
 
-		public string DateFormatted
+		public string DurationFormated
 		{
 			get 
 			{
-				return _dateFormated;
+				return _durationFormated;
 			}
 		}
 

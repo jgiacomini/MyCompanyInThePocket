@@ -4,12 +4,18 @@ using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {
-	public static class ApplicationFontName
+	public static class ApplicationStyle
 	{
 		public static string TitleFontName = "RobotoSlab-Regular";
 		public static string TitleLightFontName = "RobotoSlab-Light";
 		public static string TitleBoldFontName = "RobotoSlab-Bold";
 		public static string TitleThinFontName = "RobotoSlab-Thin";
+
+		public static nfloat TitleCellFontSize = 16;
+		public static nfloat TitleCellContentFontSize = 12;
+		public static nfloat TitleSectionCellFontSize = 12;
+		public static nfloat TitleCellSubContentFontSize = 8;
+
 
 		public static string ContentFontName = "Raleway-Regular";
 		public static string ContentItalicFontName = "Raleway-Italic";
