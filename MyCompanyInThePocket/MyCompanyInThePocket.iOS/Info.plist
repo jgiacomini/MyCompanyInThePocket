@@ -52,5 +52,7 @@
 		<string>Fonts/Raleway-Regular.ttf</string>
 		<string>Fonts/Raleway-Thin.ttf</string>
 	</array>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Ajouter/Enlever les événements ACRA dans votre calendrier.</string>
 </dict>
 </plist>

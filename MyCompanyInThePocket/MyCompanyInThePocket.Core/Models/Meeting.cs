@@ -12,7 +12,7 @@ namespace MyCompanyInThePocket.Core.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-		public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
 
@@ -21,16 +21,20 @@ namespace MyCompanyInThePocket.Core.Models
         public MeetingType Type { get; set; }
 
         public bool AllDayEvent { get; set; }
+        public bool IsRecurrent { get; internal set; }
+
+        [Ignore]
+        public TimeSpan Duration => EndDate - StartDate;
     }
 
 
-	public enum MeetingType
-	{
-		Mission,
-		AvantVente,
-		CP_RTT,
-		Conference,
-		NonFacture,
-		Unknown
-	}
+    public enum MeetingType
+    {
+        Mission,
+        AvantVente,
+        CP_RTT,
+        Conference,
+        NonFacture,
+        Unknown
+    }
 }

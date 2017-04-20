@@ -5,6 +5,7 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Services.Interface;
+using MyCompanyInThePocket.iOS.Services;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS
@@ -15,7 +16,7 @@ namespace MyCompanyInThePocket.iOS
             : base(applicationDelegate, window)
         {
         }
-        
+
         public Setup(MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
             : base(applicationDelegate, presenter)
         {
@@ -31,14 +32,17 @@ namespace MyCompanyInThePocket.iOS
             return new DebugTrace();
         }
 
-		protected override void InitializeLastChance()
-		{
-			Mvx.RegisterType<ISqliteConnectionFactory, IOSSqliteConnectionFactory>();
-			Mvx.RegisterType<IAuthentificationPlatformFactory, IOSAuthentificationPlatformFactory>();
-			Mvx.RegisterType<IMessageService, iOSMessageService>();
+        protected override void InitializeLastChance()
+        {
+            Mvx.RegisterType<ISqliteConnectionFactory, IOSSqliteConnectionFactory>();
+            Mvx.RegisterType<IAuthentificationPlatformFactory, IOSAuthentificationPlatformFactory>();
+            Mvx.RegisterType<IMessageService, iOSMessageService>();
 
-			base.InitializeLastChance();
-		}
+            // trigger init
+            Mvx.RegisterSingleton<INativeCalendarIntegrationService>(new iOSNativeCalendarIntegrationService());
+            
+            base.InitializeLastChance();
+        }
 
-	}
+    }
 }
