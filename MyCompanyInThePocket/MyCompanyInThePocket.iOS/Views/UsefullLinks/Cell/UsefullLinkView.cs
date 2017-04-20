@@ -15,6 +15,9 @@ namespace MyCompanyInThePocket.iOS
 
 			Logo = new UIImageView();
 			Name = new UILabel();
+			Name.TextColor = ApplicationColors.ForegroundHeaderCellColor;
+			Name.Font = UIFont.FromName(ApplicationStyle.ContentFontName, ApplicationStyle.TitleCellFontSize);
+			Name.LineBreakMode = UILineBreakMode.TailTruncation;
 
 			BottomSeparatorView = new UIView();
 			BottomSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;

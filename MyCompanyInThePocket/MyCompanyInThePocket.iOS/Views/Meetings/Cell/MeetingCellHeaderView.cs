@@ -14,7 +14,7 @@ namespace MyCompanyInThePocket.iOS
 			Label.Text = vm.DateFormated;
 			Label.TextAlignment = UITextAlignment.Left;
 			Label.TextColor = ApplicationColors.CellHeaderForegroundColor;
-			Label.Font = UIFont.FromName(ApplicationFontName.TitleBoldFontName,12);
+			Label.Font = UIFont.FromName(ApplicationStyle.TitleBoldFontName, ApplicationStyle.TitleSectionCellFontSize);
 			nfloat hmargin = 15;
 
 			this.AddSubviews(Label);

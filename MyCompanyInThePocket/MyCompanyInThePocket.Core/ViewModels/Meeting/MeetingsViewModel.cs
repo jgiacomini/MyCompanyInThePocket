@@ -90,30 +90,34 @@ namespace MyCompanyInThePocket.Core.ViewModels
                 var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
                                                   ToDictionary(m => m.Key, m => m.ToList());
 
-                var finalDate = DateTime.Now.Date.AddMonths(4);
-                var currentGroupedDate = DateTime.Now.Date;
-                while (currentGroupedDate <= finalDate)
-                {
-                    if (groupedMeetings.ContainsKey(currentGroupedDate))
-                    {
-                        var currentGroup = groupedMeetings[currentGroupedDate];
-                        Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, currentGroup.ToList()));
-                    }
-                    else
-                    {
-                        var noMeeting = new Meeting();
-                        noMeeting.AllDayEvent = true;
-                        noMeeting.EndDate = currentGroupedDate;
-                        noMeeting.StartDate = currentGroupedDate;
-                        // TODO : localisation
-                        noMeeting.Title = "Aucun événement";
-                        noMeeting.Type = MeetingType.Unknown;
+				var finalDate = DateTime.Now.Date.AddMonths(4);
+				var currentGroupedDate = DateTime.Now.Date;
+				while (currentGroupedDate <= finalDate)
+				{
+					if (groupedMeetings.ContainsKey(currentGroupedDate))
+					{
+						var currentGroup = groupedMeetings[currentGroupedDate];
+						Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, currentGroup.ToList()));
+					}
+					else
+					{
+						if (currentGroupedDate.DayOfWeek != DayOfWeek.Sunday &&
+							currentGroupedDate.DayOfWeek != DayOfWeek.Saturday)
+						{
+							var noMeeting = new Meeting();
+							noMeeting.AllDayEvent = true;
+							noMeeting.EndDate = currentGroupedDate;
+							noMeeting.StartDate = currentGroupedDate;
+							// TODO : localisation
+							noMeeting.Title = "Aucun événement";
+							noMeeting.Type = MeetingType.Unknown;
 
-                        var noMeetings = new List<MeetingViewModel>();
-                        noMeetings.Add(new MeetingViewModel(noMeeting, currentGroupedDate));
+							var noMeetings = new List<MeetingViewModel>();
+							noMeetings.Add(new MeetingViewModel(noMeeting, currentGroupedDate));
 
-                        Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, noMeetings));
-                    }
+							Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, noMeetings));
+						}
+					}
 
                     currentGroupedDate = currentGroupedDate.AddDays(1);
                 }

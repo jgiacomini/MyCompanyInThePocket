@@ -27,6 +27,8 @@ namespace MyCompanyInThePocket.iOS.Views
 			tableView.RegisterClassForCellReuse(typeof(MeetingCell), MeetingCell.Key);
 		}
 
+
+
 		public override nint RowsInSection(UITableView tableview, nint section)
 		{
 			var groupedData = GetGroupedData();
@@ -54,9 +56,14 @@ namespace MyCompanyInThePocket.iOS.Views
 			return !groupedData.Any() ? string.Empty : groupedData[(int)section].Date.ToShortDateString();
 		}
 
+		public override nfloat EstimatedHeightForHeader(UITableView tableView, nint section)
+		{
+			return 20;
+		}
+
 		public override nfloat GetHeightForHeader(UITableView tableView, nint section)
 		{
-			return 14;
+			return 20;
 		}
 	
 		public override UIView GetViewForHeader(UITableView tableView, nint section)
