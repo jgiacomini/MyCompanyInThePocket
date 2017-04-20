@@ -94,18 +94,22 @@ namespace MyCompanyInThePocket.Core.ViewModels
 					}
 					else
 					{
-						var noMeeting = new Meeting();
-						noMeeting.AllDayEvent = true;
-						noMeeting.EndDate = currentGroupedDate;
-						noMeeting.StartDate = currentGroupedDate;
-						// TODO : localisation
-						noMeeting.Title = "Aucun événement";
-						noMeeting.Type = MeetingType.Unknown;
+						if (currentGroupedDate.DayOfWeek != DayOfWeek.Sunday &&
+							currentGroupedDate.DayOfWeek != DayOfWeek.Saturday)
+						{
+							var noMeeting = new Meeting();
+							noMeeting.AllDayEvent = true;
+							noMeeting.EndDate = currentGroupedDate;
+							noMeeting.StartDate = currentGroupedDate;
+							// TODO : localisation
+							noMeeting.Title = "Aucun événement";
+							noMeeting.Type = MeetingType.Unknown;
 
-						var noMeetings = new List<MeetingViewModel>();
-						noMeetings.Add(new MeetingViewModel(noMeeting, currentGroupedDate));
+							var noMeetings = new List<MeetingViewModel>();
+							noMeetings.Add(new MeetingViewModel(noMeeting, currentGroupedDate));
 
-						Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, noMeetings));
+							Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, noMeetings));
+						}
 					}
 
 					currentGroupedDate = currentGroupedDate.AddDays(1);
