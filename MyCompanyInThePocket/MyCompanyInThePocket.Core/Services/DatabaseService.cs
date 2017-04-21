@@ -11,7 +11,7 @@ namespace MyCompanyInThePocket.Core.Services
     internal class DatabaseService : IDatabaseService
     {
         #region Constantes
-        private const int _DB_VERSION = 1;
+        private const int _DB_VERSION = 2;
         #endregion
 
         #region Fields

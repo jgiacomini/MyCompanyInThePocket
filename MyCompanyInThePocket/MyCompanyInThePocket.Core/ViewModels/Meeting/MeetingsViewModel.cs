@@ -10,78 +10,85 @@ using MyCompanyInThePocket.Core.Models;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
-	public class MeetingsViewModel : BaseViewModel
-	{
-		#region Fields
-		private readonly IMeetingService _meetingService;
-		private DateTime _lastUpdate;
-		#endregion
+    public class MeetingsViewModel : BaseViewModel
+    {
+        #region Fields
+        private readonly IMeetingService _meetingService;
+        private DateTime _lastUpdate;
+        #endregion
 
-		public MeetingsViewModel(IMeetingService meetingService)
-		{
-			Meetings = new SuspendableObservableCollection<GroupedMeetingViewModel>();
-			_meetingService = meetingService;
-			RefreshCommand = new MvxCommand(ForceRefresh);
-			_lastUpdate = _meetingService.GetLastUpdateTime();
-		}
+        public MeetingsViewModel(IMeetingService meetingService)
+        {
+            Meetings = new SuspendableObservableCollection<GroupedMeetingViewModel>();
+            _meetingService = meetingService;
+            RefreshCommand = new MvxCommand(ForceRefresh);
+            _lastUpdate = _meetingService.GetLastUpdateTime();
+        }
 
-		public MvxCommand RefreshCommand
-		{
-			get;
-			private set;
-		}
+        public MvxCommand RefreshCommand
+        {
+            get;
+            private set;
+        }
 
-		public SuspendableObservableCollection<GroupedMeetingViewModel> Meetings
-		{
-			get;
-			private set;
-		}
+        public SuspendableObservableCollection<GroupedMeetingViewModel> Meetings
+        {
+            get;
+            private set;
+        }
 
-		public async Task InitializeAsync()
-		{
-			await RefreshMeetings(false);	
-		}
+        public Task InitializeAsync()
+        {
+            return RefreshMeetings(false);
+        }
 
-		async void ForceRefresh()
-		{
-			await RefreshMeetings(false);
-		}
+        void ForceRefresh()
+        {
+            RefreshMeetings(false);
+        }
 
-		public string LastUpdate
-		{
-			get
-			{
-				if (_lastUpdate == DateTime.MinValue)
-				{
-					return string.Empty;
-				}
-				// TODO : localisation
-				return $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
-			}
-		}
+        public string LastUpdate
+        {
+            get
+            {
+                if (_lastUpdate == DateTime.MinValue)
+                {
+                    return string.Empty;
+                }
+                // TODO : localisation
+                return $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
+            }
+        }
 
-		private async Task RefreshMeetings(bool forceRefresh)
-		{
-			IsBusy = true;
-			try
-			{
-				Meetings.PauseNotifications();
-				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, CancellationToken.None);
-				Meetings.Clear();
+        private async Task RefreshMeetings(bool forceRefresh)
+        {
+            IsBusy = true;
+            try
+            {
+                Meetings.PauseNotifications();
+                var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, CancellationToken.None);
 
-				var flatMeetings = new List<MeetingViewModel>();
-				foreach (var meeting in meetings)
-				{
-					var currentDate = meeting.StartDate;
-					while (currentDate < meeting.EndDate)
-					{
-						flatMeetings.Add(new MeetingViewModel(meeting, currentDate));
-						currentDate = currentDate.AddDays(1);
-					}
-				}
+                var nativeCalendarIntegrationService = Mvx.Resolve<INativeCalendarIntegrationService>();
+                if (nativeCalendarIntegrationService != null)
+                {
+                    await nativeCalendarIntegrationService.PushMeetingsToCalendarAsync(meetings);
+                }
 
-				var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
-				                                  ToDictionary(m => m.Key, m => m.ToList());
+                Meetings.Clear();
+
+                var flatMeetings = new List<MeetingViewModel>();
+                foreach (var meeting in meetings)
+                {
+                    var currentDate = meeting.StartDate;
+                    while (currentDate < meeting.EndDate)
+                    {
+                        flatMeetings.Add(new MeetingViewModel(meeting, currentDate));
+                        currentDate = currentDate.AddDays(1);
+                    }
+                }
+
+                var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
+                                                  ToDictionary(m => m.Key, m => m.ToList());
 
 				var finalDate = DateTime.Now.Date.AddMonths(4);
 				var currentGroupedDate = DateTime.Now.Date;
@@ -112,24 +119,24 @@ namespace MyCompanyInThePocket.Core.ViewModels
 						}
 					}
 
-					currentGroupedDate = currentGroupedDate.AddDays(1);
-				}
+                    currentGroupedDate = currentGroupedDate.AddDays(1);
+                }
 
-				_lastUpdate = _meetingService.GetLastUpdateTime();
+                _lastUpdate = _meetingService.GetLastUpdateTime();
 
-				RaisePropertyChanged(nameof(Meetings));
-				RaisePropertyChanged(nameof(LastUpdate));
-			}
-			catch (System.Exception ex)
-			{
-				await Mvx.Resolve<IMessageService>()
-					 .ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
-			}
-			finally
-			{
-				Meetings.ResumeNotifications();
-				IsBusy = false;
-			}
-		}
-	}
+                RaisePropertyChanged(nameof(Meetings));
+                RaisePropertyChanged(nameof(LastUpdate));
+            }
+            catch (System.Exception ex)
+            {
+                await Mvx.Resolve<IMessageService>()
+                     .ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
+            }
+            finally
+            {
+                Meetings.ResumeNotifications();
+                IsBusy = false;
+            }
+        }
+    }
 }

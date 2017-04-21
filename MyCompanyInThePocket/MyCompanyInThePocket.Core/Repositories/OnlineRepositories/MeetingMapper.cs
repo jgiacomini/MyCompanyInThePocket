@@ -15,7 +15,8 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 				dbMeeting.EndDate = meeting.EndDate;
 				dbMeeting.StartDate = meeting.EventDate;
 				dbMeeting.Title = meeting.Title;
-				dbMeeting.Type = ConvertStringToMeetingType(meeting.TypeCRA);
+                dbMeeting.IsRecurrent = meeting.fRecurrence;
+			dbMeeting.Type = ConvertStringToMeetingType(meeting.TypeCRA);
 				dbMeeting.AllDayEvent = meeting.fAllDayEvent.GetValueOrDefault();
 				meetings.Add(dbMeeting);
 			}
