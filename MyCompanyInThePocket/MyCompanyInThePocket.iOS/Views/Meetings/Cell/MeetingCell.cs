@@ -27,7 +27,7 @@ namespace MyCompanyInThePocket.iOS
 		{
 			var bindingSet = this.CreateBindingSet<MeetingCell, MeetingViewModel>();
 			bindingSet.Bind(MeetingView.Title).For(v => v.Text).To(m => m.Title);
-			bindingSet.Bind(MeetingView.DateFormated).For(v => v.Text).To(m => m.DateFormatted);
+			bindingSet.Bind(MeetingView.DurationFormated).For(v => v.Text).To(m => m.DurationFormated);
 			bindingSet.Bind(MeetingView.Type).For(v => v.Text).To(m => m.Type);
 			bindingSet.Apply();
 		}

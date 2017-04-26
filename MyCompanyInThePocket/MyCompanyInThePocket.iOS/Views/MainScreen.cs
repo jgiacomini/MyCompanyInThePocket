@@ -16,7 +16,7 @@ namespace MyCompanyInThePocket.iOS.Views
 			this.TabBar.Translucent = false;
 			this.TabBar.TintColor = ApplicationColors.MainColor;
 			this.TabBar.BackgroundColor = UIColor.White;
-			this.EdgesForExtendedLayout = UIRectEdge.Bottom;
+			this.EdgesForExtendedLayout = UIRectEdge.None;
 
 		}
 
