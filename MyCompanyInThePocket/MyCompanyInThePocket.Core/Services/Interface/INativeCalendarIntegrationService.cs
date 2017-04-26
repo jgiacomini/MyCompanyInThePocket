@@ -10,5 +10,6 @@ namespace MyCompanyInThePocket.Core.Services.Interface
     public interface INativeCalendarIntegrationService
     {
         Task PushMeetingsToCalendarAsync(List<Meeting> meetings);
+        Task DeleteCalendarAsync();
     }
 }
