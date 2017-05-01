@@ -9,65 +9,31 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MyCompanyInThePocket.Core.Services;
 
 namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 {
     internal class OnlineMeetingRepository : IOnlineMeetingRepository
     {
-        private AuthentificationService _authentificationService;
+		private IAuthentificationService _authentificationService;
 
-        public OnlineMeetingRepository()
+		public OnlineMeetingRepository()
         {
-            var authentificationPlatformFactory = Mvx.Resolve<IAuthentificationPlatformFactory>();
-            _authentificationService = new AuthentificationService(authentificationPlatformFactory);
+			_authentificationService = Mvx.Resolve<IAuthentificationService>();
         }
 
         public async Task<List<Meeting>> GetMeetingAsync()
         {
-            await _authentificationService.AuthenticateAsync();
-
-            var client = _authentificationService.GetClient();
-
 			var date = DateTime.Now.AddMonths(-1).ToString("s");
             var identity = OnlineSettings.Identity;
+			var data = await _authentificationService.GetAsync<Rootobject>($"ACRA/_api/web/lists/getbytitle('{identity}')/items?$top=1000&$filter=EventDate gt DateTime'{date}'");
 
-            var queryString = AuthentificationService.ServiceResourceId + $"ACRA/_api/web/lists/getbytitle('{identity}')/items?$top=1000&$filter=EventDate gt DateTime'{date}'";
+			var sharePointMeetings = data.value.OrderBy(ap => ap.EventDate).ToArray();
+			// TODO : exception personalisé lors du mapping
+			var meetings = sharePointMeetings.MapMeetings();
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, queryString);
-            HttpResponseMessage response = await client.SendAsync(request);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.Forbidden ||
-                    response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    // TODO : exception personalisée
-                    _authentificationService.Disconnect();
-                    // TODO : gérer l'exception et faire une exception personalisée
-                    throw new InvalidOperationException();
-                }
-                else
-                {
-                    // TODO : gérer l'exception et faire une exception personalisée
-                    throw new InvalidOperationException();
-                }
-            }
-            else
-            {
-                var responseString = await response.Content.ReadAsStringAsync();
-
-                var data = JsonConvert.DeserializeObject(responseString, typeof(Rootobject)) as Rootobject;
-
-                var sharePointMeetings = data.value.OrderBy(ap => ap.EventDate).ToArray();
-
-                // TODO : exception personalisé lors du mapping
-				var meetings = sharePointMeetings.MapMeetings();
-
-                return meetings;
-            }
+            return meetings;
         }
-
-        
     }
 
     #region Generated object

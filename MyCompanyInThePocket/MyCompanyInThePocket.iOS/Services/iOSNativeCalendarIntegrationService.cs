@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
 using MyCompanyInThePocket.Core.Services.Interface;
 using MyCompanyInThePocket.Core.Models;
@@ -12,6 +11,8 @@ using MvvmCross.Platform.iOS;
 using Nito.AsyncEx;
 using CoreGraphics;
 using MvvmCross.Platform;
+using System.Diagnostics;
+using MyCompanyInThePocket.Core.Services;
 
 namespace MyCompanyInThePocket.iOS.Services
 {
@@ -32,13 +33,39 @@ namespace MyCompanyInThePocket.iOS.Services
 
         private AsyncLock _PushMeetingsToCalendarAsyncLock = new AsyncLock();
 
+		public async Task AddReminder()
+		{
+			try
+			{
+				var result = await _eventStore.RequestAccessAsync(EKEntityType.Reminder);
+				if (result.Item1)
+				{
+					// TODO: localisation
+					EKReminder reminder = EKReminder.Create(_eventStore);
+					reminder.Title = "ACRA - ENVOYER LA PROD";
+					EKAlarm timeToRing = new EKAlarm();
+					timeToRing.AbsoluteDate = NSDate.Now.AddSeconds(100);
+        			reminder.AddAlarm(timeToRing);
+					reminder.Calendar = _eventStore.DefaultCalendarForNewReminders;
+					reminder.Notes = "Envoi la PROD dude, c'est mieux pour tout le monde";
+					NSError error;
+					_eventStore.SaveReminder(reminder, true, out error);
+
+					Debug.WriteLine(error?.Description);
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.Message);
+			}
+		}
+
         public async Task PushMeetingsToCalendarAsync(List<Meeting> meetings)
         {
             try
             {
                 using (await _PushMeetingsToCalendarAsyncLock.LockAsync())
                 {
-                    // pas de résultat
                     if (!(await _eventStore.RequestAccessAsync(EKEntityType.Event)).Item1)
                     {
                         return;
@@ -113,7 +140,7 @@ namespace MyCompanyInThePocket.iOS.Services
                             toSave.EndDate = ConvertDateTimeToNSDate(appointData.EndDate.AddDays(-1));
                         }
 
-                        if (appointData.Title != null && appointData.Title.IndexOf("férié", StringComparison.OrdinalIgnoreCase) == -1)
+						if (!appointData.IsHoliday)
                         {
                             if (appointData.Duration.TotalDays > 1 && !appointData.IsRecurrent)
                             {
@@ -140,6 +167,7 @@ namespace MyCompanyInThePocket.iOS.Services
             }
             catch (Exception e)
             {
+				//TODO : localisation
                 Mvx.Resolve<IMessageService>().ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
@@ -156,7 +184,7 @@ namespace MyCompanyInThePocket.iOS.Services
             {
                 using (await _PushMeetingsToCalendarAsyncLock.LockAsync())
                 {
-                    // pas de résultat
+                    // pas de rï¿½sultat
                     if (!(await _eventStore.RequestAccessAsync(EKEntityType.Event)).Item1)
                     {
                         return;

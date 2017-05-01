@@ -16,8 +16,14 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 				dbMeeting.StartDate = meeting.EventDate;
 				dbMeeting.Title = meeting.Title;
                 dbMeeting.IsRecurrent = meeting.fRecurrence;
-			dbMeeting.Type = ConvertStringToMeetingType(meeting.TypeCRA);
+				dbMeeting.Type = ConvertStringToMeetingType(meeting.TypeCRA);
+
+
 				dbMeeting.AllDayEvent = meeting.fAllDayEvent.GetValueOrDefault();
+				if (meeting.Title != null && meeting.Title.IndexOf("f�ri�", StringComparison.OrdinalIgnoreCase) == -1)
+				{
+					dbMeeting.IsHoliday = true;
+				}
 				meetings.Add(dbMeeting);
 			}
 

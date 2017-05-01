@@ -7,6 +7,8 @@ using MvvmCross.Core.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using MyCompanyInThePocket.Core.Models;
+using System.Diagnostics;
+using MyCompanyInThePocket.Core.Services;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -15,6 +17,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
         #region Fields
         private readonly IMeetingService _meetingService;
         private DateTime _lastUpdate;
+		private CancellationTokenSource _pageTokenSource;
         #endregion
 
         public MeetingsViewModel(IMeetingService meetingService)
@@ -39,12 +42,22 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
         public Task InitializeAsync()
         {
-            return RefreshMeetings(false);
+			_pageTokenSource = new CancellationTokenSource();
+			return RefreshMeetings(false, _pageTokenSource.Token);
         }
+
+		public void CancelQueries()
+		{
+			if (_pageTokenSource != null)
+			{
+				_pageTokenSource.Cancel();
+			}
+		}
 
         void ForceRefresh()
         {
-            RefreshMeetings(false);
+			_pageTokenSource = new CancellationTokenSource();
+			RefreshMeetings(false, _pageTokenSource.Token);
         }
 
         public string LastUpdate
@@ -60,42 +73,47 @@ namespace MyCompanyInThePocket.Core.ViewModels
             }
         }
 
-        private async Task RefreshMeetings(bool forceRefresh)
+        private async Task RefreshMeetings(bool forceRefresh, CancellationToken token)
         {
             IsBusy = true;
-            try
-            {
-                Meetings.PauseNotifications();
-                var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, CancellationToken.None);
+			try
+			{
+				Meetings.PauseNotifications();
+				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, token);
 
-                var nativeCalendarIntegrationService = Mvx.Resolve<INativeCalendarIntegrationService>();
-                if (nativeCalendarIntegrationService != null)
-                {
-                    if (ApplicationSettings.IsIntegrationToNativeCalendarEnabled)
-                    {
-                        await nativeCalendarIntegrationService.PushMeetingsToCalendarAsync(meetings);
-                    }
-                    else
-                    {
-                        await nativeCalendarIntegrationService.DeleteCalendarAsync();
-                    }
-                }
+				var nativeCalendarIntegrationService = Mvx.Resolve<INativeCalendarIntegrationService>();
+				if (nativeCalendarIntegrationService != null)
+				{
+					if (ApplicationSettings.IsIntegrationToNativeCalendarEnabled)
+					{
+						await nativeCalendarIntegrationService.PushMeetingsToCalendarAsync(meetings);
+					}
+					else
+					{
+						await nativeCalendarIntegrationService.DeleteCalendarAsync();
+					}
+				
+					if (ApplicationSettings.IsIntegrationToNativeReminderEnabled)
+					{
+						await nativeCalendarIntegrationService.AddReminder();
+					}
+				}
 
-                Meetings.Clear();
+				Meetings.Clear();
 
-                var flatMeetings = new List<MeetingViewModel>();
-                foreach (var meeting in meetings)
-                {
-                    var currentDate = meeting.StartDate;
-                    while (currentDate < meeting.EndDate)
-                    {
-                        flatMeetings.Add(new MeetingViewModel(meeting, currentDate));
-                        currentDate = currentDate.AddDays(1);
-                    }
-                }
+				var flatMeetings = new List<MeetingViewModel>();
+				foreach (var meeting in meetings)
+				{
+					var currentDate = meeting.StartDate;
+					while (currentDate < meeting.EndDate)
+					{
+						flatMeetings.Add(new MeetingViewModel(meeting, currentDate));
+						currentDate = currentDate.AddDays(1);
+					}
+				}
 
-                var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
-                                                  ToDictionary(m => m.Key, m => m.ToList());
+				var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
+												  ToDictionary(m => m.Key, m => m.ToList());
 
 				var finalDate = DateTime.Now.Date.AddMonths(4);
 				var currentGroupedDate = DateTime.Now.Date;
@@ -126,19 +144,24 @@ namespace MyCompanyInThePocket.Core.ViewModels
 						}
 					}
 
-                    currentGroupedDate = currentGroupedDate.AddDays(1);
-                }
+					currentGroupedDate = currentGroupedDate.AddDays(1);
+				}
 
-                _lastUpdate = _meetingService.GetLastUpdateTime();
+				_lastUpdate = _meetingService.GetLastUpdateTime();
 
-                RaisePropertyChanged(nameof(Meetings));
-                RaisePropertyChanged(nameof(LastUpdate));
-            }
-            catch (System.Exception ex)
-            {
-                await Mvx.Resolve<IMessageService>()
-                     .ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
-            }
+				RaisePropertyChanged(nameof(Meetings));
+				RaisePropertyChanged(nameof(LastUpdate));
+			}
+			catch (TokenExpiredException ex)
+			{
+				//Proposer à l'utilisateur de se connecter
+			}
+			catch (System.Exception ex)
+			{
+				Debug.WriteLine(ex.Message);
+				await Mvx.Resolve<IMessageService>()
+					 .ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
+			}
             finally
             {
                 Meetings.ResumeNotifications();

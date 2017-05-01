@@ -23,6 +23,7 @@ namespace MyCompanyInThePocket.Core.Models
         public bool AllDayEvent { get; set; }
         public bool IsRecurrent { get; internal set; }
 
+		public bool IsHoliday { get; set; }
         [Ignore]
         public TimeSpan Duration => EndDate - StartDate;
     }

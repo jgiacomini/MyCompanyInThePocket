@@ -27,6 +27,18 @@ namespace MyCompanyInThePocket.Core
             }
         }
 
+		public static bool IsIntegrationToNativeReminderEnabled
+		{
+			get
+			{
+				return AppSettings.GetValueOrDefault(nameof(IsIntegrationToNativeReminderEnabled), true);
+			}
+			set
+			{
+				AppSettings.AddOrUpdateValue(nameof(IsIntegrationToNativeReminderEnabled), value);
+			}
+		}
+
         public static bool LaunchStartupScreen
 		{
 			get
@@ -53,6 +65,8 @@ namespace MyCompanyInThePocket.Core
 
 		public static void Clear()
 		{
+			IsIntegrationToNativeCalendarEnabled = false;
+			IsIntegrationToNativeReminderEnabled = false;
 			LaunchStartupScreen = false;
 			OnlineSettings.Clear();
 		}

@@ -5,11 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyCompanyInThePocket.Core.Services.Interface
+namespace MyCompanyInThePocket.Core.Services
 {
     public interface INativeCalendarIntegrationService
     {
         Task PushMeetingsToCalendarAsync(List<Meeting> meetings);
+
         Task DeleteCalendarAsync();
+
+		Task AddReminder();
     }
 }

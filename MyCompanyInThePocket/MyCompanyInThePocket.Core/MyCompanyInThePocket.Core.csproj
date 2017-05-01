@@ -63,7 +63,6 @@
     <Compile Include="Repositories\Interfaces\IOnlineMeetingRepository.cs" />
     <Compile Include="Repositories\MockRepositories\MeetingRepository.cs" />
     <Compile Include="Repositories\MockRepositories\UseFullLinkRepository.cs" />
-    <Compile Include="Repositories\OnlineRepositories\AuthentificationService.cs" />
     <Compile Include="Repositories\OnlineRepositories\OnlineMeetingRepository.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -82,9 +81,7 @@
     <Compile Include="Services\Interface\INativeCalendarIntegrationService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\MainScreenViewModel.cs" />
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />
-    <Compile Include="ViewModels\StartupViewModel.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\OnlineSettings.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -102,6 +99,11 @@
     <Compile Include="Extension\DateTimeExtension.cs" />
     <Compile Include="ViewModels\SuspendableObservableCollection.cs" />
     <Compile Include="ViewModels\Meeting\GroupedMeetingViewModel.cs" />
+    <Compile Include="Repositories\OnlineRepositories\TokenExpiredException.cs" />
+    <Compile Include="ViewModels\Startup\StartupViewModel.cs" />
+    <Compile Include="ViewModels\MainScreen\MainScreenViewModel.cs" />
+    <Compile Include="Services\Interface\IAuthentificationService.cs" />
+    <Compile Include="Services\AuthentificationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -169,6 +171,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Startup\" />
+    <Folder Include="ViewModels\MainScreen\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

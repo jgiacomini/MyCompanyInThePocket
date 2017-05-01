@@ -5,10 +5,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Net;
 
-namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
+namespace MyCompanyInThePocket.Core.Services
 {
-    internal class AuthentificationService
+	internal class AuthentificationService : IAuthentificationService
     {
 		#region Fields
         private IAuthentificationPlatformFactory _plaformFactory;
@@ -35,7 +37,7 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
             _plaformFactory = plaformFactory;
         }
 
-        public async Task AuthenticateAsync()
+       	public async Task AuthenticateAsync()
         {
 			if (string.IsNullOrWhiteSpace(OnlineSettings.AccessToken))
 			{
@@ -72,13 +74,43 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
             return authResult;
         }
 
-        public HttpClient GetClient()
+		private HttpClient GetClient()
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", OnlineSettings.AccessToken);
             return client;
         }
+
+		public async Task<T> GetAsync<T>(string route)
+			where T : class
+		{
+			var client = GetClient();
+			var queryString = $"{AuthentificationService.ServiceResourceId}{route}";
+			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, queryString);
+			HttpResponseMessage response = await client.SendAsync(request);
+
+
+			if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.Forbidden ||
+                    response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    Disconnect();
+                    throw new TokenExpiredException();
+                }
+                else
+                {
+                    // TODO : gérer l'exception et faire une exception personalisée
+                    throw new InvalidOperationException();
+                }
+            }
+            else
+            {
+                var responseString = await response.Content.ReadAsStringAsync();
+				return JsonConvert.DeserializeObject(responseString, typeof(T)) as T;
+            }
+		}
 
     }
 }

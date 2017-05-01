@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MvvmCross.Platform;
+using MyCompanyInThePocket.Core.Services;
 using MyCompanyInThePocket.Core.Services.Interface;
 
 namespace MyCompanyInThePocket.Core.ViewModels
@@ -13,7 +15,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 		public MainScreenViewModel(IMeetingService meetingService, IUseFullLinkService useFullLinkService)
 		{
 			MeetingsVM = new MeetingsViewModel(meetingService);
-			SettingsVM = new SettingsViewModel();
+			SettingsVM = new SettingsViewModel(Mvx.Resolve<IAuthentificationService>());
 			UseFullLinksVM = new UseFullLinksViewModel(useFullLinkService);
 		}
 

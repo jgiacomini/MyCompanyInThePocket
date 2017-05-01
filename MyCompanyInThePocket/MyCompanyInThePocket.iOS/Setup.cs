@@ -4,6 +4,7 @@ using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MyCompanyInThePocket.Core.Helpers;
+using MyCompanyInThePocket.Core.Services;
 using MyCompanyInThePocket.Core.Services.Interface;
 using MyCompanyInThePocket.iOS.Services;
 using UIKit;
