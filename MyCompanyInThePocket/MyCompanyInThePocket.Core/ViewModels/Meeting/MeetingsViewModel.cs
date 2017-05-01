@@ -71,7 +71,14 @@ namespace MyCompanyInThePocket.Core.ViewModels
                 var nativeCalendarIntegrationService = Mvx.Resolve<INativeCalendarIntegrationService>();
                 if (nativeCalendarIntegrationService != null)
                 {
-                    await nativeCalendarIntegrationService.PushMeetingsToCalendarAsync(meetings);
+                    if (ApplicationSettings.IsIntegrationToNativeCalendarEnabled)
+                    {
+                        await nativeCalendarIntegrationService.PushMeetingsToCalendarAsync(meetings);
+                    }
+                    else
+                    {
+                        await nativeCalendarIntegrationService.DeleteCalendarAsync();
+                    }
                 }
 
                 Meetings.Clear();

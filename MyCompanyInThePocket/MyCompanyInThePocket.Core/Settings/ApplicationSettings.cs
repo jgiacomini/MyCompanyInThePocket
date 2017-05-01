@@ -15,7 +15,19 @@ namespace MyCompanyInThePocket.Core
 			}
 		}
 
-		public static bool LaunchStartupScreen
+        public static bool IsIntegrationToNativeCalendarEnabled
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(nameof(IsIntegrationToNativeCalendarEnabled), true);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(nameof(IsIntegrationToNativeCalendarEnabled), value);
+            }
+        }
+
+        public static bool LaunchStartupScreen
 		{
 			get
 			{

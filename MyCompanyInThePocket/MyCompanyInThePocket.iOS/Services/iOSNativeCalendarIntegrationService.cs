@@ -10,6 +10,8 @@ using EventKit;
 using Plugin.Settings;
 using MvvmCross.Platform.iOS;
 using Nito.AsyncEx;
+using CoreGraphics;
+using MvvmCross.Platform;
 
 namespace MyCompanyInThePocket.iOS.Services
 {
@@ -36,36 +38,44 @@ namespace MyCompanyInThePocket.iOS.Services
             {
                 using (await _PushMeetingsToCalendarAsyncLock.LockAsync())
                 {
-
-                    var tcs = new TaskCompletionSource<bool>();
-
-                    _eventStore.RequestAccess(EKEntityType.Event, (a, e) => { tcs.TrySetResult(a); });
-
                     // pas de résultat
-                    if (!await tcs.Task)
+                    if (!(await _eventStore.RequestAccessAsync(EKEntityType.Event)).Item1)
                     {
                         return;
                     }
 
                     var calendar = _eventStore.GetCalendar(AcraCalendarIdentifier);
+                    CGColor colorToUse = null;
                     if (calendar != null)
                     {
-                        NSError errorToDelete;
+                        colorToUse = calendar.CGColor;
+                        NSError errorToDelete; ;
                         _eventStore.RemoveCalendar(calendar, true, out errorToDelete);
                     }
 
-                    calendar = null;
-                    if (calendar == null)
+                    // now recreate a calendar !
+                    calendar = EKCalendar.FromEventStore(_eventStore);
+                    calendar.Title = "ACRA du " + DateTime.Now.ToString("g");
+                    if (colorToUse != null)
                     {
-                        calendar = EKCalendar.FromEventStore(_eventStore);
-                        calendar.Title = "ACRA du " + DateTime.Now.ToString("g");
-
-                        calendar.Source = _eventStore.Sources.FirstOrDefault(s => s.SourceType == EKSourceType.Subscribed || s.SourceType == EKSourceType.Local);
-                        NSError error;
-                        _eventStore.SaveCalendar(calendar, true, out error);
-                        AcraCalendarIdentifier = calendar.CalendarIdentifier;
+                        calendar.CGColor = colorToUse;
                     }
 
+                    var sourceToSet = _eventStore.Sources
+                        .FirstOrDefault(s =>
+                       (s.SourceType == EKSourceType.CalDav && s.Title.Equals("iCloud", StringComparison.InvariantCultureIgnoreCase))
+                       || s.SourceType == EKSourceType.Local); ;
+
+                    if (sourceToSet == null)
+                    {
+                        sourceToSet = _eventStore.DefaultCalendarForNewEvents.Source;
+                    }
+
+                    calendar.Source = sourceToSet;
+
+                    NSError error;
+                    _eventStore.SaveCalendar(calendar, true, out error);
+                    AcraCalendarIdentifier = calendar.CalendarIdentifier;
 
                     var toSaves = meetings.OrderByDescending(ap => ap.StartDate).ToArray();
 
@@ -73,8 +83,6 @@ namespace MyCompanyInThePocket.iOS.Services
                     for (int index = 0; index < howMuch; index++)
                     {
                         var appointData = toSaves[index];
-
-
 
                         var toSave = EKEvent.FromStore(_eventStore);
 
@@ -130,8 +138,9 @@ namespace MyCompanyInThePocket.iOS.Services
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Mvx.Resolve<IMessageService>().ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
 
@@ -139,6 +148,34 @@ namespace MyCompanyInThePocket.iOS.Services
         {
             date = DateTime.SpecifyKind(date, DateTimeKind.Utc);
             return date.ToNSDate();
+        }
+
+        public async Task DeleteCalendarAsync()
+        {
+            try
+            {
+                using (await _PushMeetingsToCalendarAsyncLock.LockAsync())
+                {
+                    // pas de résultat
+                    if (!(await _eventStore.RequestAccessAsync(EKEntityType.Event)).Item1)
+                    {
+                        return;
+                    }
+
+                    var calendar = _eventStore.GetCalendar(AcraCalendarIdentifier);
+                    CGColor colorToUse = null;
+                    if (calendar != null)
+                    {
+                        colorToUse = calendar.CGColor;
+                        NSError errorToDelete; ;
+                        _eventStore.RemoveCalendar(calendar, true, out errorToDelete);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Mvx.Resolve<IMessageService>().ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
+            }
         }
     }
 }
