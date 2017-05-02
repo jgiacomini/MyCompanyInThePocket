@@ -154,6 +154,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 			catch (TaskCanceledException ex)
 			{
+				Debug.WriteLine(ex.Message);
 			}
 			catch (TokenExpiredException ex)
 			{
@@ -182,7 +183,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			{
 				return;
 			}
-
 
 			if (ApplicationSettings.IsIntegrationToNativeReminderEnabled)
 			{
@@ -218,7 +218,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 					await nativeCalendarIntegrationService.
 													AddReminder("ACRA - ENVOYER LA PROD",
 																"Envoi la PROD, c'est mieux pour tout le monde",
-																dateToRemind.Value);
+					                                            dateToRemind.Value.ToUniversalTime());
 				}
 				else
 				{
