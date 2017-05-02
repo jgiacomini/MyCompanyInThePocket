@@ -13,7 +13,9 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
   *	[x] Récupération MOCK (DONE)
   *	[x] Sauvegarde base de données locale (DONE)
   * [ ]	Possibilité de voir les rendez-vous d'autres personnes. 
-  * [ ] Intégration de ces rendez-vous dans le calendrier de l’OS (IN PROGRESS)
+  * [x] Intégration de ces rendez-vous dans le calendrier de l’OS (Jon)
+  * [x] Intégration des rappels ACRA (Jérôme) (IN PROGRESS)
+
   * Affichage des rendez-vous :
     * [x] iOS
     * [ ] Android
