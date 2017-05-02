@@ -14,7 +14,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
   *	[x] Sauvegarde base de données locale (DONE)
   * [ ]	Possibilité de voir les rendez-vous d'autres personnes. 
   * [x] Intégration de ces rendez-vous dans le calendrier de l’OS (Jon)
-  * [x] Intégration des rappels ACRA (Jérôme) (IN PROGRESS)
+  * [ ] Intégration des rappels ACRA (Jérôme) (IN PROGRESS)
 
   * Affichage des rendez-vous :
     * [x] iOS
@@ -32,12 +32,13 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
     
 *	Récupération des documents utile : (Charles)
  * [ ] Récupération sur le serveur 
- * [ ] Récupération MOCK (DONE)
+ * [x] Récupération MOCK (DONE)
  * [ ] Sauvegarde base de données locale (IN PROGRESS)
  
 * 	Page de Settings : 
- * [ ] Bouton de déconnexion (iOS OK, Android KO, WP KO)
+ * [x] Bouton de déconnexion (iOS OK, Android KO, WP KO)
  * [ ] Bouton permettant d'activer les rendez vous dans le calendrier.
+ * [ ] Bouton permettant d'activer les rappels.
 
  * Affichage :
     * [ ] iOS
