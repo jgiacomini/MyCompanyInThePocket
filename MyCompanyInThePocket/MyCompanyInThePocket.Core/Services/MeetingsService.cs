@@ -52,9 +52,22 @@ namespace MyCompanyInThePocket.Core.Services
 
 			if (canRefresh)
             {
-				List<Meeting> meetings = await onlineRepository.GetMeetingAsync();
-				await _dbMeetingReposittory.UpsertAllMeetingsAsync(meetings, cancellationToken);
-				ApplicationSettings.LastACRARefresh = DateTime.Now;
+				try
+				{
+					List<Meeting> meetings = await onlineRepository.GetMeetingAsync();
+					await _dbMeetingReposittory.UpsertAllMeetingsAsync(meetings, cancellationToken);
+					ApplicationSettings.LastACRARefresh = DateTime.Now;
+				}
+				catch (TokenExpiredException ex)
+				{
+					throw ex;
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine(ex.Message);
+					//ignore exception...
+					// we will use DB meetigns
+				}
             }
 
 			var meetingsDB = await _dbMeetingReposittory.GetMeetingsSuperiorOfDateAsync(DateTime.Now.Date, cancellationToken);

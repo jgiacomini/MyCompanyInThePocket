@@ -13,6 +13,6 @@ namespace MyCompanyInThePocket.Core.Services
 
         Task DeleteCalendarAsync();
 
-		Task AddReminder();
+		Task AddReminder(string title, string notes, DateTime date);
     }
 }

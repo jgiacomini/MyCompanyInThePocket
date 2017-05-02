@@ -27,6 +27,15 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 		}
 
+
+		public Meeting MeetingSource
+		{
+			get
+			{
+				return _meeting;
+			}
+		}
+
 		public DateTime Date
 		{
 			get

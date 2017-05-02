@@ -33,21 +33,20 @@ namespace MyCompanyInThePocket.iOS.Services
 
         private AsyncLock _PushMeetingsToCalendarAsyncLock = new AsyncLock();
 
-		public async Task AddReminder()
+		public async Task AddReminder(string title, string notes, DateTime date)
 		{
 			try
 			{
 				var result = await _eventStore.RequestAccessAsync(EKEntityType.Reminder);
 				if (result.Item1)
 				{
-					// TODO: localisation
 					EKReminder reminder = EKReminder.Create(_eventStore);
-					reminder.Title = "ACRA - ENVOYER LA PROD";
+					reminder.Title = title;
 					EKAlarm timeToRing = new EKAlarm();
-					timeToRing.AbsoluteDate = NSDate.Now.AddSeconds(100);
+					timeToRing.AbsoluteDate = ConvertDateTimeToNSDate(date);
         			reminder.AddAlarm(timeToRing);
 					reminder.Calendar = _eventStore.DefaultCalendarForNewReminders;
-					reminder.Notes = "Envoi la PROD dude, c'est mieux pour tout le monde";
+					reminder.Notes = notes;
 					NSError error;
 					_eventStore.SaveReminder(reminder, true, out error);
 

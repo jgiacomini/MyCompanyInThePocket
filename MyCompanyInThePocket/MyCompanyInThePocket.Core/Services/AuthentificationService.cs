@@ -96,6 +96,8 @@ namespace MyCompanyInThePocket.Core.Services
                 if (response.StatusCode == HttpStatusCode.Forbidden ||
                     response.StatusCode == HttpStatusCode.Unauthorized)
                 {
+					//var content = await response.Content.ReadAsStringAsync();
+
                     Disconnect();
                     throw new TokenExpiredException();
                 }
