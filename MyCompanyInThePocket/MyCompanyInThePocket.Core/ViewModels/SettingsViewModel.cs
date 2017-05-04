@@ -12,15 +12,17 @@ namespace MyCompanyInThePocket.Core.ViewModels
 		{
 			_authenService = authenService;
 			LogOutCommand = new MvxCommand(LogOutAction);
-		}
+            ReviewIntroCommand = new MvxCommand(() => ShowViewModel<StartupViewModel>());
+        }
 
 		public MvxCommand LogOutCommand
 		{
 			get;
 			private set;
 		}
+        public MvxCommand ReviewIntroCommand { get; private set; }
 
-		void LogOutAction()
+        void LogOutAction()
 		{
 			_authenService.Disconnect();
 			ApplicationSettings.Clear();
