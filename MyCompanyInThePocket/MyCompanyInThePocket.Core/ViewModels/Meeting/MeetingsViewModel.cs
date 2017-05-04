@@ -96,9 +96,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 				Meetings.Clear();
 
-
-
-				var flatMeetings = new List<MeetingViewModel>();
+                				var flatMeetings = new List<MeetingViewModel>();
 				foreach (var meeting in meetings)
 				{
 					var currentDate = meeting.StartDate;
@@ -108,7 +106,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 						currentDate = currentDate.AddDays(1);
 					}
 				}
-
 
 				var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
 												  ToDictionary(m => m.Key, m => m.ToList());
