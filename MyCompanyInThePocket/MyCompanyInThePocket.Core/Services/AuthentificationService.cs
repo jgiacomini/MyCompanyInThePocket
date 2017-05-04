@@ -10,48 +10,63 @@ using System.Net;
 
 namespace MyCompanyInThePocket.Core.Services
 {
-	internal class AuthentificationService : IAuthentificationService
+    internal class AuthentificationService : IAuthentificationService
     {
-		#region Fields
+        #region Fields
         private IAuthentificationPlatformFactory _plaformFactory;
-		private AuthenticationContext _authContext;
-		#endregion
+        private AuthenticationContext _authContext;
+        #endregion
 
-		#region Properties
-		public static string ServiceResourceId
-		{ 
-			get
-			{
-				return Config.ServiceResourceId;
-			}
-		}
-		public string Authority { get; private set; }
+        #region Properties
+        public static string ServiceResourceId
+        {
+            get
+            {
+                return Config.ServiceResourceId;
+            }
+        }
+        public string Authority { get; private set; }
         public Uri ReturnUri { get; private set; }
         public string ClientId { get; private set; }
-		#endregion
+        #endregion
 
-		public AuthentificationService(IAuthentificationPlatformFactory plaformFactory)
+        public AuthentificationService(IAuthentificationPlatformFactory plaformFactory)
         {
             Authority = Config.Authority;
             ClientId = Config.ClientId;
             ReturnUri = new Uri(Config.ReturnUri);
             _plaformFactory = plaformFactory;
-			_authContext = new AuthenticationContext(Authority);
+            _authContext = new AuthenticationContext(Authority);
         }
 
-       	public async Task AuthenticateAsync()
+        public async Task AuthenticateAsync(bool silentAndForced = false)
         {
-			if (string.IsNullOrWhiteSpace(OnlineSettings.AccessToken))
-			{
-				var authResult = await GetAccessTokenAsync(ServiceResourceId, _plaformFactory.GetPlatformParameter());
+            if (string.IsNullOrWhiteSpace(OnlineSettings.AccessToken) || silentAndForced)
+            {
+                var authResult = await GetAccessTokenAsync(ServiceResourceId, _plaformFactory.GetPlatformParameter(), silentAndForced);
 
-				var email = authResult.UserInfo.DisplayableId;
+                var email = authResult.UserInfo.DisplayableId;
 
-				var identity = GetIdentity(email);
-				OnlineSettings.Identity = identity;
-				OnlineSettings.AccessToken = authResult.AccessToken;
-				OnlineSettings.FamilyName = authResult.UserInfo.FamilyName;
-			}
+                var identity = GetIdentity(email);
+                OnlineSettings.Identity = identity;
+                OnlineSettings.AccessToken = authResult.AccessToken;
+                OnlineSettings.FamilyName = authResult.UserInfo.FamilyName;
+            }
+        }
+
+        public async Task AuthenticateAsync()
+        {
+            if (string.IsNullOrWhiteSpace(OnlineSettings.AccessToken))
+            {
+                var authResult = await GetAccessTokenAsync(ServiceResourceId, _plaformFactory.GetPlatformParameter());
+
+                var email = authResult.UserInfo.DisplayableId;
+
+                var identity = GetIdentity(email);
+                OnlineSettings.Identity = identity;
+                OnlineSettings.AccessToken = authResult.AccessToken;
+                OnlineSettings.FamilyName = authResult.UserInfo.FamilyName;
+            }
         }
 
         private string GetIdentity(string email)
@@ -62,16 +77,22 @@ namespace MyCompanyInThePocket.Core.Services
 
         public void Disconnect()
         {
-			_authContext.TokenCache.Clear();
-			OnlineSettings.Clear();
+            _authContext.TokenCache.Clear();
+            OnlineSettings.Clear();
         }
 
-        private async Task<AuthenticationResult> GetAccessTokenAsync(string serviceResourceId, IPlatformParameters param)
+        private Task<AuthenticationResult> GetAccessTokenAsync(string serviceResourceId, IPlatformParameters param, bool silent = false)
         {
-            return await _authContext.AcquireTokenAsync(serviceResourceId, ClientId, ReturnUri, param);
+            if (silent)
+            {
+                return _authContext.AcquireTokenSilentAsync(serviceResourceId, ClientId);
+            }
+
+            return _authContext.AcquireTokenAsync(serviceResourceId, ClientId, ReturnUri, param);
         }
 
-		private HttpClient GetClient()
+
+        private HttpClient GetClient()
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -79,27 +100,44 @@ namespace MyCompanyInThePocket.Core.Services
             return client;
         }
 
-		public async Task<T> GetAsync<T>(string route)
-			where T : class
-		{
-			var client = GetClient();
-			var queryString = $"{AuthentificationService.ServiceResourceId}{route}";
-			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, queryString);
-			HttpResponseMessage response = await client.SendAsync(request);
+        public async Task<T> GetAsync<T>(string route)
+            where T : class
+        {
+            var client = GetClient();
+            var queryString = $"{AuthentificationService.ServiceResourceId}{route}";
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, queryString);
+            HttpResponseMessage response = await client.SendAsync(request);
 
 
-			if (!response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.Forbidden ||
                     response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-            		if (_authContext.TokenCache.ReadItems().Any())
-            		{
-						_authContext = new AuthenticationContext(Authority);
-            		}
+                    if (_authContext.TokenCache.ReadItems().Any())
+                    {
+                        _authContext = new AuthenticationContext(Authority);
+                    }
 
-					//var content = await response.Content.ReadAsStringAsync();
-                    //Disconnect();
+                    try
+                    {
+                        var before = OnlineSettings.AccessToken;
+                        // try to reconnect silently
+                        await AuthenticateAsync(silentAndForced :true);
+
+                        // test de succès
+                        if (before != OnlineSettings.AccessToken)
+                        {
+                            // replay
+                            return await GetAsync<T>(route);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    //var content = await response.Content.ReadAsStringAsync();
+                    Disconnect();
                     throw new TokenExpiredException();
                 }
                 else
@@ -111,9 +149,9 @@ namespace MyCompanyInThePocket.Core.Services
             else
             {
                 var responseString = await response.Content.ReadAsStringAsync();
-				return JsonConvert.DeserializeObject(responseString, typeof(T)) as T;
+                return JsonConvert.DeserializeObject(responseString, typeof(T)) as T;
             }
-		}
+        }
 
     }
 }
