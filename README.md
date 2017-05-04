@@ -4,39 +4,39 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
 
 #Fonctionnalités V1  : 
 *   Page de présentation de IS in the pocket :
-    * [ ] iOS
-    * [x] Android (Jon)
-    * [ ] Windows 10  (Jon)
+    * [X] iOS (Jon)
+    * [X] Android (Jon)
+    * [ ] Windows 10  
 
 *   Rendez-vous : (Jérôme)
-  * [x]  Récupération sur le serveur (DONE)
-  *	[x] Récupération MOCK (DONE)
-  *	[x] Sauvegarde base de données locale (DONE)
+  * [X] Récupération sur le serveur 
+  *	[X] Récupération MOCK 
+  *	[X] Sauvegarde base de données locale 
   * [ ]	Possibilité de voir les rendez-vous d'autres personnes. 
-  * [x] Intégration de ces rendez-vous dans le calendrier de l’OS (Jon)
-  * [ ] Intégration des rappels ACRA (Jérôme) (IN PROGRESS)
+  * [X] Intégration de ces rendez-vous dans le calendrier de l’OS (Jon)
+  * [\] Intégration des rappels ACRA (Jérôme) (IN PROGRESS)
 
   * Affichage des rendez-vous :
-    * [x] iOS
+    * [X] iOS
     * [ ] Android
     * [ ] Windows 10
     
 *   Récupération des liens utile : (Charles)
   * [ ] Récupération sur le serveur (V2 ?)
-  * [x] Récupération MOCK (DONE)
+  * [X] Récupération MOCK (DONE)
   * [ ] Sauvegarde base de données locale (V2 ?)
   * Affichage :
-    * [x] iOS
+    * [X] iOS
     * [ ] Android
     * [ ] Windows 10
     
-*	Récupération des documents utile : (Charles)
+ *	Récupération des documents utile : (Charles)
  * [ ] Récupération sur le serveur 
- * [x] Récupération MOCK (DONE)
- * [ ] Sauvegarde base de données locale (IN PROGRESS)
+ * [X] Récupération MOCK (DONE)
+ * [\ ] Sauvegarde base de données locale (IN PROGRESS)
  
 * 	Page de Settings : 
- * [x] Bouton de déconnexion (iOS OK, Android KO, WP KO)
+ * [X] Bouton de déconnexion (iOS OK, Android KO, WP KO)
  * [ ] Bouton permettant d'activer les rendez vous dans le calendrier.
  * [ ] Bouton permettant d'activer les rappels.
 

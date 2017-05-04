@@ -122,11 +122,12 @@
     <Compile Include="Services\iOSMessageService.cs" />
     <Compile Include="Views\Meetings\MeetingsScreen.cs" />
     <Compile Include="Views\BaseScreen\INoHistoryScreen.cs" />
+    <Compile Include="Views\StartupScreen\StartupPageFeatureViewController.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksScreen.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksViewSource.cs" />
     <Compile Include="Views\Settings\SettingsScreen.cs" />
     <Compile Include="Views\SplashScreen\SplashScreen.cs" />
-    <Compile Include="Views\StratupScreen\StartupScreen.cs" />
+    <Compile Include="Views\StartupScreen\StartupScreen.cs" />
     <Compile Include="Views\ApplicationColors.cs" />
     <Compile Include="Extensions\UIColorExtensions.cs" />
     <Compile Include="Views\Converter\MvxInMemoryImageValueConverter.cs" />
@@ -373,6 +374,30 @@
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage1.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage1.imageset\LoginImage1.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage2.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage2.imageset\LoginImage2.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage3.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage3.imageset\LoginImage3.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage4.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LoginImage4.imageset\LoginImage4.jpg">
       <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
