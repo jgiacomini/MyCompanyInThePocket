@@ -1,6 +1,5 @@
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
-using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Repositories.Interfaces;
 
 namespace MyCompanyInThePocket.Core

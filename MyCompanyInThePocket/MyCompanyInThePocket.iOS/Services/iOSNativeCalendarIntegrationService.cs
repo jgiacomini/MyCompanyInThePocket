@@ -190,7 +190,7 @@ namespace MyCompanyInThePocket.iOS.Services
             {
                 using (await _PushMeetingsToCalendarAsyncLock.LockAsync())
                 {
-                    // pas de r�sultat
+                    // pas de résultat
                     if (!(await _eventStore.RequestAccessAsync(EKEntityType.Event)).Item1)
                     {
                         return;

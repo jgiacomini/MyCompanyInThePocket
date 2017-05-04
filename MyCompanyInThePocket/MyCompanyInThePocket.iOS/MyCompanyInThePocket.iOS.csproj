@@ -137,6 +137,7 @@
     <Compile Include="Views\ApplicationStyle.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UseFullLinkCell.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UsefullLinkView.cs" />
+    <Compile Include="Views\ToastView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">

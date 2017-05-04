@@ -22,6 +22,9 @@ namespace MyCompanyInThePocket.iOS
 		public static string ContentThinFontName = "Raleway-Thin";
 		public static string ContentBoldFontName = "Raleway-Bold";
 
+		public static string ToastFontName = "Raleway-Regular";
+		public static nfloat ToastFontSize = 10;
+
 		public static void DisplayFontsName()
 		{
 			foreach (var item in UIFont.FamilyNames)

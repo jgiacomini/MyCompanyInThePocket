@@ -20,7 +20,7 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 
 
 				dbMeeting.AllDayEvent = meeting.fAllDayEvent.GetValueOrDefault();
-				if (meeting.Title != null && meeting.Title.IndexOf("f�ri�", StringComparison.OrdinalIgnoreCase) == -1)
+				if (meeting.Title != null && meeting.Title.IndexOf("férié", StringComparison.OrdinalIgnoreCase) != -1)
 				{
 					dbMeeting.IsHoliday = true;
 				}

@@ -14,6 +14,7 @@ namespace MyCompanyInThePocket.Core.Services
     {
 		#region Fields
         private IAuthentificationPlatformFactory _plaformFactory;
+		private AuthenticationContext _authContext;
 		#endregion
 
 		#region Properties
@@ -35,6 +36,7 @@ namespace MyCompanyInThePocket.Core.Services
             ClientId = Config.ClientId;
             ReturnUri = new Uri(Config.ReturnUri);
             _plaformFactory = plaformFactory;
+			_authContext = new AuthenticationContext(Authority);
         }
 
        	public async Task AuthenticateAsync()
@@ -60,18 +62,13 @@ namespace MyCompanyInThePocket.Core.Services
 
         public void Disconnect()
         {
-			var authContext = new AuthenticationContext(Authority);
-			authContext.TokenCache.Clear();
+			_authContext.TokenCache.Clear();
 			OnlineSettings.Clear();
         }
 
         private async Task<AuthenticationResult> GetAccessTokenAsync(string serviceResourceId, IPlatformParameters param)
         {
-            var authContext = new AuthenticationContext(Authority);
-            if (authContext.TokenCache.ReadItems().Any())
-                authContext = new AuthenticationContext(authContext.TokenCache.ReadItems().First().Authority);
-            var authResult = await authContext.AcquireTokenAsync(serviceResourceId, ClientId, ReturnUri, param);
-            return authResult;
+            return await _authContext.AcquireTokenAsync(serviceResourceId, ClientId, ReturnUri, param);
         }
 
 		private HttpClient GetClient()
@@ -96,9 +93,13 @@ namespace MyCompanyInThePocket.Core.Services
                 if (response.StatusCode == HttpStatusCode.Forbidden ||
                     response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-					//var content = await response.Content.ReadAsStringAsync();
+            		if (_authContext.TokenCache.ReadItems().Any())
+            		{
+						_authContext = new AuthenticationContext(Authority);
+            		}
 
-                    Disconnect();
+					//var content = await response.Content.ReadAsStringAsync();
+                    //Disconnect();
                     throw new TokenExpiredException();
                 }
                 else
