@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MvvmCross.Platform;
 using MyCompanyInThePocket.Core.Services;
 using MyCompanyInThePocket.Core.Services.Interface;
+using MyCompanyInThePocket.Core.ViewModels.Settings;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {

@@ -84,7 +84,6 @@
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\OnlineSettings.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Meeting\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\Meeting\MeetingViewModel.cs" />
     <Compile Include="Repositories\Interfaces\IOnlineUseFullLinkRepository.cs" />
@@ -104,6 +103,9 @@
     <Compile Include="Services\Interface\IAuthentificationService.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
     <Compile Include="Services\TokenExpiredException.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\GroupedSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -174,6 +176,7 @@
   <ItemGroup>
     <Folder Include="ViewModels\Startup\" />
     <Folder Include="ViewModels\MainScreen\" />
+    <Folder Include="ViewModels\Settings\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

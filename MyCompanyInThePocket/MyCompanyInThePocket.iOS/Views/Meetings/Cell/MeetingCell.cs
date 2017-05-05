@@ -4,7 +4,6 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using MyCompanyInThePocket.Core.ViewModels;
 using Cirrious.FluentLayouts.Touch;
-using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {

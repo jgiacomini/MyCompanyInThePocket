@@ -137,6 +137,10 @@
     <Compile Include="Views\ApplicationStyle.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UseFullLinkCell.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UsefullLinkView.cs" />
+    <Compile Include="Views\Settings\SettingsViewSource.cs" />
+    <Compile Include="Views\Settings\Cell\SettingCell.cs" />
+    <Compile Include="Views\Settings\Cell\SettingCellHeaderView.cs" />
+    <Compile Include="Views\Settings\Cell\SettingView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -375,6 +379,9 @@
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Settings\Cell\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
