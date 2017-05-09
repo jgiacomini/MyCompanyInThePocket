@@ -29,7 +29,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 			catch (System.Exception ex)
 			{
-
+				//TODO : display error message
 			}
 			finally
 			{

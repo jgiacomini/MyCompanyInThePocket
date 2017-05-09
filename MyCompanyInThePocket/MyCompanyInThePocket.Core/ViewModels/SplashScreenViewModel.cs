@@ -31,8 +31,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
                 CurrentState = "Initialisation";
 				await _databaseService.InitializeDbAsync();
 
-                ApplicationSettings.LaunchStartupScreen = true;
-
                 if (ApplicationSettings.LaunchStartupScreen)
 				{
 					ShowViewModel<StartupViewModel>();

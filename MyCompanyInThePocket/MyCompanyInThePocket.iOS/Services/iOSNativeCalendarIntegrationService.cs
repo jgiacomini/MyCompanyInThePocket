@@ -37,10 +37,20 @@ namespace MyCompanyInThePocket.iOS.Services
         {
             try
             {
-                var result = await _eventStore.RequestAccessAsync(EKEntityType.Reminder);
+				var result = await _eventStore.RequestAccessAsync(EKEntityType.Reminder);
                 if (result.Item1)
                 {
-                    EKReminder reminder = EKReminder.Create(_eventStore);
+					EKReminder reminder = null;
+					var predicat = _eventStore.PredicateForReminders(null);
+
+					var reminders = await _eventStore.FetchRemindersAsync(predicat);
+					reminder = reminders.Where((EKReminder arg) => !arg.Completed && arg.Title == title).FirstOrDefault();
+
+					if (reminder == null)
+					{
+						reminder = EKReminder.Create(_eventStore);
+					}
+
                     reminder.Title = title;
                     EKAlarm timeToRing = new EKAlarm();
                     timeToRing.AbsoluteDate = ConvertDateTimeToNSDate(date);
@@ -50,7 +60,10 @@ namespace MyCompanyInThePocket.iOS.Services
                     NSError error;
                     _eventStore.SaveReminder(reminder, true, out error);
 
-                    Debug.WriteLine(error?.Description);
+					if (error != null)
+					{
+						Debug.WriteLine(error.Description);
+					}
                 }
             }
             catch (Exception ex)
@@ -97,7 +110,7 @@ namespace MyCompanyInThePocket.iOS.Services
                     var sourceToSet = _eventStore.Sources
                         .FirstOrDefault(s =>
                        (s.SourceType == EKSourceType.CalDav && s.Title.Equals("iCloud", StringComparison.InvariantCultureIgnoreCase))
-                       || s.SourceType == EKSourceType.Local); ;
+                       || s.SourceType == EKSourceType.Local);
 
                     if (sourceToSet == null)
                     {
@@ -159,6 +172,7 @@ namespace MyCompanyInThePocket.iOS.Services
                         }
                         else
                         {
+							//TODO : localisation
                             toSave.Title = "[FERIE] " + appointData.Title;
                         }
 
