@@ -1,6 +1,4 @@
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 namespace MyCompanyInThePocket.Core

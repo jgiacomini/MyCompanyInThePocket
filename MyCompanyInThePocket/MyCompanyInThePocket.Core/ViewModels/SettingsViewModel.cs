@@ -1,6 +1,6 @@
-﻿using System;
-using MvvmCross.Core.ViewModels;
-using MyCompanyInThePocket.Core.Services;
+﻿using MyCompanyInThePocket.Core.Services;
+using GalaSoft.MvvmLight.Command;
+using System.Windows.Input;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -11,16 +11,16 @@ namespace MyCompanyInThePocket.Core.ViewModels
 		public SettingsViewModel(IAuthentificationService authenService)
 		{
 			_authenService = authenService;
-			LogOutCommand = new MvxCommand(LogOutAction);
-            ReviewIntroCommand = new MvxCommand(() => ShowViewModel<StartupViewModel>());
+			LogOutCommand = new RelayCommand(LogOutAction);
+            ReviewIntroCommand = new RelayCommand(() => ShowViewModel<StartupViewModel>());
         }
 
-		public MvxCommand LogOutCommand
+		public ICommand LogOutCommand
 		{
 			get;
 			private set;
 		}
-        public MvxCommand ReviewIntroCommand { get; private set; }
+        public ICommand ReviewIntroCommand { get; private set; }
 
         void LogOutAction()
 		{
@@ -28,6 +28,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			ApplicationSettings.Clear();
 			this.ShowViewModel<StartupViewModel>();
 		}
+
 
 	}
 }

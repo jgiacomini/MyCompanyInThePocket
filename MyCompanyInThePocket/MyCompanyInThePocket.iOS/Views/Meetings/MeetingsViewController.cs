@@ -1,13 +1,13 @@
-﻿using MvvmCross.iOS.Views;
-using MyCompanyInThePocket.Core.ViewModels;
-using MvvmCross.Binding.BindingContext;
+﻿using MyCompanyInThePocket.Core.ViewModels;
 using UIKit;
+using MyCompanyInThePocket.iOS.Views.BaseViewController;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-	public class MeetingsScreen : MvxTableViewController<MeetingsViewModel>
+	public class MeetingsViewController : BaseTableViewController<MeetingsViewModel>
 	{
-		public MeetingsScreen()
+		public MeetingsViewController(MeetingsViewModel viewModel)
+            :base(viewModel)
 		{
 			ToastView = new ToastView();
 
@@ -31,19 +31,21 @@ namespace MyCompanyInThePocket.iOS.Views
 			base.ViewDidLoad();
 
 			ToastView.Frame = new CoreGraphics.CGRect(0, 0, View.Bounds.Width, 20);
-
-			var refreshControl = new MvxUIRefreshControl();
+            
+			var refreshControl = new UIRefreshControl();
 			RefreshControl = refreshControl;
 
-			var source = new MeetingsViewSource(TableView);
+			var source = new MeetingsViewSource(TableView, ViewModel.Meetings);
+
+
 			TableView.Source = source;
 
-			var set = this.CreateBindingSet<MeetingsScreen, MeetingsViewModel>();
-			set.Bind(source).To(vm => vm.Meetings);
-			set.Bind(refreshControl).For(r => r.Message).To(vm => vm.LastUpdate);
-			set.Bind(refreshControl).For(r => r.RefreshCommand).To(vm => vm.RefreshCommand);
-			set.Bind(refreshControl).For(r => r.IsRefreshing).To(vm => vm.IsBusy);
-			set.Apply();
+
+			//set.Bind(source).To(vm => vm.Meetings);
+			//set.Bind(refreshControl).For(r => r.Message).To(vm => vm.LastUpdate);
+			//set.Bind(refreshControl).For(r => r.RefreshCommand).To(vm => vm.RefreshCommand);
+			//set.Bind(refreshControl).For(r => r.IsRefreshing).To(vm => vm.IsBusy);
+			//set.Apply();
 
 			// Load data
 			TableView.ReloadData();

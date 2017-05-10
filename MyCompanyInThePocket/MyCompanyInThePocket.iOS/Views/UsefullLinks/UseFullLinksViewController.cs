@@ -1,14 +1,13 @@
-﻿using System;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.iOS.Views;
-using MyCompanyInThePocket.Core;
+﻿using MyCompanyInThePocket.Core;
+using MyCompanyInThePocket.iOS.Views.BaseViewController;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {
-	public class UseFullLinksScreen : MvxTableViewController<UseFullLinksViewModel>
+	public class UseFullLinksViewController : BaseTableViewController<UseFullLinksViewModel>
 	{
-		public UseFullLinksScreen()
+		public UseFullLinksViewController(UseFullLinksViewModel viewModel)
+           : base(viewModel)
 		{
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.
@@ -21,13 +20,8 @@ namespace MyCompanyInThePocket.iOS
 
 			TableView.RowHeight = 50;
 
-			var source = new UseFullLinksViewSource(TableView);
+			var source = new UseFullLinksViewSource(TableView, ViewModel.UseFullLinks);
 			TableView.Source = source;
-
-			var set = this.CreateBindingSet<UseFullLinksScreen, UseFullLinksViewModel>();
-			set.Bind(source).To(vm => vm.UseFullLinks);
-			set.Apply();
-
 			await ViewModel.InitializeAsync();
 
 			// Load data

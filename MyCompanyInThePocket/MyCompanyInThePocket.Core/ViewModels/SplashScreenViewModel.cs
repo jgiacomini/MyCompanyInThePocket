@@ -1,14 +1,11 @@
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
 using MyCompanyInThePocket.Core.Services;
-using MyCompanyInThePocket.Core.Services.Interface;
 using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
-	/// <summary>
-	/// Splash screen view model.
-	/// </summary>
+    /// <summary>
+    /// Splash screen view model.
+    /// </summary>
     public class SplashScreenViewModel : BaseViewModel
     {
         #region Fields
@@ -37,15 +34,14 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				}
 				else
 				{
-					ShowViewModel<MainScreenViewModel>();
+					ShowViewModel<MainViewModel>();
 				}
             }
             catch (System.Exception ex)
             {
 				HasError = true;
                 ErrorMessage = "Erreur durant l'initialisation de l'application";
-                await Mvx.Resolve<IMessageService>()
-                     .ShowErrorToastAsync(ex, "Erreur durant l'initialisation de l'application");
+                App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur durant l'initialisation de l'application");
                 // TODO : log something
             }
             finally
@@ -58,19 +54,19 @@ namespace MyCompanyInThePocket.Core.ViewModels
 		public bool HasError
 		{
 			get { return _hasError; }
-			set { SetProperty(ref _hasError, value); }
+			set { Set(ref _hasError, value); }
 		}
 
         public string ErrorMessage
         {
             get { return _errorMessage; }
-            set { SetProperty(ref _errorMessage, value); }
+            set { Set(ref _errorMessage, value); }
         }
 
         public string CurrentState
         {
             get { return _currentState; }
-            set { SetProperty(ref _currentState, value); }
+            set { Set(ref _currentState, value); }
         }
 
     }

@@ -1,22 +1,21 @@
 ﻿using System;
-using Foundation;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.iOS.Views;
 using MyCompanyInThePocket.Core.ViewModels;
 using Cirrious.FluentLayouts.Touch;
 using UIKit;
 using MyCompanyInThePocket.Core.Resources;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public class SettingsScreen : BaseScreen<SettingsViewModel>
+    public class SettingsViewController : BaseViewController<SettingsViewModel>
     {
         private UIButton _logoutButton;
         private UIView _topSeparatorView;
         private UIView _bottomSeparatorView;
         private UIButton _goToStartupButton;
 
-        public SettingsScreen()
+        public SettingsViewController(SettingsViewModel viewModel)
+            : base(viewModel)
         {
             View.BackgroundColor = ApplicationColors.BackgroundColor;
         }
@@ -56,11 +55,9 @@ namespace MyCompanyInThePocket.iOS.Views
                 _bottomSeparatorView.Height().EqualTo(separatorHeight),
                 _bottomSeparatorView.Below(_goToStartupButton));
 
-            var set = this.CreateBindingSet<SettingsScreen, SettingsViewModel>();
-            set.Bind(_logoutButton).To(vm => vm.LogOutCommand);
-            set.Bind(_goToStartupButton).To(vm => vm.ReviewIntroCommand);
 
-            set.Apply();
+            _logoutButton.SetCommand(ViewModel.LogOutCommand);
+            _goToStartupButton.SetCommand(ViewModel.ReviewIntroCommand);
 
             base.ViewDidLoad();
         }

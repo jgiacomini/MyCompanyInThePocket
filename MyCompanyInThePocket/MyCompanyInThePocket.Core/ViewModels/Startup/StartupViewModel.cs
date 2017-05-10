@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
-using MvvmCross.Core.ViewModels;
 using MyCompanyInThePocket.Core.Services;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -8,24 +9,25 @@ namespace MyCompanyInThePocket.Core.ViewModels
     {
 		private readonly IAuthentificationService _authenService;
 
-		public StartupViewModel(IAuthentificationService authenService)
+		public StartupViewModel()
 		{
-			_authenService = authenService;
-			GoToNextPageCommand = new MvxAsyncCommand(GoToNextPageAsync);
+			_authenService = App.Instance.GetInstance<IAuthentificationService>();
+			GoToNextPageCommand = new RelayCommand(GoToNextPage);
 		}
 
-		public IMvxCommand GoToNextPageCommand
+		public ICommand GoToNextPageCommand
 		{
 			get; private set;
 		}
 
-		private async Task GoToNextPageAsync()
+		private async void GoToNextPage()
 		{
 			try
 			{
+                IsBusy = true;
 				await _authenService.AuthenticateAsync();
 				ApplicationSettings.LaunchStartupScreen = false;
-				ShowViewModel<MainScreenViewModel>();
+				ShowViewModel<MainViewModel>();
 			}
 			catch (System.Exception ex)
 			{
@@ -33,8 +35,8 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 			finally
 			{
-				
-			}
+                IsBusy = false;
+            }
 		}
 	}
 }

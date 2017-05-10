@@ -1,13 +1,18 @@
 ﻿using UIKit;
 using MyCompanyInThePocket.Core.ViewModels;
-using MvvmCross.Binding.BindingContext;
 using CoreGraphics;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public class StartupScreen : BaseScreen<StartupViewModel>, INoHistoryScreen
+    public class StartupScreen : BaseViewController<StartupViewModel>, INoHistoryScreen
 	{
+        public StartupScreen(StartupViewModel vm):
+            base(vm)
+        {
+        }
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -59,15 +64,8 @@ namespace MyCompanyInThePocket.iOS.Views
             };
             connectButton.SetTitle( Core.Resources.StringValues.Startup_ConnectionButton_Text, UIControlState.Normal);
             View.AddSubview(connectButton);
+            connectButton.SetCommand(ViewModel.GoToNextPageCommand);
 
-            //_buttonNextPage = UIButton.FromType(UIButtonType.System);
-            //_buttonNextPage.SetTitle("Lancez l'application", UIControlState.Normal);
-
-            //View.AddSubviews(_buttonNextPage);
-            
-            var set = this.CreateBindingSet<StartupScreen, StartupViewModel>();
-			set.Bind(connectButton).To(vm => vm.GoToNextPageCommand);
-			set.Apply();
 		}
 
 		public override void ViewDidAppear(bool animated)

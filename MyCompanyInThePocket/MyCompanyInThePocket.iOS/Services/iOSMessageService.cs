@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MvvmCross.Platform;
-using MyCompanyInThePocket.Core.Services.Interface;
 using UIKit;
+using MyCompanyInThePocket.Core.Services;
 
 namespace MyCompanyInThePocket.iOS
 {

@@ -1,18 +1,20 @@
 using UIKit;
 using MyCompanyInThePocket.Core.ViewModels;
 using Cirrious.FluentLayouts.Touch;
-using MvvmCross.Binding.BindingContext;
 using System;
+using GalaSoft.MvvmLight.Helpers;
+using System.Collections.Generic;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public partial class SplashScreenView : BaseScreen<SplashScreenViewModel>, INoHistoryScreen
+    public partial class SplashScreenView : BaseViewController<SplashScreenViewModel>, INoHistoryScreen
     {
         private UILabel _currentStateLabel;
         private UILabel _errorLabel;
         private UIActivityIndicatorView _activityIndicator;
 
-        public SplashScreenView()
+        public SplashScreenView(SplashScreenViewModel vm):
+            base(vm)
         {
         }
 
@@ -45,12 +47,11 @@ namespace MyCompanyInThePocket.iOS.Views
                 _errorLabel.WithSameWidth(View)
             );
 
-            var set = this.CreateBindingSet<SplashScreenView, SplashScreenViewModel>();
-            set.Bind(_currentStateLabel).For(b => b.Text).To(x => x.CurrentState).OneWay();
-            set.Bind(_errorLabel).For(b => b.Text).To(x => x.ErrorMessage).OneWay();
-            set.Bind(_errorLabel).For(b => b.Hidden).To(x => x.HasError).OneWay();
+            var bindings = new List<Binding>();
+            bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.CurrentState), _currentStateLabel, nameof(UILabel.Text), BindingMode.OneWay));
+            bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.ErrorMessage), _errorLabel, nameof(UILabel.Text), BindingMode.OneWay));
+            bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.HasError), _errorLabel, nameof(UILabel.Hidden), BindingMode.OneWay));
 
-            set.Apply();
             ViewModel.InitializeAsync();
         }
     }

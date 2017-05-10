@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using MvvmCross.Platform;
 using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Models;
 using MyCompanyInThePocket.Core.Repositories.Interfaces;
@@ -13,9 +12,9 @@ namespace MyCompanyInThePocket.Core.Repositories.Database
 	{
 		private readonly ISqliteConnectionFactory _sqliteConnectionFactory;
 
-		public DbMeetingRepository()
+		public DbMeetingRepository(ISqliteConnectionFactory sqliteConnectionFactory)
 		{
-            _sqliteConnectionFactory = Mvx.Resolve<ISqliteConnectionFactory>();
+            _sqliteConnectionFactory = sqliteConnectionFactory;
 		}
 
 		public async Task UpsertAllMeetingsAsync(List<Meeting> meetings, CancellationToken cancellationToken)

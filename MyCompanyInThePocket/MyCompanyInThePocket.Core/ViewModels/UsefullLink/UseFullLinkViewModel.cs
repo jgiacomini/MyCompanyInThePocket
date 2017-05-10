@@ -1,18 +1,19 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using GalaSoft.MvvmLight.Command;
 using MyCompanyInThePocket.Core.Models;
 using Plugin.Share;
+using System.Windows.Input;
 
 namespace MyCompanyInThePocket.Core
 {
 	public class UseFullLinkViewModel
 	{
 		private readonly UseFullLink _useFullLink;
-		private readonly MvxCommand _tapCommand;
+		private readonly ICommand _tapCommand;
 
 		public UseFullLinkViewModel(UseFullLink useFullLink)
 		{
 			_useFullLink = useFullLink;
-			_tapCommand = new MvxCommand(() =>
+			_tapCommand = new RelayCommand(() =>
 			{
 				CrossShare.Current.OpenBrowser(Link);
 			});
@@ -42,7 +43,7 @@ namespace MyCompanyInThePocket.Core
 			}
 		}
 
-		public MvxCommand TapCommand
+		public ICommand TapCommand
 		{
 			get
 			{

@@ -1,23 +1,24 @@
-﻿using System;
+﻿using MyCompanyInThePocket.Core.Services;
+using MyCompanyInThePocket.Core.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using MvvmCross.Platform;
-using MyCompanyInThePocket.Core.Services.Interface;
-using MyCompanyInThePocket.Core.ViewModels;
 
 namespace MyCompanyInThePocket.Core
 {
-	public class UseFullLinksViewModel : BaseViewModel
+    public class UseFullLinksViewModel : BaseViewModel
 	{
 		private readonly IUseFullLinkService _useFullLinkService;
 
 		public UseFullLinksViewModel(IUseFullLinkService useFullLinkService)
 		{
 			_useFullLinkService = useFullLinkService;
-		}
+            UseFullLinks = new SuspendableObservableCollection<UseFullLinkViewModel>();
 
-		public ObservableCollection<UseFullLinkViewModel> UseFullLinks
+        }
+
+		public SuspendableObservableCollection<UseFullLinkViewModel> UseFullLinks
 		{
 			get;
 			private set;
@@ -28,19 +29,20 @@ namespace MyCompanyInThePocket.Core
 			IsBusy = true;
 			try
 			{
-				var useFullLinks = await _useFullLinkService.GetUseFullLinksAsync();
-				UseFullLinks = new ObservableCollection<UseFullLinkViewModel>(useFullLinks.Select(l => new UseFullLinkViewModel(l)));
-				RaisePropertyChanged(nameof(UseFullLinks));
+                UseFullLinks.PauseNotifications();
+                UseFullLinks.Clear();
+                var useFullLinks = await _useFullLinkService.GetUseFullLinksAsync();
+                UseFullLinks.AddRange(useFullLinks.Select(l => new UseFullLinkViewModel(l)));
 			}
 			catch (Exception ex)
 			{
-				await Mvx.Resolve<IMessageService>()
-					 .ShowErrorToastAsync(ex, "Erreur lors de la récupération des liens utiles.");
+                App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur lors de la récupération des liens utiles.");
 				// TODO : log something
 			}
 			finally
 			{
 				IsBusy = false;
+                UseFullLinks.ResumeNotifications();
 			}
 		}
 	}

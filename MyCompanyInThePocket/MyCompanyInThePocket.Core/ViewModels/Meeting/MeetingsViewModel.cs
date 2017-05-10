@@ -1,14 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using MvvmCross.Platform;
-using MyCompanyInThePocket.Core.Services.Interface;
-using System.Threading;
-using MvvmCross.Core.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
+﻿using GalaSoft.MvvmLight.Command;
 using MyCompanyInThePocket.Core.Models;
-using System.Diagnostics;
 using MyCompanyInThePocket.Core.Services;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -20,15 +19,15 @@ namespace MyCompanyInThePocket.Core.ViewModels
 		private CancellationTokenSource _pageTokenSource;
         #endregion
 
-        public MeetingsViewModel(IMeetingService meetingService)
+        public MeetingsViewModel()
         {
             Meetings = new SuspendableObservableCollection<GroupedMeetingViewModel>();
-            _meetingService = meetingService;
-            RefreshCommand = new MvxCommand(ForceRefresh);
+            _meetingService = App.Instance.GetInstance<IMeetingService>();
+            RefreshCommand = new RelayCommand(ForceRefresh);
             _lastUpdate = _meetingService.GetLastUpdateTime();
         }
 
-        public MvxCommand RefreshCommand
+        public ICommand RefreshCommand
         {
             get;
             private set;
@@ -81,7 +80,8 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				Meetings.PauseNotifications();
 				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, token);
 
-				var nativeCalendarIntegrationService = Mvx.Resolve<INativeCalendarIntegrationService>();
+                var nativeCalendarIntegrationService = App.Instance.NativeCalendarIntegrationService;
+
 				if (nativeCalendarIntegrationService != null)
 				{
 					if (ApplicationSettings.IsIntegrationToNativeCalendarEnabled)
@@ -161,8 +161,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			catch (System.Exception ex)
 			{
 				Debug.WriteLine(ex.Message);
-				await Mvx.Resolve<IMessageService>()
-					 .ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
+                App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
 			}
             finally
             {

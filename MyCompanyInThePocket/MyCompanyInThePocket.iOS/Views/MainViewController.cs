@@ -1,16 +1,17 @@
-using MvvmCross.Core.ViewModels;
-using MvvmCross.iOS.Views;
+using MyCompanyInThePocket.Core;
 using MyCompanyInThePocket.Core.Resources;
 using MyCompanyInThePocket.Core.ViewModels;
+using System;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-	public class MainScreenView : BaseTabBarScreen<MainScreenViewModel>
+	public class MainViewController : BaseTabBarViewController<MainViewModel>
 	{
 		private int _nbTabBarCreated;
 
-		public MainScreenView()
+		public MainViewController(MainViewModel viewModel)
+            :base(viewModel)
 		{
 			this.ViewControllerSelected += Handle_ViewControllerSelected;
 			this.TabBar.Translucent = false;
@@ -47,7 +48,7 @@ namespace MyCompanyInThePocket.iOS.Views
 			Title = SelectedViewController?.Title;
 		}
 
-		private UIViewController CreateTabFor(string title, string imageName, IMvxViewModel viewModel)
+		private UIViewController CreateTabFor(string title, string imageName, BaseViewModel viewModel)
 		{
 			// Création de l'écran correspondant au viewModel;
 			var screen = this.CreateViewControllerFor(viewModel) as UIViewController;
@@ -59,7 +60,25 @@ namespace MyCompanyInThePocket.iOS.Views
 			return screen;
 		}
 
-		public override void ViewDidAppear(bool animated)
+        private UIViewController CreateViewControllerFor(BaseViewModel vm)
+        {
+            if (vm is MeetingsViewModel)
+            {
+                return new MeetingsViewController(vm as MeetingsViewModel);
+            }
+            if (vm is UseFullLinksViewModel)
+            {
+                return new UseFullLinksViewController(vm as UseFullLinksViewModel);
+            }
+            if (vm is SettingsViewModel)
+            {
+                return new SettingsViewController(vm as SettingsViewModel);
+            }
+
+            throw new NotImplementedException($"{vm.GetType().Name} has no view controller implemented in CreateViewControllerFor");
+        }
+
+        public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
 			// On réaffiche la bar de navigation

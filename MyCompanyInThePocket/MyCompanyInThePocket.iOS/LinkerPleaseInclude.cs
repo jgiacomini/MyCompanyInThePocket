@@ -1,8 +1,6 @@
 using System.Collections.Specialized;
 using System.Windows.Input;
 using Foundation;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.iOS.Views;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS
@@ -12,12 +10,6 @@ namespace MyCompanyInThePocket.iOS
     [Foundation.Preserve(AllMembers = true)]
     public class LinkerPleaseInclude
     {
-		public void Include(MvxTaskBasedBindingContext c)
-        {
-            c.Dispose();
-            var c2 = new MvxTaskBasedBindingContext();
-            c2.Dispose();
-        }
 
         public void Include(UIButton uiButton)
         {
@@ -76,11 +68,7 @@ namespace MyCompanyInThePocket.iOS
             sw.On = !sw.On;
             sw.ValueChanged += (sender, args) => { sw.On = false; };
         }
-
-        public void Include(MvxViewController vc)
-        {
-            vc.Title = vc.Title + "";
-        }
+        
 
         public void Include(UIStepper s)
         {
@@ -103,12 +91,7 @@ namespace MyCompanyInThePocket.iOS
         {
            command.CanExecuteChanged += (s, e) => { if (command.CanExecute(null)) command.Execute(null); };
         }
-
-        public void Include(MvvmCross.Platform.IoC.MvxPropertyInjector injector)
-        {
-            injector = new MvvmCross.Platform.IoC.MvxPropertyInjector();
-        } 
-
+        
         public void Include(System.ComponentModel.INotifyPropertyChanged changed)
         {
             changed.PropertyChanged += (sender, e) => { var test = e.PropertyName; };

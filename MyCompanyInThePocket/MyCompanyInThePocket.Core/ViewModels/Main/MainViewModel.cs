@@ -1,17 +1,16 @@
 ﻿using MyCompanyInThePocket.Core.Services;
-using MyCompanyInThePocket.Core.Services.Interface;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
-    public class MainScreenViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
 
-		public MainScreenViewModel(
+		public MainViewModel(
 			IAuthentificationService authentificationService,
 			IMeetingService meetingService, 
 			IUseFullLinkService useFullLinkService)
 		{
-			MeetingsVM = new MeetingsViewModel(meetingService);
+			MeetingsVM = new MeetingsViewModel();
 			SettingsVM = new SettingsViewModel(authentificationService);
 			UseFullLinksVM = new UseFullLinksViewModel(useFullLinkService);
 		}

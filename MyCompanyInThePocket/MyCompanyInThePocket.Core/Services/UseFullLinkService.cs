@@ -1,11 +1,7 @@
 ﻿using MyCompanyInThePocket.Core.Models;
 using MyCompanyInThePocket.Core.Repositories.Interfaces;
-using MyCompanyInThePocket.Core.Services.Interface;
 using Plugin.Connectivity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Services
