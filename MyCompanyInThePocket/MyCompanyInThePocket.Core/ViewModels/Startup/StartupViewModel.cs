@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using MyCompanyInThePocket.Core.Services;
+﻿using MyCompanyInThePocket.Core.Services;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 

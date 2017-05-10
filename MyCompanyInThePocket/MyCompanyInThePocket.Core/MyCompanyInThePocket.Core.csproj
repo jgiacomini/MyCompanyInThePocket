@@ -82,10 +82,8 @@
     <Compile Include="Services\Interface\ICalendarIntegrationService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\SplashScreenViewModel.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\OnlineSettings.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Meeting\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\Meeting\MeetingViewModel.cs" />
     <Compile Include="Repositories\Interfaces\IOnlineUseFullLinkRepository.cs" />
@@ -105,6 +103,8 @@
     <Compile Include="Services\Interface\IAuthentificationService.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
     <Compile Include="Services\Exception\TokenExpiredException.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SplashScreen\SplashScreenViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -170,6 +170,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Settings\" />
+    <Folder Include="ViewModels\SplashScreen\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

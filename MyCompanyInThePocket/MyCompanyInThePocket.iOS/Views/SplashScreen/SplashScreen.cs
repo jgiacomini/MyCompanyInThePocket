@@ -48,6 +48,7 @@ namespace MyCompanyInThePocket.iOS.Views
             );
 
             var bindings = new List<Binding>();
+
             bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.CurrentState), _currentStateLabel, nameof(UILabel.Text), BindingMode.OneWay));
             bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.ErrorMessage), _errorLabel, nameof(UILabel.Text), BindingMode.OneWay));
             bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.HasError), _errorLabel, nameof(UILabel.Hidden), BindingMode.OneWay));

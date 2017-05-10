@@ -2,6 +2,7 @@ using MyCompanyInThePocket.Core.Repositories.Interfaces;
 using GalaSoft.MvvmLight.Ioc;
 using MyCompanyInThePocket.Core.Services;
 using MyCompanyInThePocket.Core.Helpers;
+using MyCompanyInThePocket.Core.Repositories.Database;
 
 namespace MyCompanyInThePocket.Core
 {
@@ -47,13 +48,15 @@ namespace MyCompanyInThePocket.Core
             SimpleIoc.Default.Register<IDatabaseService>(() => new DatabaseService(sqliteConnectionFactory));
 
             var databaseService = SimpleIoc.Default.GetInstanceWithoutCaching<IDatabaseService>();
-           
-            SimpleIoc.Default.Register<IDbMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.Database.DbMeetingRepository(sqliteConnectionFactory));
+
+            
+            SimpleIoc.Default.Register<IDbMeetingRepository>(() => new DbMeetingRepository(sqliteConnectionFactory));
 
             var onlineMeetingRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineMeetingRepository>();
             var dbMeetingRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IDbMeetingRepository>();
             var onlineUseFullLinkRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineUseFullLinkRepository>();
 
+			         
             SimpleIoc.Default.Register<IMeetingService>(() => new MeetingsService(onlineMeetingRepository, dbMeetingRepository));
             SimpleIoc.Default.Register<IUseFullLinkService>(() => new UseFullLinkService(onlineUseFullLinkRepository));
         }
