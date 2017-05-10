@@ -23,11 +23,13 @@ namespace MyCompanyInThePocket.Core
         }
         
         public void Initialize(
+            INavigationService navigationService,
             ISqliteConnectionFactory sqliteConnectionFactory,
             IAuthentificationPlatformFactory plaformFactory,
             ICalendarIntegrationService calendarIntegrationService,
             IMessageService messageService)
         {
+            NavigationService = navigationService;
             MessageService = messageService;
             CalendarIntegrationService = calendarIntegrationService;
 
@@ -66,9 +68,11 @@ namespace MyCompanyInThePocket.Core
             return SimpleIoc.Default.GetInstanceWithoutCaching<TService>();
         }
 
+
+        public INavigationService NavigationService { get; private set; }
         public IMessageService MessageService { get; private set; }
 
-        public ICalendarIntegrationService CalendarIntegrationService { get; set; }
+        public ICalendarIntegrationService CalendarIntegrationService { get; private set; }
 
     }
 }

@@ -80,6 +80,7 @@
     <Compile Include="Services\Interface\IMeetingService.cs" />
     <Compile Include="Services\Interface\IMessageService.cs" />
     <Compile Include="Services\Interface\ICalendarIntegrationService.cs" />
+    <Compile Include="Services\Interface\INavigationService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
@@ -170,10 +171,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="ViewModels\Settings\" />
-    <Folder Include="ViewModels\SplashScreen\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

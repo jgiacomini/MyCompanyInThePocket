@@ -23,6 +23,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
         public void ShowViewModel<T>() where T : BaseViewModel
         {
+            App.Instance.NavigationService.ShowViewMode<T>();
         }
 
     }

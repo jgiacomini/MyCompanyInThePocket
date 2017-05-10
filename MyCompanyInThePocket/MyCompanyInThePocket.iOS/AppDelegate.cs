@@ -22,6 +22,7 @@ namespace MyCompanyInThePocket.iOS
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             App.Instance.Initialize(
+                new iOSNavigationService(),
                 new IOSSqliteConnectionFactory(),
                 new IOSAuthentificationPlatformFactory(),
                 new iOSNativeCalendarIntegrationService(),
