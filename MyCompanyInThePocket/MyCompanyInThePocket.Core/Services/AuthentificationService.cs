@@ -114,11 +114,6 @@ namespace MyCompanyInThePocket.Core.Services
                 if (response.StatusCode == HttpStatusCode.Forbidden ||
                     response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    if (_authContext.TokenCache.ReadItems().Any())
-                    {
-                        _authContext = new AuthenticationContext(Authority);
-                    }
-
                     try
                     {
                         var before = OnlineSettings.AccessToken;
