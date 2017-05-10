@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Services
 {
-    public interface INativeCalendarIntegrationService
+    public interface ICalendarIntegrationService
     {
         Task PushMeetingsToCalendarAsync(List<Meeting> meetings);
 

@@ -14,7 +14,7 @@ using MyCompanyInThePocket.Core;
 
 namespace MyCompanyInThePocket.iOS.Services
 {
-    public class iOSNativeCalendarIntegrationService : INativeCalendarIntegrationService
+    public class iOSNativeCalendarIntegrationService : ICalendarIntegrationService
     {
         private EKEventStore _eventStore;
 

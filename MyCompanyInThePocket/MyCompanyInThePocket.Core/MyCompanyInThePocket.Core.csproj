@@ -79,7 +79,7 @@
     <Compile Include="Services\Interface\IDatabaseService.cs" />
     <Compile Include="Services\Interface\IMeetingService.cs" />
     <Compile Include="Services\Interface\IMessageService.cs" />
-    <Compile Include="Services\Interface\INativeCalendarIntegrationService.cs" />
+    <Compile Include="Services\Interface\ICalendarIntegrationService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\SplashScreenViewModel.cs" />

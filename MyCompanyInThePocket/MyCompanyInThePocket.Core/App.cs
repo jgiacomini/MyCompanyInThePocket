@@ -24,13 +24,12 @@ namespace MyCompanyInThePocket.Core
         public void Initialize(
             ISqliteConnectionFactory sqliteConnectionFactory,
             IAuthentificationPlatformFactory plaformFactory,
-            INativeCalendarIntegrationService nativeCalendarIntegrationService,
+            ICalendarIntegrationService calendarIntegrationService,
             IMessageService messageService)
         {
             MessageService = messageService;
+            CalendarIntegrationService = calendarIntegrationService;
 
-
-            
             SimpleIoc.Default.Register<IAuthentificationService>(() => new AuthentificationService(plaformFactory));
             if (_useMock)
             {
@@ -48,8 +47,7 @@ namespace MyCompanyInThePocket.Core
             SimpleIoc.Default.Register<IDatabaseService>(() => new DatabaseService(sqliteConnectionFactory));
 
             var databaseService = SimpleIoc.Default.GetInstanceWithoutCaching<IDatabaseService>();
-
-            
+           
             SimpleIoc.Default.Register<IDbMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.Database.DbMeetingRepository(sqliteConnectionFactory));
 
             var onlineMeetingRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineMeetingRepository>();
@@ -67,7 +65,7 @@ namespace MyCompanyInThePocket.Core
 
         public IMessageService MessageService { get; private set; }
 
-        public INativeCalendarIntegrationService NativeCalendarIntegrationService { get; set; }
+        public ICalendarIntegrationService CalendarIntegrationService { get; set; }
 
     }
 }

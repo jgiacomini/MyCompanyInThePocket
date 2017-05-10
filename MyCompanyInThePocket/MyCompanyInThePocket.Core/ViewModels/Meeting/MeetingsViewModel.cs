@@ -80,7 +80,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				Meetings.PauseNotifications();
 				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, token);
 
-                var nativeCalendarIntegrationService = App.Instance.NativeCalendarIntegrationService;
+                var nativeCalendarIntegrationService = App.Instance.CalendarIntegrationService;
 
 				if (nativeCalendarIntegrationService != null)
 				{
@@ -171,7 +171,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
             }
         }
 
-		private async Task AddACRAReminderAsync(INativeCalendarIntegrationService nativeCalendarIntegrationService)
+		private async Task AddACRAReminderAsync(ICalendarIntegrationService nativeCalendarIntegrationService)
 		{
 
 			// On ne fait rien de plus car le service n'est pas instancié
