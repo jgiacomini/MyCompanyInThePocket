@@ -6,11 +6,8 @@ namespace MyCompanyInThePocket.iOS.Views
 {
 	public class MeetingsViewController : BaseTableViewController<MeetingsViewModel>
 	{
-		public MeetingsViewController(MeetingsViewModel viewModel)
-            :base(viewModel)
+		public MeetingsViewController()
 		{
-			ToastView = new ToastView();
-
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
@@ -20,10 +17,19 @@ namespace MyCompanyInThePocket.iOS.Views
 			this.EdgesForExtendedLayout = UIRectEdge.None;
 		}
 
+        private ToastView _toastView;
+
 		public ToastView ToastView
 		{
-			get;
-			set;
+            get{
+
+                if (_toastView == null)
+                {
+                    _toastView = new ToastView();
+                }
+
+                return _toastView;
+            }
 		}
 
 		public override void ViewDidLoad()

@@ -1,6 +1,7 @@
 ﻿using MyCompanyInThePocket.Core.Services;
 using MyCompanyInThePocket.Core.ViewModels;
 using System;
+using MyCompanyInThePocket.iOS.Views;
 
 namespace MyCompanyInThePocket.iOS.Services
 {
@@ -13,11 +14,14 @@ namespace MyCompanyInThePocket.iOS.Services
             switch (type.Name)
             {
                 case nameof(MainViewModel):
+                    CurrentViewController.Current.NavigationController.PushViewController(new MainViewController(), true);
                     break;
 
                 case nameof(StartupViewModel):
+                    CurrentViewController.Current.NavigationController.PushViewController(new StartupViewController(), true);
                     break;
                 case nameof(SplashScreenViewModel):
+                    CurrentViewController.Current.NavigationController.PushViewController(new SplashScreenViewController(),true);
                     break;
 
                 default:

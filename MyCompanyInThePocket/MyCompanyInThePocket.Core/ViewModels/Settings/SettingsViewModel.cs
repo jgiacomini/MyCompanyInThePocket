@@ -8,9 +8,9 @@ namespace MyCompanyInThePocket.Core.ViewModels
 	{
 		private readonly IAuthentificationService _authenService;
 
-		public SettingsViewModel(IAuthentificationService authenService)
+		public SettingsViewModel()
 		{
-			_authenService = authenService;
+            _authenService = App.Instance.GetInstance<IAuthentificationService>();
 			LogOutCommand = new RelayCommand(LogOutAction);
             ReviewIntroCommand = new RelayCommand(() => ShowViewModel<StartupViewModel>());
         }

@@ -15,9 +15,9 @@ namespace MyCompanyInThePocket.Core.ViewModels
         private readonly IDatabaseService _databaseService;
         #endregion
 
-        public SplashScreenViewModel(IDatabaseService databaseService)
+        public SplashScreenViewModel()
         {
-            _databaseService = databaseService;
+            _databaseService = App.Instance.GetInstance<IDatabaseService>();
         }
 
         public async Task InitializeAsync()

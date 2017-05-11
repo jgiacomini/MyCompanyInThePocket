@@ -4,18 +4,30 @@ using UIKit;
 namespace MyCompanyInThePocket.iOS.Views
 {
     public abstract class BaseTabBarViewController<TViewModel> : UITabBarController
-		where TViewModel : BaseViewModel
+		where TViewModel : BaseViewModel, new()
 	{
-		public BaseTabBarViewController(TViewModel viewModel)
+        private TViewModel _viewModel;
+
+		public BaseTabBarViewController()
         {
-            ViewModel = viewModel;
             View.BackgroundColor = UIColor.White;
 			CurrentViewController.Current = this;
 			ViewDidLoad();
         }
 
-        public TViewModel ViewModel { get; private set; }
-        
+		public TViewModel ViewModel
+		{
+			get
+			{
+				if (_viewModel == null)
+				{
+					_viewModel = new TViewModel();
+				}
+
+				return _viewModel;
+			}
+		}
+
         public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);

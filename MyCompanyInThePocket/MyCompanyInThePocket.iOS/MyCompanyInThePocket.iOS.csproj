@@ -129,8 +129,8 @@
     <Compile Include="Views\UsefullLinks\UseFullLinksViewController.cs" />
     <Compile Include="Views\UsefullLinks\UseFullLinksViewSource.cs" />
     <Compile Include="Views\Settings\SettingsViewController.cs" />
-    <Compile Include="Views\SplashScreen\SplashScreen.cs" />
-    <Compile Include="Views\StartupScreen\StartupScreen.cs" />
+    <Compile Include="Views\SplashScreen\SplashScreenViewController.cs" />
+    <Compile Include="Views\StartupScreen\StartupViewController.cs" />
     <Compile Include="Views\ApplicationColors.cs" />
     <Compile Include="Extensions\UIColorExtensions.cs" />
     <Compile Include="Views\Converter\InMemoryImageToUIImageConverter.cs" />

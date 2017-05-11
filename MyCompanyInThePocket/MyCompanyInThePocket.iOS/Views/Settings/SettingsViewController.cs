@@ -14,8 +14,7 @@ namespace MyCompanyInThePocket.iOS.Views
         private UIView _bottomSeparatorView;
         private UIButton _goToStartupButton;
 
-        public SettingsViewController(SettingsViewModel viewModel)
-            : base(viewModel)
+        public SettingsViewController()
         {
             View.BackgroundColor = ApplicationColors.BackgroundColor;
         }

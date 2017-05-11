@@ -6,10 +6,9 @@ using GalaSoft.MvvmLight.Helpers;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public class StartupScreen : BaseViewController<StartupViewModel>, INoHistoryScreen
+    public class StartupViewController : BaseViewController<StartupViewModel>, INoHistoryScreen
 	{
-        public StartupScreen(StartupViewModel vm):
-            base(vm)
+        public StartupViewController()
         {
         }
 

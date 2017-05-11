@@ -6,8 +6,7 @@ namespace MyCompanyInThePocket.iOS
 {
 	public class UseFullLinksViewController : BaseTableViewController<UseFullLinksViewModel>
 	{
-		public UseFullLinksViewController(UseFullLinksViewModel viewModel)
-           : base(viewModel)
+        public UseFullLinksViewController()
 		{
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.

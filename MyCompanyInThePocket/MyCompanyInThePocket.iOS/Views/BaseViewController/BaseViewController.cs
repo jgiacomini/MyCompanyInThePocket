@@ -4,19 +4,30 @@ using UIKit;
 namespace MyCompanyInThePocket.iOS.Views
 {
     public abstract class BaseViewController<TViewModel> : UIViewController, INoHistoryScreen
-		where TViewModel : BaseViewModel
+		where TViewModel : BaseViewModel , new()
 	{
+        private TViewModel _viewModel;
 
-		public BaseViewController(TViewModel viewModel)
+		public BaseViewController()
 		{
-            ViewModel = viewModel;
 
             View.BackgroundColor = UIColor.White;
 			EdgesForExtendedLayout = UIRectEdge.None;
 			CurrentViewController.Current = this;
 		}
 
-        public TViewModel ViewModel { get; private set; }
+        public TViewModel ViewModel 
+        {
+            get
+            {
+                if (_viewModel == null)
+                {
+                    _viewModel = new TViewModel();
+                }
+
+                return _viewModel;
+            }
+        }
 
         public override void ViewDidAppear(bool animated)
 		{

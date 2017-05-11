@@ -1,7 +1,6 @@
 ﻿using MyCompanyInThePocket.Core.Services;
 using MyCompanyInThePocket.Core.ViewModels;
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,9 +10,9 @@ namespace MyCompanyInThePocket.Core
 	{
 		private readonly IUseFullLinkService _useFullLinkService;
 
-		public UseFullLinksViewModel(IUseFullLinkService useFullLinkService)
+		public UseFullLinksViewModel()
 		{
-			_useFullLinkService = useFullLinkService;
+            _useFullLinkService = App.Instance.GetInstance<IUseFullLinkService>();
             UseFullLinks = new SuspendableObservableCollection<UseFullLinkViewModel>();
 
         }

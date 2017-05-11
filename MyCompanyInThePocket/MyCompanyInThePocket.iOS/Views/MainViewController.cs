@@ -10,8 +10,7 @@ namespace MyCompanyInThePocket.iOS.Views
 	{
 		private int _nbTabBarCreated;
 
-		public MainViewController(MainViewModel viewModel)
-            :base(viewModel)
+		public MainViewController()
 		{
 			this.ViewControllerSelected += Handle_ViewControllerSelected;
 			this.TabBar.Translucent = false;
@@ -33,10 +32,10 @@ namespace MyCompanyInThePocket.iOS.Views
 
 			var viewControllers = new UIViewController[]
 			{
-				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),
-				CreateTabFor(StringValues.Main_UseFullLinks_Title_Text, "ic_menu_link", ViewModel.UseFullLinksVM),
-				/*CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings", ViewModel.MeetingsVM),*/
-				CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings", ViewModel.SettingsVM),
+				CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings"),
+				CreateTabFor(StringValues.Main_UseFullLinks_Title_Text, "ic_menu_link"),
+				/*CreateTabFor(StringValues.Main_Meetings_Title_Text, "ic_menu_meetings"),*/
+				CreateTabFor(StringValues.Main_Settings_Title_Text, "ic_menu_settings"),
 			};
 			ViewControllers = viewControllers;
 
@@ -48,10 +47,10 @@ namespace MyCompanyInThePocket.iOS.Views
 			Title = SelectedViewController?.Title;
 		}
 
-		private UIViewController CreateTabFor(string title, string imageName, BaseViewModel viewModel)
+		private UIViewController CreateTabFor(string title, string imageName)
 		{
 			// Création de l'écran correspondant au viewModel;
-			var screen = this.CreateViewControllerFor(viewModel) as UIViewController;
+            var screen = CreateViewControllerFor(title) as UIViewController;
 
 			var image = UIImage.FromBundle($"TabBar/{imageName}.png");
 			screen.Title = title;
@@ -60,22 +59,22 @@ namespace MyCompanyInThePocket.iOS.Views
 			return screen;
 		}
 
-        private UIViewController CreateViewControllerFor(BaseViewModel vm)
+        private UIViewController CreateViewControllerFor(string title)
         {
-            if (vm is MeetingsViewModel)
+            if (title == StringValues.Main_Meetings_Title_Text)
             {
-                return new MeetingsViewController(vm as MeetingsViewModel);
+                return new MeetingsViewController();
             }
-            if (vm is UseFullLinksViewModel)
-            {
-                return new UseFullLinksViewController(vm as UseFullLinksViewModel);
+            else if (title == StringValues.Main_UseFullLinks_Title_Text)
+			{
+                return new UseFullLinksViewController();
             }
-            if (vm is SettingsViewModel)
-            {
-                return new SettingsViewController(vm as SettingsViewModel);
+			else if (title == StringValues.Main_Settings_Title_Text)
+			{
+                return new SettingsViewController();
             }
 
-            throw new NotImplementedException($"{vm.GetType().Name} has no view controller implemented in CreateViewControllerFor");
+            throw new NotImplementedException($"{title} has no view controller implemented in CreateViewControllerFor");
         }
 
         public override void ViewDidAppear(bool animated)
