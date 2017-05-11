@@ -1,17 +1,20 @@
 using Android.App;
 using Android.OS;
-using MvvmCross.Droid.Views;
 using MyCompanyInThePocket.Core.ViewModels;
 
 namespace MyCompanyInThePocket.Droid.Views
 {
     [Activity(Label = "")]
-    public class MainScreenView : MvxActivity<SplashScreenViewModel>
+    public class MainScreenView : Activity
     {
-        protected override void OnCreate(Bundle bundle)
+
+        public MainViewModel ViewModel { get; set; }
+  
+        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
-            base.OnCreate(bundle);
-            ViewModel.InitializeAsync();
+
+            ViewModel = new MainViewModel();
+            base.OnCreate(savedInstanceState, persistentState);
         }
     }
 }

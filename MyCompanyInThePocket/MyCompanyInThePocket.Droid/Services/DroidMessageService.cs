@@ -1,19 +1,18 @@
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
 using MyCompanyInThePocket.Core.Services;
+using Plugin.CurrentActivity;
 using System;
 using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Droid.Services
 {
-    public class AndroidMessageService : IMessageService
+    public class DroidMessageService : IMessageService
     {
         public Task ShowErrorToastAsync(Exception exception, string message)
         {
-            var context = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+            var context = CrossCurrentActivity.Current.Activity;
 
             var toast = Toast.MakeText(context,
                 message

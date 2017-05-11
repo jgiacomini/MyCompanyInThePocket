@@ -9,7 +9,7 @@ using Plugin.CurrentActivity;
 
 namespace MyCompanyInThePocket.UWP.Helpers
 {
-    public class AuthentificationPlatformFactory : IAuthentificationPlatformFactory
+    public class DroidAuthentificationPlatformFactory : IAuthentificationPlatformFactory
     {
         public IPlatformParameters GetPlatformParameter()
         {
