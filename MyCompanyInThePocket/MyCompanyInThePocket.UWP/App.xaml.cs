@@ -1,5 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
+﻿using MyCompanyInThePocket.UWP.Helpers;
+using MyCompanyInThePocket.UWP.Services;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -64,11 +64,13 @@ namespace MyCompanyInThePocket.UWP
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    //rootFrame.Navigate(typeof(Views.SplashScreenView), e.Arguments);
-                    var setup = new Setup(rootFrame);
-                    setup.Initialize();
-                    var start = Mvx.Resolve<IMvxAppStart>();
-                    start.Start();
+
+                    Core.App.Instance.Initialize(new UWPNavigationService(),
+                        new UWPSqliteConnectionFactory(),
+                        new UWPAuthentificationPlatformFactory(),
+                        new UWPNativeCalendarIntegrationService(),
+                        new UWpMessageService());
+                    rootFrame.Navigate(typeof(Views.SplashScreenPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

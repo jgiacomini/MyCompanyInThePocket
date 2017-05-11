@@ -1,18 +1,18 @@
-﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.WindowsUWP.Views;
-using MyCompanyInThePocket.Core.ViewModels;
+﻿using MyCompanyInThePocket.Core.ViewModels;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace MyCompanyInThePocket.UWP.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SplashScreenView : MvxWindowsPage
+    public sealed partial class SplashScreenPage : Page
     {
-        public SplashScreenView()
+        public SplashScreenPage()
         {
             this.InitializeComponent();
+            DataContext = new SplashScreenViewModel();
             this.Loaded += SplashScreenView_Loaded;
         }
 
@@ -23,8 +23,8 @@ namespace MyCompanyInThePocket.UWP.Views
 
         public Task OnInitialize()
         {
-            var vm = (SplashScreenViewModel)this.ViewModel;
-            return vm.InitializeAsync();
+            var vm = DataContext as SplashScreenViewModel;
+            return vm?.InitializeAsync();
         }
     }
 }
