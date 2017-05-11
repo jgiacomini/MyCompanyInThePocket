@@ -17,6 +17,7 @@ namespace MyCompanyInThePocket.iOS.Views
 			this.EdgesForExtendedLayout = UIRectEdge.None;
 		}
 
+        /*
         private ToastView _toastView;
 
 		public ToastView ToastView
@@ -30,7 +31,7 @@ namespace MyCompanyInThePocket.iOS.Views
 
                 return _toastView;
             }
-		}
+		}*/
 
 		public override void ViewDidLoad()
 		{

@@ -9,6 +9,8 @@ namespace MyCompanyInThePocket.iOS
 	public class UseFullLinkCell : UITableViewCell
 	{
 		public static readonly NSString Key = new NSString("UseFullLinkCell");
+        private System.Windows.Input.ICommand _tapCommand;
+
 
 		public UseFullLinkCell(IntPtr handle):
             base(handle)
@@ -28,17 +30,31 @@ namespace MyCompanyInThePocket.iOS
 			Add(UseFullLinkView);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			this.AddConstraints(UseFullLinkView.FullHeightOf(this, 2));
-			this.AddConstraints(UseFullLinkView.WithSameWidth(this));    
+			this.AddConstraints(UseFullLinkView.WithSameWidth(this));
+
+            var tapGestureRecognizer = new UITapGestureRecognizer(OnTapped);
+            this.AddGestureRecognizer(tapGestureRecognizer);
+        }
+
+        void OnTapped()
+        {
+            _tapCommand?.Execute(null);
         }
 
 		public void OnApplyBinding(UseFullLinkViewModel vm)
 		{
             UseFullLinkView.Name.Text = vm.Name;
             UseFullLinkView.Logo.Image = new InMemoryImageToUIImageConverter().Convert(vm.Icon, this.GetType(), null,null);
-            //bindingSet.Bind(UseFullLinkView.Tap()).For(v => v.Command).To(vm => vm.TapCommand);
+            _tapCommand = vm.TapCommand;
 		}
 
 		public UseFullLinkView UseFullLinkView { get; private set; }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            _tapCommand = null;
+        }
 
     }
 }
