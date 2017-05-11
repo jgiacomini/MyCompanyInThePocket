@@ -47,13 +47,15 @@ namespace MyCompanyInThePocket.iOS.Views
                 _errorLabel.WithSameWidth(View)
             );
 
-            var bindings = new List<Binding>();
-
-            bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.CurrentState), _currentStateLabel, nameof(UILabel.Text), BindingMode.OneWay));
-            bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.ErrorMessage), _errorLabel, nameof(UILabel.Text), BindingMode.OneWay));
-            bindings.Add(new Binding<bool, bool>(ViewModel, nameof(SplashScreenViewModel.HasError), _errorLabel, nameof(UILabel.Hidden), BindingMode.OneWay));
-
             ViewModel.InitializeAsync();
         }
+
+        protected override void _viewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs arg)
+        {
+            _currentStateLabel.Text = ViewModel.CurrentState;
+            _errorLabel.Text = ViewModel.ErrorMessage;
+            _errorLabel.Hidden = ViewModel.HasError;
+
+		}
     }
 }

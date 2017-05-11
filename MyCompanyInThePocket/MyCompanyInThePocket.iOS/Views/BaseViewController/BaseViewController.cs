@@ -1,4 +1,5 @@
-﻿using MyCompanyInThePocket.Core.ViewModels;
+﻿using System.ComponentModel;
+using MyCompanyInThePocket.Core.ViewModels;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS.Views
@@ -19,20 +20,25 @@ namespace MyCompanyInThePocket.iOS.Views
             }
 		}
 
-        public TViewModel ViewModel 
-        {
-            get
-            {
-                if (_viewModel == null)
-                {
-                    _viewModel = new TViewModel();
-                }
+		public TViewModel ViewModel
+		{
+			get
+			{
+				if (_viewModel == null)
+				{
+					_viewModel = new TViewModel();
+					_viewModel.PropertyChanged += _viewModel_PropertyChanged;
+				}
 
-                return _viewModel;
-            }
-        }
+				return _viewModel;
+			}
+		}
 
-        public override void ViewDidAppear(bool animated)
+		protected virtual void _viewModel_PropertyChanged(object sender, PropertyChangedEventArgs arg)
+		{
+		}
+
+		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
 			ScreenHelper.RemoveNoHistoryPage(NavigationController, this);

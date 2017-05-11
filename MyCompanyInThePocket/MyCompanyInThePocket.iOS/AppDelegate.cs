@@ -31,7 +31,7 @@ namespace MyCompanyInThePocket.iOS
 
 
             // Initialisation du contrôleur de vue par défaut 
-            var viewController = new StartupViewController();
+            var viewController = new SplashScreenViewController();
 
             // Initialisation du contrôleur de navigation
             var navigationController = new UINavigationController(viewController);
