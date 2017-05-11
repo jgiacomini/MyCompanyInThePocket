@@ -13,7 +13,7 @@ namespace MyCompanyInThePocket.iOS.Views
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			TableView.RowHeight = 50;
 			TableView.AllowsSelection = false;
-			TableView.TableHeaderView = ToastView;
+			
 			this.EdgesForExtendedLayout = UIRectEdge.None;
 		}
 
@@ -36,8 +36,8 @@ namespace MyCompanyInThePocket.iOS.Views
 		{
 			base.ViewDidLoad();
 
-			ToastView.Frame = new CoreGraphics.CGRect(0, 0, View.Bounds.Width, 20);
-            
+			//ToastView.Frame = new CoreGraphics.CGRect(0, 0, View.Bounds.Width, 20);
+            //TableView.TableHeaderView = ToastView;
 			var refreshControl = new BindableUIRefreshControl();
 			RefreshControl = refreshControl;
 
@@ -45,6 +45,8 @@ namespace MyCompanyInThePocket.iOS.Views
 
 			TableView.Source = source;
             refreshControl.RefreshCommand = ViewModel.RefreshCommand;
+            refreshControl.Message = ViewModel.LastUpdate;
+            refreshControl.IsRefreshing = ViewModel.IsBusy;
 
 			// Load data
 			TableView.ReloadData();

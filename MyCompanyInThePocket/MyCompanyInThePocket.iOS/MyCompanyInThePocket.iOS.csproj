@@ -106,8 +106,6 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Services\iOSNativeCalendarIntegrationService.cs" />
     <Compile Include="Services\iOSNavigationService.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\BaseViewController\BaseTableViewController.cs" />
     <Compile Include="Views\MainViewController.cs" />
     <None Include="app.config" />

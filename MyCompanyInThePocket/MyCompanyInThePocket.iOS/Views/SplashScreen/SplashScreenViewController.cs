@@ -52,10 +52,18 @@ namespace MyCompanyInThePocket.iOS.Views
 
         protected override void _viewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs arg)
         {
-            _currentStateLabel.Text = ViewModel.CurrentState;
-            _errorLabel.Text = ViewModel.ErrorMessage;
-            _errorLabel.Hidden = ViewModel.HasError;
-
+            if (arg.PropertyName == nameof(ViewModel.CurrentState))
+            {
+                _currentStateLabel.Text = ViewModel.CurrentState;
+            }
+            if (arg.PropertyName == nameof(ViewModel.ErrorMessage))
+            {
+                _errorLabel.Text = ViewModel.ErrorMessage;
+            }
+            if (arg.PropertyName == nameof(ViewModel.HasError))
+            {
+                _errorLabel.Hidden = ViewModel.HasError;
+            }
 		}
     }
 }

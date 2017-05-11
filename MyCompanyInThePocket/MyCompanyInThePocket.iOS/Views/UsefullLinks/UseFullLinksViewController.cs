@@ -11,6 +11,7 @@ namespace MyCompanyInThePocket.iOS
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+            TableView.AllowsSelection = false;
 		}
 
 		public override async void ViewWillAppear(bool animated)
