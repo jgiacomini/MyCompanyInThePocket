@@ -15,6 +15,7 @@ namespace MyCompanyInThePocket.iOS.Views
         private UIButton _goToStartupButton;
 
         public SettingsViewController()
+            :base(false)
         {
             View.BackgroundColor = ApplicationColors.BackgroundColor;
         }

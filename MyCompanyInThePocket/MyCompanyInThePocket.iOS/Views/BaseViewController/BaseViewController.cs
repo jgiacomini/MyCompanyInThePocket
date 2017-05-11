@@ -3,17 +3,20 @@ using UIKit;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public abstract class BaseViewController<TViewModel> : UIViewController, INoHistoryScreen
+    public abstract class BaseViewController<TViewModel> : UIViewController, INoHistoryViewController
 		where TViewModel : BaseViewModel , new()
 	{
         private TViewModel _viewModel;
 
-		public BaseViewController()
+		public BaseViewController(bool isMainController)
 		{
 
             View.BackgroundColor = UIColor.White;
 			EdgesForExtendedLayout = UIRectEdge.None;
-			CurrentViewController.Current = this;
+            if (isMainController)
+            {
+                CurrentViewController.Current = this;
+            }
 		}
 
         public TViewModel ViewModel 

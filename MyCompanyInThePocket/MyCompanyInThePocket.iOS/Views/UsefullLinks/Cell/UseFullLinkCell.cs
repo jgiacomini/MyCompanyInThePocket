@@ -10,14 +10,26 @@ namespace MyCompanyInThePocket.iOS
 	{
 		public static readonly NSString Key = new NSString("UseFullLinkCell");
 
-		public UseFullLinkCell()
+		public UseFullLinkCell(IntPtr handle):
+            base(handle)
 		{
+            Initialize();
+		}
+
+        public UseFullLinkCell()
+            :base(UITableViewCellStyle.Default, Key)
+		{
+            Initialize();
+		}
+
+        void Initialize()
+        {
 			UseFullLinkView = new UseFullLinkView();
 			Add(UseFullLinkView);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			this.AddConstraints(UseFullLinkView.FullHeightOf(this, 2));
-			this.AddConstraints(UseFullLinkView.WithSameWidth(this));
-		}
+			this.AddConstraints(UseFullLinkView.WithSameWidth(this));    
+        }
 
 		public void OnApplyBinding(UseFullLinkViewModel vm)
 		{

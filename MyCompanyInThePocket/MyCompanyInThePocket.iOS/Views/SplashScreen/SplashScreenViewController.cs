@@ -7,13 +7,14 @@ using System.Collections.Generic;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public class SplashScreenViewController : BaseViewController<SplashScreenViewModel>, INoHistoryScreen
+    public class SplashScreenViewController : BaseViewController<SplashScreenViewModel>
     {
         private UILabel _currentStateLabel;
         private UILabel _errorLabel;
         private UIActivityIndicatorView _activityIndicator;
 
-        public SplashScreenViewController()
+        public SplashScreenViewController(): 
+        base(true)
         {
         }
 

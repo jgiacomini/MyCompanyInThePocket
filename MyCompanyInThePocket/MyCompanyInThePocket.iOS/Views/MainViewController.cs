@@ -17,7 +17,6 @@ namespace MyCompanyInThePocket.iOS.Views
 			this.TabBar.TintColor = ApplicationColors.MainColor;
 			this.TabBar.BackgroundColor = UIColor.White;
 			this.EdgesForExtendedLayout = UIRectEdge.None;
-
 		}
 
 		void Handle_ViewControllerSelected(object sender, UITabBarSelectionEventArgs e)

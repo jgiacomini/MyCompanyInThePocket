@@ -6,9 +6,10 @@ using GalaSoft.MvvmLight.Helpers;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-    public class StartupViewController : BaseViewController<StartupViewModel>, INoHistoryScreen
+    public class StartupViewController : BaseViewController<StartupViewModel>
 	{
         public StartupViewController()
+            :base(true)
         {
         }
 
@@ -66,6 +67,12 @@ namespace MyCompanyInThePocket.iOS.Views
             connectButton.SetCommand(ViewModel.GoToNextPageCommand);
 
 		}
+
+        public override void ViewWillAppear(bool animated)
+        {
+            NavigationController.SetNavigationBarHidden(true, false);
+            base.ViewWillAppear(animated);
+        }
 
 		public override void ViewDidAppear(bool animated)
 		{

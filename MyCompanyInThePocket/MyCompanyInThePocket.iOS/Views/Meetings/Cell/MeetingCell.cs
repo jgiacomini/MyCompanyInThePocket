@@ -10,15 +10,27 @@ namespace MyCompanyInThePocket.iOS
 	{
 		public static readonly NSString Key = new NSString("MeetingCell");
 
-		public MeetingCell()
-		: base()
+        public MeetingCell(IntPtr handle)
+		: base(handle)
 		{
+            Initialize();
+		}
+
+        public MeetingCell()
+            : base(UITableViewCellStyle.Default, Key)
+        {
+            Initialize();
+        }
+
+
+        void Initialize()
+        {
 			MeetingView = new MeetingView();
 			Add(MeetingView);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			this.AddConstraints(MeetingView.FullHeightOf(this, 3));
 			this.AddConstraints(MeetingView.WithSameWidth(this));
-		}
+        }
 
         public void OnApplyBinding(MeetingViewModel vm)
         {
