@@ -49,7 +49,7 @@ namespace MyCompanyInThePocket.iOS.Views
                 _topSeparatorView.AtTopOf(View, vmargin),
                 _logoutButton.WithSameWidth(View),
                 _logoutButton.Below(_topSeparatorView),
-                 _goToStartupButton.WithSameWidth(View),
+                _goToStartupButton.WithSameWidth(View),
                 _goToStartupButton.Below(_logoutButton),
                 _bottomSeparatorView.WithSameWidth(View),
                 _bottomSeparatorView.Height().EqualTo(separatorHeight),

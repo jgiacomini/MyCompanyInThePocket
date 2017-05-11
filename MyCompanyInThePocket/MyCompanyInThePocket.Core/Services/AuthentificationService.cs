@@ -113,22 +113,21 @@ namespace MyCompanyInThePocket.Core.Services
                 if (response.StatusCode == HttpStatusCode.Forbidden ||
                     response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    if (_authContext.TokenCache.ReadItems().Any())
-                    {
-                        _authContext = new AuthenticationContext(Authority);
-                    }
-
                     try
                     {
                         var before = OnlineSettings.AccessToken;
-                        // try to reconnect silently
-                        await AuthenticateAsync(silentAndForced :true);
 
-                        // test de succès
-                        if (before != OnlineSettings.AccessToken)
+                        if (!string.IsNullOrEmpty(before))
                         {
-                            // replay
-                            return await GetAsync<T>(route);
+                            // try to reconnect silently
+                            await AuthenticateAsync(silentAndForced: true);
+
+                            // test de succès
+                            if (before != OnlineSettings.AccessToken)
+                            {
+                                // replay
+                                return await GetAsync<T>(route);
+                            }
                         }
                     }
                     catch (Exception)

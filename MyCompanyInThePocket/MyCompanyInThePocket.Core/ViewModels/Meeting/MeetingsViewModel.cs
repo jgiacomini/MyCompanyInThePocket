@@ -16,6 +16,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
         #region Fields
         private readonly IMeetingService _meetingService;
         private DateTime _lastUpdate;
+        private string _lastUpdateStr;
 		private CancellationTokenSource _pageTokenSource;
         #endregion
 
@@ -24,7 +25,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
             Meetings = new SuspendableObservableCollection<GroupedMeetingViewModel>();
             _meetingService = App.Instance.GetInstance<IMeetingService>();
             RefreshCommand = new RelayCommand(ForceRefresh);
-            _lastUpdate = _meetingService.GetLastUpdateTime();
+            UpdateLastUpdateText(_meetingService.GetLastUpdateTime());
         }
 
         public ICommand RefreshCommand
@@ -63,13 +64,23 @@ namespace MyCompanyInThePocket.Core.ViewModels
         {
             get
             {
-                if (_lastUpdate == DateTime.MinValue)
-                {
-                    return string.Empty;
-                }
-                // TODO : localisation
-                return $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
+                return _lastUpdateStr;
             }
+            set
+            {
+                Set(ref _lastUpdateStr, value);
+            }
+        }
+
+        void UpdateLastUpdateText(DateTime lastUpdate)
+        {
+            _lastUpdate = lastUpdate;
+			if (_lastUpdate == DateTime.MinValue)
+			{
+                LastUpdate = string.Empty;
+			}
+			// TODO : localisation
+            LastUpdate =  $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
         }
 
         private async Task RefreshMeetings(bool forceRefresh, CancellationToken token)
@@ -144,10 +155,8 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 				await AddACRAReminderAsync(nativeCalendarIntegrationService);
 
-				_lastUpdate = _meetingService.GetLastUpdateTime();
-
-				RaisePropertyChanged(nameof(Meetings));
-				RaisePropertyChanged(nameof(LastUpdate));
+				var lastUpdate = _meetingService.GetLastUpdateTime();
+				UpdateLastUpdateText(lastUpdate);
 			}
 			catch (TaskCanceledException ex)
 			{
