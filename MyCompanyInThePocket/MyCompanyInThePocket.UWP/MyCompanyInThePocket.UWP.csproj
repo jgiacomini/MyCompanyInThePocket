@@ -100,16 +100,21 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\AuthentificationPlatformFactory.cs" />
-    <Compile Include="Helpers\SqliteConnectionFactory.cs" />
-    <Compile Include="Views\MainScreenView.xaml.cs">
-      <DependentUpon>MainScreenView.xaml</DependentUpon>
+    <Compile Include="Helpers\UWPAuthentificationPlatformFactory.cs" />
+    <Compile Include="Helpers\UWPSqliteConnectionFactory.cs" />
+    <Compile Include="Services\UWPMessageService.cs" />
+    <Compile Include="Services\UWPNativeCalendarIntegrationService.cs" />
+    <Compile Include="Services\UWPNavigationService.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SplashScreenView.xaml.cs">
-      <DependentUpon>SplashScreenView.xaml</DependentUpon>
+    <Compile Include="Views\SplashScreenPage.xaml.cs">
+      <DependentUpon>SplashScreenPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup.cs" />
+    <Compile Include="Views\StartupPage.xaml.cs">
+      <DependentUpon>StartupPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -132,11 +137,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\MainScreenView.xaml">
+    <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SplashScreenView.xaml">
+    <Page Include="Views\SplashScreenPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StartupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

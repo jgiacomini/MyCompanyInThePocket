@@ -1,6 +1,4 @@
-﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.iOS.Views;
-using UIKit;
+﻿using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {

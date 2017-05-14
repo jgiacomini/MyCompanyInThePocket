@@ -1,5 +1,4 @@
 ﻿using System;
-using MvvmCross.Binding.iOS.Views;
 using MyCompanyInThePocket.Core.ViewModels;
 using UIKit;
 using System.Linq;
@@ -7,11 +6,20 @@ using Foundation;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
-	public class MeetingsViewSource : MvxTableViewSource
+	public class MeetingsViewSource : UITableViewSource
 	{
-		private SuspendableObservableCollection<GroupedMeetingViewModel> GetGroupedData()
+
+        public MeetingsViewSource(UITableView tableView, SuspendableObservableCollection<GroupedMeetingViewModel> itemsSource)
+        {
+            tableView.RegisterClassForCellReuse(typeof(MeetingCell), MeetingCell.Key);
+            ItemsSource = itemsSource;
+        }
+
+        public SuspendableObservableCollection<GroupedMeetingViewModel> ItemsSource { get; private set; }
+
+        private SuspendableObservableCollection<GroupedMeetingViewModel> GetGroupedData()
 		{
-			var source = ItemsSource as SuspendableObservableCollection<GroupedMeetingViewModel>;
+            var source = ItemsSource;
 
 			if (source == null)
 			{
@@ -19,12 +27,6 @@ namespace MyCompanyInThePocket.iOS.Views
 			}
 
 			return source;
-		}
-
-		public MeetingsViewSource(UITableView tableView)
-			: base(tableView)
-		{
-			tableView.RegisterClassForCellReuse(typeof(MeetingCell), MeetingCell.Key);
 		}
 
 
@@ -72,12 +74,7 @@ namespace MyCompanyInThePocket.iOS.Views
 			return new MeetingCellHeaderView(groupedData[(int)section]);
 		}
 
-		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
-		{
-			return (UITableViewCell)TableView.DequeueReusableCell(MeetingCell.Key, indexPath);
-		}
-
-		protected override object GetItemAt(NSIndexPath indexPath)
+		protected MeetingViewModel GetItemAt(NSIndexPath indexPath)
 		{
 			var groupedData = GetGroupedData();
 
@@ -96,5 +93,19 @@ namespace MyCompanyInThePocket.iOS.Views
 			cell.BackgroundColor = UIColor.Clear;
 			cell.BackgroundView = null;
 		}
-	}
+
+        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        {
+            var cell = tableView.DequeueReusableCell(MeetingCell.Key, indexPath) as MeetingCell;
+
+            if (cell == null)
+            {
+                cell = new MeetingCell();
+            }
+
+            var vm = GetItemAt(indexPath);
+            cell.OnApplyBinding(vm);
+            return cell;
+        }
+    }
 }

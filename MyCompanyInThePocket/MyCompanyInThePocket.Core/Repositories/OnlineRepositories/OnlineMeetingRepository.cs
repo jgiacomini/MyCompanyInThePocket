@@ -1,5 +1,4 @@
-﻿using MvvmCross.Platform;
-using MyCompanyInThePocket.Core.Helpers;
+﻿using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Models;
 using MyCompanyInThePocket.Core.Repositories.Interfaces;
 using Newtonsoft.Json;
@@ -17,9 +16,9 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
     {
 		private IAuthentificationService _authentificationService;
 
-		public OnlineMeetingRepository()
+		public OnlineMeetingRepository(IAuthentificationService authentificationService)
         {
-			_authentificationService = Mvx.Resolve<IAuthentificationService>();
+			_authentificationService = authentificationService;
         }
 
         public async Task<List<Meeting>> GetMeetingAsync()

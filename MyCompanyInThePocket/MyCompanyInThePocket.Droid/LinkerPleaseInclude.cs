@@ -3,7 +3,6 @@ using System.Windows.Input;
 using Android.App;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.Binding.BindingContext;
 
 namespace MyCompanyInThePocket.Droid
 {
@@ -68,23 +67,11 @@ namespace MyCompanyInThePocket.Droid
             command.CanExecuteChanged += (s, e) => { if (command.CanExecute(null)) command.Execute(null); };
         }
         
-        public void Include(MvvmCross.Platform.IoC.MvxPropertyInjector injector)
-        {
-            injector = new MvvmCross.Platform.IoC.MvxPropertyInjector ();
-        } 
-
         public void Include(System.ComponentModel.INotifyPropertyChanged changed)
         {
             changed.PropertyChanged += (sender, e) =>  {
                 var test = e.PropertyName;
             };
-        }
-        
-        public void Include(MvxTaskBasedBindingContext context)
-        {
-            context.Dispose();
-            var context2 = new MvxTaskBasedBindingContext();
-            context2.Dispose();
         }
     }
 }

@@ -2,21 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
-using MyCompanyInThePocket.Core.Services.Interface;
 using MyCompanyInThePocket.Core.Models;
 using System.Threading.Tasks;
 using EventKit;
 using Plugin.Settings;
-using MvvmCross.Platform.iOS;
 using Nito.AsyncEx;
 using CoreGraphics;
-using MvvmCross.Platform;
 using System.Diagnostics;
 using MyCompanyInThePocket.Core.Services;
+using MyCompanyInThePocket.Core;
 
 namespace MyCompanyInThePocket.iOS.Services
 {
-    public class iOSNativeCalendarIntegrationService : INativeCalendarIntegrationService
+    public class iOSNativeCalendarIntegrationService : ICalendarIntegrationService
     {
         private EKEventStore _eventStore;
 
@@ -187,15 +185,14 @@ namespace MyCompanyInThePocket.iOS.Services
             }
             catch (Exception e)
             {
-                //TODO : localisation
-                Mvx.Resolve<IMessageService>().ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
+                App.Instance.MessageService.ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
 
         public NSDate ConvertDateTimeToNSDate(DateTime date)
         {
             date = DateTime.SpecifyKind(date, DateTimeKind.Utc);
-            return date.ToNSDate();
+            return (NSDate)date;
         }
 
         public async Task DeleteCalendarAsync()
@@ -222,7 +219,7 @@ namespace MyCompanyInThePocket.iOS.Services
             }
             catch (Exception e)
             {
-                Mvx.Resolve<IMessageService>().ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
+                App.Instance.MessageService.ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
     }
