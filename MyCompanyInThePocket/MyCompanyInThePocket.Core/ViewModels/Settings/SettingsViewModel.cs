@@ -12,7 +12,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 		{
             _authenService = App.Instance.GetInstance<IAuthentificationService>();
 			LogOutCommand = new RelayCommand(LogOutAction);
-            ReviewIntroCommand = new RelayCommand(() => ShowViewModel<StartupViewModel>());
         }
 
 		public ICommand LogOutCommand
@@ -20,7 +19,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			get;
 			private set;
 		}
-        public ICommand ReviewIntroCommand { get; private set; }
 
         void LogOutAction()
 		{
@@ -28,7 +26,5 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			ApplicationSettings.Clear();
 			this.ShowViewModel<StartupViewModel>();
 		}
-
-
 	}
 }

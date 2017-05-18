@@ -12,8 +12,7 @@ namespace MyCompanyInThePocket.iOS.Views
         private UIButton _logoutButton;
         private UIView _topSeparatorView;
         private UIView _bottomSeparatorView;
-        private UIButton _goToStartupButton;
-
+   
         public SettingsViewController()
             :base(false)
         {
@@ -30,15 +29,10 @@ namespace MyCompanyInThePocket.iOS.Views
             _logoutButton.SetTitleColor(UIColor.Red, UIControlState.Normal);
             _logoutButton.BackgroundColor = ApplicationColors.CellBackgroundColor;
 
-            _goToStartupButton = UIButton.FromType(UIButtonType.System);
-            _goToStartupButton.SetTitle(StringValues.Main_Settings_Intro, UIControlState.Normal);
-            _goToStartupButton.SetTitleColor(ApplicationColors.ForegroundContentCellColor, UIControlState.Normal);
-            _goToStartupButton.BackgroundColor = ApplicationColors.CellBackgroundColor;
-
             _bottomSeparatorView = new UIView();
             _bottomSeparatorView.BackgroundColor = ApplicationColors.SeparatorColor;
 
-            View.AddSubviews(_topSeparatorView, _logoutButton, _goToStartupButton, _bottomSeparatorView);
+            View.AddSubviews(_topSeparatorView, _logoutButton, _bottomSeparatorView);
 
             View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
             nfloat separatorHeight = 1;
@@ -49,15 +43,12 @@ namespace MyCompanyInThePocket.iOS.Views
                 _topSeparatorView.AtTopOf(View, vmargin),
                 _logoutButton.WithSameWidth(View),
                 _logoutButton.Below(_topSeparatorView),
-                _goToStartupButton.WithSameWidth(View),
-                _goToStartupButton.Below(_logoutButton),
                 _bottomSeparatorView.WithSameWidth(View),
                 _bottomSeparatorView.Height().EqualTo(separatorHeight),
-                _bottomSeparatorView.Below(_goToStartupButton));
+                _bottomSeparatorView.Below(_logoutButton));
 
 
             _logoutButton.SetCommand(ViewModel.LogOutCommand);
-            _goToStartupButton.SetCommand(ViewModel.ReviewIntroCommand);
 
             base.ViewDidLoad();
         }
