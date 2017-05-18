@@ -165,7 +165,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			catch (TokenExpiredException ex)
 			{
 				Debug.WriteLine(ex.Message);
-				//TODO : Proposer à l'utilisateur de se connecter
+                this.ShowViewModel<StartupViewModel>();
 			}
 			catch (System.Exception ex)
 			{
