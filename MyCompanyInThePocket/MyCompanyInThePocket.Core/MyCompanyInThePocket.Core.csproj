@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\Settings\GroupedSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingViewModel.cs" />
     <Compile Include="ViewModels\SplashScreen\SplashScreenViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ButtonSettingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

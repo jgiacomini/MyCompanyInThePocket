@@ -10,6 +10,8 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 	{
 		private readonly IAuthentificationService _authenService;
 
+        public SuspendableObservableCollection<GroupedSettingsViewModel> SettingsList { get; private set; }
+
 		public SettingsViewModel()
 		{
             _authenService = App.Instance.GetInstance<IAuthentificationService>();
@@ -20,22 +22,8 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 			}));
 			SettingsList.Add(new GroupedSettingsViewModel("Compte", new List<SettingViewModel>
 			{
-				new SettingViewModel("Déconnexion")
+				new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
 			}));
-
-
-			LogOutCommand = new RelayCommand(LogOutAction);
-		}
-
-		public SuspendableObservableCollection<GroupedSettingsViewModel> SettingsList { get; private set; }
-
-
-
-
-		public ICommand LogOutCommand
-		{
-			get;
-			private set;
 		}
 
 		void LogOutAction()
@@ -44,6 +32,5 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 			ApplicationSettings.Clear();
 			this.ShowViewModel<StartupViewModel>();
 		}
-
 	}
 }

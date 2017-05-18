@@ -31,7 +31,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
 			this.AddConstraints(SettingView.WithSameWidth(this));
         }
 
-        public void OnApplyBinding(SettingViewModel vm)
+        public virtual void OnApplyBinding(SettingViewModel vm)
         {
             SettingView.Label.Text = vm.Label;
         }
