@@ -1,5 +1,4 @@
-﻿using System;
-using UIKit;
+﻿using UIKit;
 using System.Linq;
 
 namespace MyCompanyInThePocket.iOS.Views
@@ -8,7 +7,7 @@ namespace MyCompanyInThePocket.iOS.Views
 	{
 		public static void RemoveNoHistoryPage(UINavigationController navigationController, UIViewController currentViewController)
 		{ 
-			var controllers = navigationController.ViewControllers.OfType<INoHistoryScreen>().ToList();
+			var controllers = navigationController.ViewControllers.OfType<INoHistoryViewController>().ToList();
 			foreach (var item in controllers)
 			{
 				if (item != currentViewController)

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MvvmCross.Core.ViewModels;
+using System.Windows.Input;
 using MyCompanyInThePocket.Core.Services;
+using GalaSoft.MvvmLight.Command;
 
 namespace MyCompanyInThePocket.Core.ViewModels.Settings
 {
@@ -9,9 +10,9 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 	{
 		private readonly IAuthentificationService _authenService;
 
-		public SettingsViewModel(IAuthentificationService authenService)
+		public SettingsViewModel()
 		{
-			_authenService = authenService;
+            _authenService = App.Instance.GetInstance<IAuthentificationService>();
 			SettingsList = new SuspendableObservableCollection<GroupedSettingsViewModel>();
 			SettingsList.Add(new GroupedSettingsViewModel("Notification", new List<SettingViewModel>
 			{
@@ -23,7 +24,7 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 			}));
 
 
-			LogOutCommand = new MvxCommand(LogOutAction);
+			LogOutCommand = new RelayCommand(LogOutAction);
 		}
 
 		public SuspendableObservableCollection<GroupedSettingsViewModel> SettingsList { get; private set; }
@@ -31,7 +32,7 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 
 
 
-		public MvxCommand LogOutCommand
+		public ICommand LogOutCommand
 		{
 			get;
 			private set;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 namespace MyCompanyInThePocket.Core.ViewModels
@@ -15,6 +16,14 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				base.OnCollectionChanged(e); 
 			}
 		}
+
+        public void AddRange(IEnumerable<T> range)
+        {
+            foreach (var item in range)
+            {
+                Add(item);
+            }
+        }
 
 		public void PauseNotifications()
 		{

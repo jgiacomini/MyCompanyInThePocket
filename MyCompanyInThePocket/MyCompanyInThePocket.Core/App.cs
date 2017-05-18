@@ -1,35 +1,78 @@
-using MvvmCross.Platform;
-using MvvmCross.Platform.IoC;
-using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Repositories.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
+using MyCompanyInThePocket.Core.Services;
+using MyCompanyInThePocket.Core.Helpers;
+using MyCompanyInThePocket.Core.Repositories.Database;
 
 namespace MyCompanyInThePocket.Core
 {
-    public class App : MvvmCross.Core.ViewModels.MvxApplication
+    public class App
     {
 		private bool _useMock = false;
 
-        public override void Initialize()
+        private static readonly App _instance = new App();
+
+        private App() { }
+
+        public static App Instance
         {
-            CreatableTypes()
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
+            get
+            {
+                return _instance;
+            }
+        }
+        
+        public void Initialize(
+            INavigationService navigationService,
+            ISqliteConnectionFactory sqliteConnectionFactory,
+            IAuthentificationPlatformFactory plaformFactory,
+            ICalendarIntegrationService calendarIntegrationService,
+            IMessageService messageService)
+        {
+            NavigationService = navigationService;
+            MessageService = messageService;
+            CalendarIntegrationService = calendarIntegrationService;
 
-			RegisterAppStart<ViewModels.SplashScreenViewModel>();
-
+            SimpleIoc.Default.Register<IAuthentificationService>(() => new AuthentificationService(plaformFactory));
             if (_useMock)
             {
-                Mvx.RegisterType<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.MeetingRepository());
-				Mvx.RegisterType<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
+                SimpleIoc.Default.Register<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.MeetingRepository());
+                SimpleIoc.Default.Register<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
             }
             else
             {
-                Mvx.RegisterType<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.OnlineMeetingRepository());
-				Mvx.RegisterType<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
+                var authentificationService = SimpleIoc.Default.GetInstanceWithoutCaching<IAuthentificationService>();
+                SimpleIoc.Default.Register<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.OnlineMeetingRepository(authentificationService));
+                SimpleIoc.Default.Register<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
 			}
-			Mvx.RegisterType<IDbMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.Database.DbMeetingRepository());
+
+
+            SimpleIoc.Default.Register<IDatabaseService>(() => new DatabaseService(sqliteConnectionFactory));
+
+            var databaseService = SimpleIoc.Default.GetInstanceWithoutCaching<IDatabaseService>();
+
+            
+            SimpleIoc.Default.Register<IDbMeetingRepository>(() => new DbMeetingRepository(sqliteConnectionFactory));
+
+            var onlineMeetingRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineMeetingRepository>();
+            var dbMeetingRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IDbMeetingRepository>();
+            var onlineUseFullLinkRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineUseFullLinkRepository>();
+
+			         
+            SimpleIoc.Default.Register<IMeetingService>(() => new MeetingsService(onlineMeetingRepository, dbMeetingRepository));
+            SimpleIoc.Default.Register<IUseFullLinkService>(() => new UseFullLinkService(onlineUseFullLinkRepository));
         }
+
+        public TService GetInstance<TService>()
+        {
+            return SimpleIoc.Default.GetInstanceWithoutCaching<TService>();
+        }
+
+
+        public INavigationService NavigationService { get; private set; }
+        public IMessageService MessageService { get; private set; }
+
+        public ICalendarIntegrationService CalendarIntegrationService { get; private set; }
 
     }
 }

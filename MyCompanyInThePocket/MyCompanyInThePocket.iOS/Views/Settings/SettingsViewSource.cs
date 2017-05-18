@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Foundation;
-using MvvmCross.Binding.iOS.Views;
 using MyCompanyInThePocket.Core.ViewModels;
 using MyCompanyInThePocket.Core.ViewModels.Settings;
 using MyCompanyInThePocket.iOS.Views.Settings.Cell;
@@ -9,25 +8,27 @@ using UIKit;
 
 namespace MyCompanyInThePocket.iOS.Views.Settings
 {
-	public class SettingsViewSource : MvxTableViewSource
+	public class SettingsViewSource : UITableViewSource
 	{
-		private SuspendableObservableCollection<GroupedSettingsViewModel> GetGroupedData()
-		{
-			var source = ItemsSource as SuspendableObservableCollection<GroupedSettingsViewModel>;
-
-			if (source == null)
-			{
-				return new SuspendableObservableCollection<GroupedSettingsViewModel>();
-			}
-
-			return source;
-		}
-
-		public SettingsViewSource(UITableView tableView)
-			: base(tableView)
+		public SettingsViewSource(UITableView tableView, SuspendableObservableCollection<GroupedSettingsViewModel> itemsSource)
 		{
 			tableView.RegisterClassForCellReuse(typeof(SettingCell), SettingCell.Key);
+			ItemsSource = itemsSource;
 		}
+
+        public SuspendableObservableCollection<GroupedSettingsViewModel> ItemsSource { get; private set; }
+
+        private SuspendableObservableCollection<GroupedSettingsViewModel> GetGroupedData()
+        {
+            var source = ItemsSource as SuspendableObservableCollection<GroupedSettingsViewModel>;
+
+            if (source == null)
+            {
+                return new SuspendableObservableCollection<GroupedSettingsViewModel>();
+            }
+
+            return source;
+        }
 
 		public override nint RowsInSection(UITableView tableview, nint section)
 		{
@@ -72,12 +73,21 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 			return new SettingCellHeaderView(groupedData[(int)section]);
 		}
 
-		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			return (UITableViewCell)TableView.DequeueReusableCell(SettingCell.Key, indexPath);
+            var cell = tableView.DequeueReusableCell(SettingCell.Key, indexPath) as SettingCell;
+
+			if (cell == null)
+			{
+				cell = new SettingCell();
+			}
+
+			var vm = GetItemAt(indexPath);
+			cell.OnApplyBinding(vm);
+			return cell;
 		}
 
-		protected override object GetItemAt(NSIndexPath indexPath)
+        protected SettingViewModel GetItemAt(NSIndexPath indexPath)
 		{
 			var groupedData = GetGroupedData();
 

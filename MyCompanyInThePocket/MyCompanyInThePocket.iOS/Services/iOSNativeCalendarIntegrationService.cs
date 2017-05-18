@@ -2,21 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
-using MyCompanyInThePocket.Core.Services.Interface;
 using MyCompanyInThePocket.Core.Models;
 using System.Threading.Tasks;
 using EventKit;
 using Plugin.Settings;
-using MvvmCross.Platform.iOS;
 using Nito.AsyncEx;
 using CoreGraphics;
-using MvvmCross.Platform;
 using System.Diagnostics;
 using MyCompanyInThePocket.Core.Services;
+using MyCompanyInThePocket.Core;
 
 namespace MyCompanyInThePocket.iOS.Services
 {
-    public class iOSNativeCalendarIntegrationService : INativeCalendarIntegrationService
+    public class iOSNativeCalendarIntegrationService : ICalendarIntegrationService
     {
         private EKEventStore _eventStore;
 
@@ -33,31 +31,44 @@ namespace MyCompanyInThePocket.iOS.Services
 
         private AsyncLock _PushMeetingsToCalendarAsyncLock = new AsyncLock();
 
-		public async Task AddReminder(string title, string notes, DateTime date)
-		{
-			try
-			{
+        public async Task AddReminder(string title, string notes, DateTime date)
+        {
+            try
+            {
 				var result = await _eventStore.RequestAccessAsync(EKEntityType.Reminder);
-				if (result.Item1)
-				{
-					EKReminder reminder = EKReminder.Create(_eventStore);
-					reminder.Title = title;
-					EKAlarm timeToRing = new EKAlarm();
-					timeToRing.AbsoluteDate = ConvertDateTimeToNSDate(date);
-        			reminder.AddAlarm(timeToRing);
-					reminder.Calendar = _eventStore.DefaultCalendarForNewReminders;
-					reminder.Notes = notes;
-					NSError error;
-					_eventStore.SaveReminder(reminder, true, out error);
+                if (result.Item1)
+                {
+					EKReminder reminder = null;
+					var predicat = _eventStore.PredicateForReminders(null);
 
-					Debug.WriteLine(error?.Description);
-				}
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex.Message);
-			}
-		}
+					var reminders = await _eventStore.FetchRemindersAsync(predicat);
+					reminder = reminders.Where((EKReminder arg) => !arg.Completed && arg.Title == title).FirstOrDefault();
+
+					if (reminder == null)
+					{
+						reminder = EKReminder.Create(_eventStore);
+					}
+
+                    reminder.Title = title;
+                    EKAlarm timeToRing = new EKAlarm();
+                    timeToRing.AbsoluteDate = ConvertDateTimeToNSDate(date);
+                    reminder.AddAlarm(timeToRing);
+                    reminder.Calendar = _eventStore.DefaultCalendarForNewReminders;
+                    reminder.Notes = notes;
+                    NSError error;
+                    _eventStore.SaveReminder(reminder, true, out error);
+
+					if (error != null)
+					{
+						Debug.WriteLine(error.Description);
+					}
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
 
         public async Task PushMeetingsToCalendarAsync(List<Meeting> meetings)
         {
@@ -69,7 +80,7 @@ namespace MyCompanyInThePocket.iOS.Services
                     {
                         return;
                     }
-
+                    
                     var calendar = _eventStore.GetCalendar(AcraCalendarIdentifier);
                     CGColor colorToUse = null;
                     if (calendar != null)
@@ -77,6 +88,13 @@ namespace MyCompanyInThePocket.iOS.Services
                         colorToUse = calendar.CGColor;
                         NSError errorToDelete; ;
                         _eventStore.RemoveCalendar(calendar, true, out errorToDelete);
+                    }
+
+                    var otherToDelete = _eventStore.GetCalendars(EKEntityType.Event).Where(c => c.Title.StartsWith("ACRA"));
+                    foreach (var item in otherToDelete)
+                    {
+                        NSError errorToDelete;
+                        _eventStore.RemoveCalendar(item, true, out errorToDelete);
                     }
 
                     // now recreate a calendar !
@@ -90,7 +108,7 @@ namespace MyCompanyInThePocket.iOS.Services
                     var sourceToSet = _eventStore.Sources
                         .FirstOrDefault(s =>
                        (s.SourceType == EKSourceType.CalDav && s.Title.Equals("iCloud", StringComparison.InvariantCultureIgnoreCase))
-                       || s.SourceType == EKSourceType.Local); ;
+                       || s.SourceType == EKSourceType.Local);
 
                     if (sourceToSet == null)
                     {
@@ -139,7 +157,7 @@ namespace MyCompanyInThePocket.iOS.Services
                             toSave.EndDate = ConvertDateTimeToNSDate(appointData.EndDate.AddDays(-1));
                         }
 
-						if (!appointData.IsHoliday)
+                        if (!appointData.IsHoliday)
                         {
                             if (appointData.Duration.TotalDays > 1 && !appointData.IsRecurrent)
                             {
@@ -152,6 +170,7 @@ namespace MyCompanyInThePocket.iOS.Services
                         }
                         else
                         {
+							//TODO : localisation
                             toSave.Title = "[FERIE] " + appointData.Title;
                         }
 
@@ -166,15 +185,14 @@ namespace MyCompanyInThePocket.iOS.Services
             }
             catch (Exception e)
             {
-				//TODO : localisation
-                Mvx.Resolve<IMessageService>().ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
+                App.Instance.MessageService.ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
 
         public NSDate ConvertDateTimeToNSDate(DateTime date)
         {
             date = DateTime.SpecifyKind(date, DateTimeKind.Utc);
-            return date.ToNSDate();
+            return (NSDate)date;
         }
 
         public async Task DeleteCalendarAsync()
@@ -183,7 +201,7 @@ namespace MyCompanyInThePocket.iOS.Services
             {
                 using (await _PushMeetingsToCalendarAsyncLock.LockAsync())
                 {
-                    // pas de r�sultat
+                    // pas de résultat
                     if (!(await _eventStore.RequestAccessAsync(EKEntityType.Event)).Item1)
                     {
                         return;
@@ -201,7 +219,7 @@ namespace MyCompanyInThePocket.iOS.Services
             }
             catch (Exception e)
             {
-                Mvx.Resolve<IMessageService>().ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
+                App.Instance.MessageService.ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
     }

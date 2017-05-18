@@ -1,33 +1,40 @@
 ﻿using System;
 using Cirrious.FluentLayouts.Touch;
 using Foundation;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.iOS.Views;
 using MyCompanyInThePocket.Core.ViewModels.Settings;
+using UIKit;
 
 namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
 {
-	public class SettingCell : MvxTableViewCell
+	public class SettingCell : UITableViewCell
 	{
 		public static readonly NSString Key = new NSString("SettingCell");
 
 		public SettingCell(IntPtr handle)
-		: base(handle)
+		    : base(handle)
+		{
+            Initialize();
+		}
+
+        public SettingCell()
+            : base(UITableViewCellStyle.Default, Key)
+        {
+            Initialize();
+        }
+
+        void Initialize()
 		{
 			SettingView = new SettingView();
 			AddSubview(SettingView);
-			this.DelayBind(OnCreateBinding);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			this.AddConstraints(SettingView.FullHeightOf(this, 2));
 			this.AddConstraints(SettingView.WithSameWidth(this));
-		}
+        }
 
-		void OnCreateBinding()
-		{
-			var bindingSet = this.CreateBindingSet<SettingCell, SettingViewModel>();
-			bindingSet.Bind(SettingView.Label).For(v => v.Text).To(m => m.Label);
-			bindingSet.Apply();
-		}
+        public void OnApplyBinding(SettingViewModel vm)
+        {
+            SettingView.Label.Text = vm.Label;
+        }
 
 		public SettingView SettingView { get; private set; }
 	}

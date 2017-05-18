@@ -1,5 +1,4 @@
-﻿using MvvmCross.Core.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
-    public abstract class BaseViewModel : MvxViewModel
+    public abstract class BaseViewModel : GalaSoft.MvvmLight.ViewModelBase
     {
         #region Fields
         private bool _isBusy;
@@ -18,9 +17,14 @@ namespace MyCompanyInThePocket.Core.ViewModels
             get { return _isBusy; }
             set
             {
-                SetProperty(ref _isBusy, value);
+                Set(ref _isBusy, value);
             }
-
         }
+
+        public void ShowViewModel<T>() where T : BaseViewModel
+        {
+            App.Instance.NavigationService.ShowViewMode<T>();
+        }
+
     }
 }

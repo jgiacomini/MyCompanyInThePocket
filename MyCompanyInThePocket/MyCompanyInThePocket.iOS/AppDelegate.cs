@@ -1,14 +1,14 @@
-﻿using System.Diagnostics.Contracts;
-using Foundation;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.iOS.Platform;
-using MvvmCross.Platform;
+﻿using Foundation;
+using MyCompanyInThePocket.Core;
+using MyCompanyInThePocket.Core.ViewModels;
+using MyCompanyInThePocket.iOS.Services;
+using MyCompanyInThePocket.iOS.Views;
 using UIKit;
 
 namespace MyCompanyInThePocket.iOS
 {
     [Register("AppDelegate")]
-    public partial class AppDelegate : MvxApplicationDelegate
+    public partial class AppDelegate : UIApplicationDelegate
     {
         public override UIWindow Window
         {
@@ -18,15 +18,28 @@ namespace MyCompanyInThePocket.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-			Window = new UIWindow(UIScreen.MainScreen.Bounds);
+            // On précise que la fenêtre prend toute la place de l’écran
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            var setup = new Setup(this, Window);
-            setup.Initialize();
+            App.Instance.Initialize(
+                new iOSNavigationService(),
+                new IOSSqliteConnectionFactory(),
+                new IOSAuthentificationPlatformFactory(),
+                new iOSNativeCalendarIntegrationService(),
+                new iOSMessageService()
+                );
 
-            var startup = Mvx.Resolve<IMvxAppStart>();
-            startup.Start();
 
-			var navigationController = ((UINavigationController)Window.RootViewController);
+            // Initialisation du contrôleur de vue par défaut 
+            var viewController = new SplashScreenViewController();
+
+            // Initialisation du contrôleur de navigation
+            var navigationController = new UINavigationController(viewController);
+
+            Window.RootViewController = navigationController;
+
+            // Affiche la fenêtre principale
+            Window.MakeKeyAndVisible();
 			navigationController.SetNavigationBarHidden(true, false);
 			navigationController.NavigationBar.TintColor = UIColor.White;
 			navigationController.NavigationBar.BarTintColor = ApplicationColors.MainColor;

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using MvvmCross.Platform;
-using MyCompanyInThePocket.Core.Services.Interface;
-using System.Threading;
-using MvvmCross.Core.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
+﻿using GalaSoft.MvvmLight.Command;
 using MyCompanyInThePocket.Core.Models;
-using System.Diagnostics;
 using MyCompanyInThePocket.Core.Services;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MyCompanyInThePocket.Core.ViewModels
 {
@@ -17,18 +16,19 @@ namespace MyCompanyInThePocket.Core.ViewModels
         #region Fields
         private readonly IMeetingService _meetingService;
         private DateTime _lastUpdate;
+        private string _lastUpdateStr;
 		private CancellationTokenSource _pageTokenSource;
         #endregion
 
-        public MeetingsViewModel(IMeetingService meetingService)
+        public MeetingsViewModel()
         {
             Meetings = new SuspendableObservableCollection<GroupedMeetingViewModel>();
-            _meetingService = meetingService;
-            RefreshCommand = new MvxCommand(ForceRefresh);
-            _lastUpdate = _meetingService.GetLastUpdateTime();
+            _meetingService = App.Instance.GetInstance<IMeetingService>();
+            RefreshCommand = new RelayCommand(ForceRefresh);
+            UpdateLastUpdateText(_meetingService.GetLastUpdateTime());
         }
 
-        public MvxCommand RefreshCommand
+        public ICommand RefreshCommand
         {
             get;
             private set;
@@ -64,13 +64,23 @@ namespace MyCompanyInThePocket.Core.ViewModels
         {
             get
             {
-                if (_lastUpdate == DateTime.MinValue)
-                {
-                    return string.Empty;
-                }
-                // TODO : localisation
-                return $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
+                return _lastUpdateStr;
             }
+            set
+            {
+                Set(ref _lastUpdateStr, value);
+            }
+        }
+
+        void UpdateLastUpdateText(DateTime lastUpdate)
+        {
+            _lastUpdate = lastUpdate;
+			if (_lastUpdate == DateTime.MinValue)
+			{
+                LastUpdate = string.Empty;
+			}
+			// TODO : localisation
+            LastUpdate =  $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
         }
 
         private async Task RefreshMeetings(bool forceRefresh, CancellationToken token)
@@ -81,7 +91,8 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				Meetings.PauseNotifications();
 				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, token);
 
-				var nativeCalendarIntegrationService = Mvx.Resolve<INativeCalendarIntegrationService>();
+                var nativeCalendarIntegrationService = App.Instance.CalendarIntegrationService;
+
 				if (nativeCalendarIntegrationService != null)
 				{
 					if (ApplicationSettings.IsIntegrationToNativeCalendarEnabled)
@@ -96,9 +107,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 				Meetings.Clear();
 
-
-
-				var flatMeetings = new List<MeetingViewModel>();
+                				var flatMeetings = new List<MeetingViewModel>();
 				foreach (var meeting in meetings)
 				{
 					var currentDate = meeting.StartDate;
@@ -108,7 +117,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 						currentDate = currentDate.AddDays(1);
 					}
 				}
-
 
 				var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
 												  ToDictionary(m => m.Key, m => m.ToList());
@@ -147,24 +155,22 @@ namespace MyCompanyInThePocket.Core.ViewModels
 
 				await AddACRAReminderAsync(nativeCalendarIntegrationService);
 
-				_lastUpdate = _meetingService.GetLastUpdateTime();
-
-				RaisePropertyChanged(nameof(Meetings));
-				RaisePropertyChanged(nameof(LastUpdate));
+				var lastUpdate = _meetingService.GetLastUpdateTime();
+				UpdateLastUpdateText(lastUpdate);
 			}
 			catch (TaskCanceledException ex)
 			{
+				Debug.WriteLine(ex.Message);
 			}
 			catch (TokenExpiredException ex)
 			{
 				Debug.WriteLine(ex.Message);
-				//TODO : Proposer à l'utilisateur de se connecter
+                this.ShowViewModel<StartupViewModel>();
 			}
 			catch (System.Exception ex)
 			{
 				Debug.WriteLine(ex.Message);
-				await Mvx.Resolve<IMessageService>()
-					 .ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
+                App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
 			}
             finally
             {
@@ -174,7 +180,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
             }
         }
 
-		private async Task AddACRAReminderAsync(INativeCalendarIntegrationService nativeCalendarIntegrationService)
+		private async Task AddACRAReminderAsync(ICalendarIntegrationService nativeCalendarIntegrationService)
 		{
 
 			// On ne fait rien de plus car le service n'est pas instancié
@@ -182,7 +188,6 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			{
 				return;
 			}
-
 
 			if (ApplicationSettings.IsIntegrationToNativeReminderEnabled)
 			{
@@ -218,7 +223,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 					await nativeCalendarIntegrationService.
 													AddReminder("ACRA - ENVOYER LA PROD",
 																"Envoi la PROD, c'est mieux pour tout le monde",
-																dateToRemind.Value);
+					                                            dateToRemind.Value.ToUniversalTime());
 				}
 				else
 				{

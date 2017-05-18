@@ -1,11 +1,10 @@
 ﻿using MyCompanyInThePocket.Core.Models;
 using MyCompanyInThePocket.Core.Repositories.Interfaces;
-using MyCompanyInThePocket.Core.Services.Interface;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Services
 {

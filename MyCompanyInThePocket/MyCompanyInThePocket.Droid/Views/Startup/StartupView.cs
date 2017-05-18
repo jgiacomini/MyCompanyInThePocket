@@ -8,18 +8,21 @@ using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
-using MvvmCross.Droid.Support.V7.AppCompat;
 using MyCompanyInThePocket.Core.ViewModels;
 
 namespace MyCompanyInThePocket.Droid.Views.Startup
 {
     [Activity(Label = "View for StartupViewModel", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class StartupView : MvxAppCompatActivity<StartupViewModel>
+    public class StartupView : Android.Support.V7.App.AppCompatActivity
     {
         private LinearLayout _startup_CircleIndicatorParent;
 
+        public StartupViewModel ViewModel { get; set; }
+
+
         protected override void OnCreate(Bundle bundle)
         {
+            ViewModel = new StartupViewModel();
             base.OnCreate(bundle);
             RequestWindowFeature(WindowFeatures.NoTitle);
 

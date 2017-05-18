@@ -1,6 +1,6 @@
 using Android.App;
 using Android.Content.PM;
-using MvvmCross.Droid.Views;
+using Android.OS;
 
 namespace MyCompanyInThePocket.Droid
 {
@@ -10,11 +10,12 @@ namespace MyCompanyInThePocket.Droid
         , Theme = "@style/Theme.Splash"
         , NoHistory = true
         , ScreenOrientation = ScreenOrientation.Portrait)]
-    public class SplashScreen : MvxSplashScreenActivity
+    public class SplashScreen : Activity
     {
-        public SplashScreen()
-            : base(Resource.Layout.SplashScreen)
+        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
+            SetContentView(Resource.Layout.SplashScreen);
+            base.OnCreate(savedInstanceState, persistentState);
         }
     }
 }
