@@ -13,6 +13,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 		public SettingsViewSource(UITableView tableView, SuspendableObservableCollection<GroupedSettingsViewModel> itemsSource)
 		{
 			tableView.RegisterClassForCellReuse(typeof(SettingCell), SettingCell.Key);
+            tableView.RegisterClassForCellReuse(typeof(ButtonSettingCell), ButtonSettingCell.Key);
 			ItemsSource = itemsSource;
 		}
 
@@ -75,14 +76,27 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-            var cell = tableView.DequeueReusableCell(SettingCell.Key, indexPath) as SettingCell;
+			var vm = GetItemAt(indexPath);
 
-			if (cell == null)
+            SettingCell cell;
+
+			if (vm.GetType() == typeof(ButtonSettingViewModel))
 			{
-				cell = new SettingCell();
+				cell = tableView.DequeueReusableCell(ButtonSettingCell.Key, indexPath) as ButtonSettingCell;
+				if (cell == null)
+				{
+					cell = new ButtonSettingCell();
+				}
+			}
+			else
+			{
+	            cell = tableView.DequeueReusableCell(SettingCell.Key, indexPath) as SettingCell;
+	            if (cell == null)
+				{
+					cell = new SettingCell();
+	            }
 			}
 
-			var vm = GetItemAt(indexPath);
 			cell.OnApplyBinding(vm);
 			return cell;
 		}

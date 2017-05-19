@@ -16,7 +16,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 			// On désactive les barres de séparation native.
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			TableView.RowHeight = 50;
-			TableView.AllowsSelection = false;
+            TableView.AllowsSelection = false;
 			TableView.ScrollEnabled = false;
 			this.EdgesForExtendedLayout = UIRectEdge.None;
 		}

@@ -8,7 +8,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
 {
 	public class SettingCell : UITableViewCell
 	{
-		public static readonly NSString Key = new NSString("SettingCell");
+        public static readonly NSString Key = new NSString("SettingCell");
 
 		public SettingCell(IntPtr handle)
 		    : base(handle)
@@ -22,7 +22,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
             Initialize();
         }
 
-        void Initialize()
+        protected virtual void Initialize()
 		{
 			SettingView = new SettingView();
 			AddSubview(SettingView);

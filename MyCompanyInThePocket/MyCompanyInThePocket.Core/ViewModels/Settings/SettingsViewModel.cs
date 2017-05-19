@@ -22,11 +22,11 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 			}));
 			SettingsList.Add(new GroupedSettingsViewModel("Compte", new List<SettingViewModel>
 			{
-				new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
+                new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
 			}));
 		}
 
-		void LogOutAction()
+		private void LogOutAction()
 		{
 			_authenService.Disconnect();
 			ApplicationSettings.Clear();

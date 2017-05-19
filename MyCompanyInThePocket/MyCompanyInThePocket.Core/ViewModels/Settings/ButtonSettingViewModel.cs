@@ -5,12 +5,12 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 {
     public class ButtonSettingViewModel : SettingViewModel
     {
-        public ButtonSettingViewModel(string label, ICommand command)
+        public ButtonSettingViewModel(string label, ICommand tapCommand)
             : base(label)
         {
-            Command = command;
+            TapCommand = tapCommand;
 		}
 
-        public ICommand Command { get; private set; }
+        public ICommand TapCommand { get; private set; }
 	}
 }
