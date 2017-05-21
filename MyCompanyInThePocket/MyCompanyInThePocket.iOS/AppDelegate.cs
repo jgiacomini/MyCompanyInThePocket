@@ -16,7 +16,8 @@ namespace MyCompanyInThePocket.iOS
             get;
             set;
         }
-                public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+       
+        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // On précise que la fenêtre prend toute la place de l’écran
             Window = new UIWindow(UIScreen.MainScreen.Bounds);

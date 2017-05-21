@@ -1,17 +1,21 @@
 ﻿using MyCompanyInThePocket.Core.ViewModels;
 using UIKit;
 using System.ComponentModel;
-namespace MyCompanyInThePocket.iOS.Views.BaseViewController
+namespace MyCompanyInThePocket.iOS.Views
 {
     public class BaseTableViewController<TViewModel> : UITableViewController
         where TViewModel : BaseViewModel, new()
     {
         private TViewModel _viewModel;
 
-        public BaseTableViewController()
+        public BaseTableViewController(bool isMainController)
         {
             View.BackgroundColor = UIColor.White;
             ViewDidLoad();
+			if (isMainController)
+			{
+				CurrentViewController.Current = this;
+			}
         }
 
 		public TViewModel ViewModel

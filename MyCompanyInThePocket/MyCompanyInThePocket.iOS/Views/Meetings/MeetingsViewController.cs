@@ -1,19 +1,16 @@
 ﻿using MyCompanyInThePocket.Core.ViewModels;
 using UIKit;
-using MyCompanyInThePocket.iOS.Views.BaseViewController;
-
 namespace MyCompanyInThePocket.iOS.Views
 {
 	public class MeetingsViewController : BaseTableViewController<MeetingsViewModel>
 	{
-		public MeetingsViewController()
+        public MeetingsViewController() : base(false)
 		{
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			TableView.RowHeight = 50;
-			TableView.AllowsSelection = false;
-			
+			TableView.AllowsSelection = false;	
 			this.EdgesForExtendedLayout = UIRectEdge.None;
 		}
 
@@ -41,9 +38,7 @@ namespace MyCompanyInThePocket.iOS.Views
             //TableView.TableHeaderView = ToastView;
 			var refreshControl = new BindableUIRefreshControl();
 			RefreshControl = refreshControl;
-
 			var source = new MeetingsViewSource(TableView, ViewModel.Meetings);
-
 			TableView.Source = source;
             refreshControl.RefreshCommand = ViewModel.RefreshCommand;
             refreshControl.Message = ViewModel.LastUpdate;
