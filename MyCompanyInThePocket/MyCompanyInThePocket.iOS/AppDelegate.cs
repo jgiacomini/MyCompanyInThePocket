@@ -1,6 +1,7 @@
-﻿using Foundation;
+﻿using System;
+using System.Diagnostics;
+using Foundation;
 using MyCompanyInThePocket.Core;
-using MyCompanyInThePocket.Core.ViewModels;
 using MyCompanyInThePocket.iOS.Services;
 using MyCompanyInThePocket.iOS.Views;
 using UIKit;
@@ -15,8 +16,7 @@ namespace MyCompanyInThePocket.iOS
             get;
             set;
         }
-
-        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+                public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // On précise que la fenêtre prend toute la place de l’écran
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
@@ -26,8 +26,8 @@ namespace MyCompanyInThePocket.iOS
                 new IOSSqliteConnectionFactory(),
                 new IOSAuthentificationPlatformFactory(),
                 new iOSNativeCalendarIntegrationService(),
-                new iOSMessageService()
-                );
+                new iOSMessageService(),
+                new iOSBackgroundTaskService());
 
 
             // Initialisation du contrôleur de vue par défaut 
@@ -46,6 +46,35 @@ namespace MyCompanyInThePocket.iOS
 			navigationController.NavigationBar.BarStyle = UIBarStyle.Black;
             Window.MakeKeyAndVisible();
             return true;
+        }
+
+        public async override void PerformFetch(UIApplication application, System.Action<UIBackgroundFetchResult> completionHandler)
+        {
+			// Do Background Fetch
+			var downloadSuccessful = false;
+			try
+			{
+                var service = App.Instance.BackgroundTaskService;
+
+                if (service != null)
+                {
+                    await service.RunInBackgroundAsync();
+                    downloadSuccessful = true;
+                }
+			}
+			catch (Exception ex)
+			{
+                Debug.WriteLine(ex.Message); 
+			}
+
+			if (downloadSuccessful)
+			{
+				completionHandler(UIBackgroundFetchResult.NewData);
+			}
+			else
+			{
+				completionHandler(UIBackgroundFetchResult.Failed);
+			}
         }
 
         public override void OnResignActivation(UIApplication application)

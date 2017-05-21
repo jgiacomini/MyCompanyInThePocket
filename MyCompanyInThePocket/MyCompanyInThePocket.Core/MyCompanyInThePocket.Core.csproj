@@ -83,7 +83,6 @@
     <Compile Include="Services\Interface\INavigationService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\OnlineSettings.cs" />
     <Compile Include="ViewModels\Meeting\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\Meeting\MeetingViewModel.cs" />
@@ -106,6 +105,8 @@
     <Compile Include="Services\Exception\TokenExpiredException.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SplashScreen\SplashScreenViewModel.cs" />
+    <Compile Include="Services\Interface\IBackgroundTaskService.cs" />
+    <Compile Include="Services\ApplicationSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

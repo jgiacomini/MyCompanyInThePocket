@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyCompanyInThePocket.Core.Services
 {
-    public class UseFullLinkService : IUseFullLinkService
+    internal class UseFullLinkService : IUseFullLinkService
     {
         private readonly IOnlineUseFullLinkRepository _onlineUseFullLinkRepository;
 

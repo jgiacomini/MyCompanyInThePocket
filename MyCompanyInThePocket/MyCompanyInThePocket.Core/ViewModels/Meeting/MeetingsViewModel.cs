@@ -91,70 +91,8 @@ namespace MyCompanyInThePocket.Core.ViewModels
 				Meetings.PauseNotifications();
 				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, token);
 
-                var nativeCalendarIntegrationService = App.Instance.CalendarIntegrationService;
-
-				if (nativeCalendarIntegrationService != null)
-				{
-					if (ApplicationSettings.IsIntegrationToNativeCalendarEnabled)
-					{
-						await nativeCalendarIntegrationService.PushMeetingsToCalendarAsync(meetings);
-					}
-					else
-					{
-						await nativeCalendarIntegrationService.DeleteCalendarAsync();
-					}
-				}
-
 				Meetings.Clear();
-
-                				var flatMeetings = new List<MeetingViewModel>();
-				foreach (var meeting in meetings)
-				{
-					var currentDate = meeting.StartDate;
-					while (currentDate < meeting.EndDate)
-					{
-						flatMeetings.Add(new MeetingViewModel(meeting, currentDate));
-						currentDate = currentDate.AddDays(1);
-					}
-				}
-
-				var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
-												  ToDictionary(m => m.Key, m => m.ToList());
-
-				var finalDate = DateTime.Now.Date.AddMonths(4);
-				var currentGroupedDate = DateTime.Now.Date;
-				while (currentGroupedDate <= finalDate)
-				{
-					if (groupedMeetings.ContainsKey(currentGroupedDate))
-					{
-						var currentGroup = groupedMeetings[currentGroupedDate];
-						Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, currentGroup.ToList()));
-					}
-					else
-					{
-						if (currentGroupedDate.DayOfWeek != DayOfWeek.Sunday &&
-							currentGroupedDate.DayOfWeek != DayOfWeek.Saturday)
-						{
-							var noMeeting = new Meeting();
-							noMeeting.AllDayEvent = true;
-							noMeeting.EndDate = currentGroupedDate;
-							noMeeting.StartDate = currentGroupedDate;
-							// TODO : localisation
-							noMeeting.Title = "Aucun événement";
-							noMeeting.Type = MeetingType.Unknown;
-
-							var noMeetings = new List<MeetingViewModel>();
-							noMeetings.Add(new MeetingViewModel(noMeeting, currentGroupedDate));
-
-							Meetings.Add(new GroupedMeetingViewModel(currentGroupedDate, noMeetings));
-						}
-					}
-
-					currentGroupedDate = currentGroupedDate.AddDays(1);
-				}
-
-				await AddACRAReminderAsync(nativeCalendarIntegrationService);
-
+                Meetings.AddRange(meetings);
 				var lastUpdate = _meetingService.GetLastUpdateTime();
 				UpdateLastUpdateText(lastUpdate);
 			}
@@ -170,7 +108,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			catch (System.Exception ex)
 			{
 				Debug.WriteLine(ex.Message);
-                App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
+                await App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
 			}
             finally
             {
@@ -180,60 +118,5 @@ namespace MyCompanyInThePocket.Core.ViewModels
             }
         }
 
-		private async Task AddACRAReminderAsync(ICalendarIntegrationService nativeCalendarIntegrationService)
-		{
-
-			// On ne fait rien de plus car le service n'est pas instancié
-			if (nativeCalendarIntegrationService == null)
-			{
-				return;
-			}
-
-			if (ApplicationSettings.IsIntegrationToNativeReminderEnabled)
-			{
-
-				var groupedOrderedMeetings = Meetings.
-													 Where(gm => gm.Date.Month == DateTime.Today.Month).
-													 OrderByDescending(gm => gm.Date).
-													 ToList();
-
-				DateTime? dateToRemind = null;
-
-				foreach (var meetingsByDay in groupedOrderedMeetings)
-				{
-					var day = meetingsByDay.Date.DayOfWeek;
-					if (day == DayOfWeek.Sunday || day == DayOfWeek.Saturday)
-						continue;
-
-					if (!meetingsByDay.Any(m =>
-									   m.MeetingSource.IsHoliday ||
-									   m.MeetingSource.Type == MeetingType.CP_RTT))
-					{
-						dateToRemind = meetingsByDay.Date.
-													Date.
-													AddHours(12).
-													AddMinutes(30);
-						break;
-					}
-				}
-
-
-				if (dateToRemind.HasValue)
-				{
-					await nativeCalendarIntegrationService.
-													AddReminder("ACRA - ENVOYER LA PROD",
-																"Envoi la PROD, c'est mieux pour tout le monde",
-					                                            dateToRemind.Value.ToUniversalTime());
-				}
-				else
-				{
-					//TODO : delete reminder
-				}
-			} 
-			else
-			{
-				//TODO : delete reminder
-			}
-		}
     }
 }

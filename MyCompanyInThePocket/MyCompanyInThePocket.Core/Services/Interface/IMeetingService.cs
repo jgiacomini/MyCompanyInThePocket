@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using MyCompanyInThePocket.Core.ViewModels;
 
 namespace MyCompanyInThePocket.Core.Services
 {
     public interface IMeetingService
     {
-        Task<List<Meeting>> GetMeetingsAsync(bool forceRefresh, CancellationToken cancellationToken);
+        Task<List<GroupedMeetingViewModel>> GetMeetingsAsync(bool forceRefresh, CancellationToken cancellationToken);
 
 		DateTime GetLastUpdateTime();
     }

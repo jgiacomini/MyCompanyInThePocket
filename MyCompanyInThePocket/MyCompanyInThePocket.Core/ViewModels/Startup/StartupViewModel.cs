@@ -25,6 +25,12 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			{
                 IsBusy = true;
 				await _authenService.AuthenticateAsync();
+
+                if (ApplicationSettings.IsBackgroundUpdateEnabled)
+                {
+                    App.Instance.BackgroundTaskService.Register(ApplicationSettings.DelayBetweenTwoBackgroundUpdate);
+                }
+
 				ApplicationSettings.LaunchStartupScreen = false;
 				ShowViewModel<MainViewModel>();
 			}

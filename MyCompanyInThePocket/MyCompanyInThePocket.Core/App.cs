@@ -27,11 +27,13 @@ namespace MyCompanyInThePocket.Core
             ISqliteConnectionFactory sqliteConnectionFactory,
             IAuthentificationPlatformFactory plaformFactory,
             ICalendarIntegrationService calendarIntegrationService,
-            IMessageService messageService)
+            IMessageService messageService,
+            IBackgroundTaskService backgroundTaskService)
         {
             NavigationService = navigationService;
             MessageService = messageService;
             CalendarIntegrationService = calendarIntegrationService;
+            BackgroundTaskService = backgroundTaskService;
 
             SimpleIoc.Default.Register<IAuthentificationService>(() => new AuthentificationService(plaformFactory));
             if (_useMock)
@@ -68,11 +70,10 @@ namespace MyCompanyInThePocket.Core
             return SimpleIoc.Default.GetInstanceWithoutCaching<TService>();
         }
 
-
         public INavigationService NavigationService { get; private set; }
         public IMessageService MessageService { get; private set; }
-
         public ICalendarIntegrationService CalendarIntegrationService { get; private set; }
+		public IBackgroundTaskService BackgroundTaskService { get; private set; }
 
     }
 }
