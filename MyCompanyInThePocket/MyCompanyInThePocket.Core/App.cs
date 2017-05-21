@@ -21,6 +21,12 @@ namespace MyCompanyInThePocket.Core
                 return _instance;
             }
         }
+
+        public bool IsInitialized
+        {
+            get;
+            private set;
+        }
         
         public void Initialize(
             INavigationService navigationService,
@@ -63,6 +69,7 @@ namespace MyCompanyInThePocket.Core
 			         
             SimpleIoc.Default.Register<IMeetingService>(() => new MeetingsService(onlineMeetingRepository, dbMeetingRepository));
             SimpleIoc.Default.Register<IUseFullLinkService>(() => new UseFullLinkService(onlineUseFullLinkRepository));
+            IsInitialized = true;
         }
 
         public TService GetInstance<TService>()

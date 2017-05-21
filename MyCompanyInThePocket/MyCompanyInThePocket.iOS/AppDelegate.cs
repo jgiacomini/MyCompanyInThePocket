@@ -21,14 +21,7 @@ namespace MyCompanyInThePocket.iOS
             // On précise que la fenêtre prend toute la place de l’écran
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            App.Instance.Initialize(
-                new iOSNavigationService(),
-                new IOSSqliteConnectionFactory(),
-                new IOSAuthentificationPlatformFactory(),
-                new iOSNativeCalendarIntegrationService(),
-                new iOSMessageService(),
-                new iOSBackgroundTaskService());
-
+            InitializeIoC();
 
             // Initialisation du contrôleur de vue par défaut 
             var viewController = new SplashScreenViewController();
@@ -48,19 +41,31 @@ namespace MyCompanyInThePocket.iOS
             return true;
         }
 
+        private void InitializeIoC()
+        {
+            if (!App.Instance.IsInitialized)
+            {
+                App.Instance.Initialize(
+                    new iOSNavigationService(),
+                    new IOSSqliteConnectionFactory(),
+                    new IOSAuthentificationPlatformFactory(),
+                    new iOSNativeCalendarIntegrationService(),
+                    new iOSMessageService(),
+                    new iOSBackgroundTaskService());
+            }
+        }
+
         public async override void PerformFetch(UIApplication application, System.Action<UIBackgroundFetchResult> completionHandler)
         {
 			// Do Background Fetch
 			var downloadSuccessful = false;
 			try
 			{
-                var service = App.Instance.BackgroundTaskService;
 
-                if (service != null)
-                {
-                    await service.RunInBackgroundAsync();
-                    downloadSuccessful = true;
-                }
+				InitializeIoC();
+                var service = App.Instance.BackgroundTaskService;
+                await service.RunInBackgroundAsync();
+                downloadSuccessful = true;
 			}
 			catch (Exception ex)
 			{
