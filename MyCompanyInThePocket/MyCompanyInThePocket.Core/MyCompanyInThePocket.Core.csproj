@@ -104,9 +104,13 @@
     <Compile Include="Services\AuthentificationService.cs" />
     <Compile Include="Services\Exception\TokenExpiredException.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\GroupedSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingViewModel.cs" />
     <Compile Include="ViewModels\SplashScreen\SplashScreenViewModel.cs" />
     <Compile Include="Services\Interface\IBackgroundTaskService.cs" />
     <Compile Include="Services\ApplicationSettings.cs" />
+    <Compile Include="ViewModels\Settings\ButtonSettingViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ToggleSettingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

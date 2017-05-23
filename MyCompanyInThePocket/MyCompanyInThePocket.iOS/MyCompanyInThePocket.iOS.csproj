@@ -140,10 +140,16 @@
     <Compile Include="Views\ApplicationStyle.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UseFullLinkCell.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UsefullLinkView.cs" />
+    <Compile Include="Views\Settings\SettingsViewSource.cs" />
+    <Compile Include="Views\Settings\Cell\SettingCell.cs" />
+    <Compile Include="Views\Settings\Cell\SettingCellHeaderView.cs" />
+    <Compile Include="Views\Settings\Cell\SettingView.cs" />
     <Compile Include="Views\ToastView.cs" />
     <Compile Include="Views\BindableUIRefreshControl.cs" />
     <Compile Include="Services\iOSBackgroundTaskService.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Views\Settings\Cell\ButtonSettingCell.cs" />
+    <Compile Include="Views\Settings\Cell\ToggleSettingCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
@@ -346,6 +352,9 @@
     <ImageAsset Include="Resources\Media.xcassets\LoginImage4.imageset\LoginImage4.jpg">
       <InProject>false</InProject>
     </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Settings\Cell\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
