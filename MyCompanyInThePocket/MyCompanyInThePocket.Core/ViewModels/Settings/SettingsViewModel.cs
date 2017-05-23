@@ -18,11 +18,12 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
             _authenService = App.Instance.GetInstance<IAuthentificationService>();
             _backgroundTaskService = App.Instance.BackgroundTaskService;
 			
+            //TODO : localisation
 			SettingsList = new SuspendableObservableCollection<GroupedSettingsViewModel>();
             SettingsList.Add(new GroupedSettingsViewModel("ACRA", new List<SettingViewModel>
             {
                 new ToggleSettingViewModel("Intégration dans le calendrier", new RelayCommand<bool>(ToggleIntegrationCalendar), true),
-                new ToggleSettingViewModel("Intégration rappels", new RelayCommand<bool>(ToggleIsIntegrationReminder), true),
+                new ToggleSettingViewModel("Intégration dans les rappels", new RelayCommand<bool>(ToggleIsIntegrationReminder), true),
                 new ToggleSettingViewModel("Mise à jour en arrière-plan", new RelayCommand<bool>(ToggleBackgroundUpdate), true),
 			}));
 
