@@ -18,7 +18,7 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 			SettingsList = new SuspendableObservableCollection<GroupedSettingsViewModel>();
 			SettingsList.Add(new GroupedSettingsViewModel("Notification", new List<SettingViewModel>
 			{
-				new SettingViewModel("Notifications")
+                new ToggleSettingViewModel("Notifications", new RelayCommand<bool>(ToggleNotifications), true)
 			}));
 			SettingsList.Add(new GroupedSettingsViewModel("Compte", new List<SettingViewModel>
 			{
@@ -32,5 +32,10 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 			ApplicationSettings.Clear();
 			this.ShowViewModel<StartupViewModel>();
 		}
+
+        private void ToggleNotifications(bool isOn)
+        {
+            var butt = isOn;
+        }
 	}
 }

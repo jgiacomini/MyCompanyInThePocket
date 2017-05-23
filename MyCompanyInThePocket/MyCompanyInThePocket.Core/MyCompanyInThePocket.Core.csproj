@@ -109,6 +109,7 @@
     <Compile Include="ViewModels\Settings\SettingViewModel.cs" />
     <Compile Include="ViewModels\SplashScreen\SplashScreenViewModel.cs" />
     <Compile Include="ViewModels\Settings\ButtonSettingViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ToggleSettingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

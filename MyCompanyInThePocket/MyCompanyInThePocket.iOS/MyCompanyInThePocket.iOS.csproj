@@ -146,6 +146,7 @@
     <Compile Include="Views\ToastView.cs" />
     <Compile Include="Views\BindableUIRefreshControl.cs" />
     <Compile Include="Views\Settings\Cell\ButtonSettingCell.cs" />
+    <Compile Include="Views\Settings\Cell\ToggleSettingCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
