@@ -87,13 +87,6 @@ namespace MyCompanyInThePocket.iOS.Views
 			return group[indexPath.Row];
 		}
 
-		public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
-		{
-			// On désactive la couleur blanche de fond de cellule
-			cell.BackgroundColor = UIColor.Clear;
-			cell.BackgroundView = null;
-		}
-
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = tableView.DequeueReusableCell(MeetingCell.Key, indexPath) as MeetingCell;

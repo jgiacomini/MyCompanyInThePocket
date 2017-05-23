@@ -44,7 +44,5 @@ namespace MyCompanyInThePocket.iOS
 			get;
 			private set;
 		}
-
-
 	}
 }
