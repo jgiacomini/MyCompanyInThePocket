@@ -16,7 +16,7 @@ namespace MyCompanyInThePocket.iOS
 			Title = new UILabel();
 			Title.TextColor = ApplicationColors.ForegroundHeaderCellColor;
 			Title.Font = UIFont.FromName(ApplicationStyle.ContentFontName, ApplicationStyle.TitleCellFontSize);
-			Title.LineBreakMode = UILineBreakMode.TailTruncation;
+            Title.LineBreakMode = UILineBreakMode.TailTruncation;
 
 			DurationFormated = new UILabel();
 			DurationFormated.Font = UIFont.FromName(ApplicationStyle.ContentFontName, ApplicationStyle.TitleCellContentFontSize);
@@ -49,9 +49,11 @@ namespace MyCompanyInThePocket.iOS
 				LeftRectangleView.AtLeftOf(this, hmargin),
 				Title.AtTopOf(this, vmargin),
 				Title.ToRightOf(LeftRectangleView, hmargin),
-				DurationFormated.AtBottomOf(this, vmargin),
+                Title.WithSameWidth(this).Minus(2* hmargin + 4),
+                DurationFormated.AtBottomOf(this, vmargin),
 				DurationFormated.ToRightOf(LeftRectangleView, hmargin),
-				Type.AtBottomOf(this, vmargin),
+                DurationFormated.AtRightOf(Type,vmargin),
+                Type.AtBottomOf(this, vmargin),
 				Type.AtRightOf(this, hmargin),
 				Type.Width().EqualTo(60));
 		}
