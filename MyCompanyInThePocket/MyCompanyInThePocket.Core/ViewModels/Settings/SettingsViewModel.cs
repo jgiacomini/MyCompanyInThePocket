@@ -1,27 +1,36 @@
-﻿using MyCompanyInThePocket.Core.Services;
-using GalaSoft.MvvmLight.Command;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
+using MyCompanyInThePocket.Core.Services;
+using GalaSoft.MvvmLight.Command;
 
-namespace MyCompanyInThePocket.Core.ViewModels
+namespace MyCompanyInThePocket.Core.ViewModels.Settings
 {
 	public class SettingsViewModel : BaseViewModel
 	{
 		private readonly IAuthentificationService _authenService;
         private readonly IBackgroundTaskService _backgroundTaskService;
 
+        public SuspendableObservableCollection<GroupedSettingsViewModel> SettingsList { get; private set; }
+
 		public SettingsViewModel()
 		{
             _authenService = App.Instance.GetInstance<IAuthentificationService>();
             _backgroundTaskService = App.Instance.BackgroundTaskService;
-			LogOutCommand = new RelayCommand(LogOutAction);
+			
+			SettingsList = new SuspendableObservableCollection<GroupedSettingsViewModel>();
+            SettingsList.Add(new GroupedSettingsViewModel("ACRA", new List<SettingViewModel>
+            {
+                new ToggleSettingViewModel("Intégration dans le calendrier", new RelayCommand<bool>(ToggleIntegrationCalendar), true),
+                new ToggleSettingViewModel("Intégration rappels", new RelayCommand<bool>(ToggleIsIntegrationReminder), true),
+                new ToggleSettingViewModel("Mise à jour en arrière-plan", new RelayCommand<bool>(ToggleBackgroundUpdate), true),
+			}));
+
+			SettingsList.Add(new GroupedSettingsViewModel("Compte", new List<SettingViewModel>
+			{
+                new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
+			}));
         }
-
-		public ICommand LogOutCommand
-		{
-			get;
-			private set;
-		}
-
 
         public bool IsIntegrationToCalendarEnabled
         {
@@ -103,12 +112,27 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 		}
 
-		void LogOutAction()
+		private void LogOutAction()
 		{
             _backgroundTaskService.UnRegister();
 			_authenService.Disconnect();
 			ApplicationSettings.Clear();
 			this.ShowViewModel<StartupViewModel>();
+		}
+
+		private void ToggleBackgroundUpdate(bool isOn)
+		{
+			IsBackgroundUpdateEnabled = isOn;
+		}
+
+        private void ToggleIntegrationCalendar(bool isOn)
+        {
+            IsIntegrationToCalendarEnabled = isOn;
+        }
+
+		private void ToggleIsIntegrationReminder(bool isOn)
+		{
+            IsIntegrationToReminderEnabled = isOn;
 		}
 	}
 }

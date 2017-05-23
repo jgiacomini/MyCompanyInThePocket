@@ -99,14 +99,18 @@
     <Compile Include="ViewModels\SuspendableObservableCollection.cs" />
     <Compile Include="ViewModels\Meeting\GroupedMeetingViewModel.cs" />
     <Compile Include="ViewModels\Startup\StartupViewModel.cs" />
-    <Compile Include="ViewModels\Main\MainViewModel.cs" />
     <Compile Include="Services\Interface\IAuthentificationService.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
     <Compile Include="Services\Exception\TokenExpiredException.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\GroupedSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingViewModel.cs" />
     <Compile Include="ViewModels\SplashScreen\SplashScreenViewModel.cs" />
     <Compile Include="Services\Interface\IBackgroundTaskService.cs" />
     <Compile Include="Services\ApplicationSettings.cs" />
+    <Compile Include="ViewModels\Settings\ButtonSettingViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ToggleSettingViewModel.cs" />
+    <Compile Include="ViewModels\Main\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -173,6 +177,9 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Main\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

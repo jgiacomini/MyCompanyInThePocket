@@ -3,6 +3,7 @@ using MyCompanyInThePocket.Core.Resources;
 using MyCompanyInThePocket.Core.ViewModels;
 using System;
 using UIKit;
+using MyCompanyInThePocket.iOS.Views.Settings;
 
 namespace MyCompanyInThePocket.iOS.Views
 {

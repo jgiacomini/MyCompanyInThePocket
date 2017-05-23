@@ -1,16 +1,16 @@
 ﻿using System;
+using MvvmCross.Binding.BindingContext;
 using Cirrious.FluentLayouts.Touch;
 using UIKit;
 using MyCompanyInThePocket.Core.Resources;
-using GalaSoft.MvvmLight.Helpers;
+using MvvmCross.iOS.Views;
 using MyCompanyInThePocket.Core.ViewModels.Settings;
 
 namespace MyCompanyInThePocket.iOS.Views.Settings
 {
-	public class SettingsViewController : BaseTableViewController<SettingsViewModel>
+	public class SettingsScreen : MvxTableViewController<SettingsViewModel>
 	{
-		public SettingsViewController()
-            :base(false)
+		public SettingsScreen()
 		{
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.
@@ -25,8 +25,12 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 		{
 			base.ViewDidLoad();
 
-			var source = new SettingsViewSource(TableView, ViewModel.SettingsList);
+			var source = new SettingsViewSource(TableView);
 			TableView.Source = source;
+
+			var set = this.CreateBindingSet<SettingsScreen, SettingsViewModel>();
+			set.Bind(source).To(vm => vm.SettingsList);
+			set.Apply();
 
 			// Load data
 			TableView.ReloadData();

@@ -140,13 +140,16 @@
     <Compile Include="Views\ApplicationStyle.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UseFullLinkCell.cs" />
     <Compile Include="Views\UsefullLinks\Cell\UsefullLinkView.cs" />
+    <Compile Include="Views\Settings\Cell\SettingCell.cs" />
+    <Compile Include="Views\Settings\Cell\SettingCellHeaderView.cs" />
+    <Compile Include="Views\Settings\Cell\SettingView.cs" />
     <Compile Include="Views\ToastView.cs" />
     <Compile Include="Views\BindableUIRefreshControl.cs" />
     <Compile Include="Services\iOSBackgroundTaskService.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Views\Settings\Cell\SettingsCell.cs" />
     <Compile Include="Views\Settings\SetingsViewSource.cs" />
-    <Compile Include="Views\Settings\Cell\ButtonSettingsCell.cs" />
+    <Compile Include="Views\Settings\Cell\ToggleSettingCell.cs" />
+    <Compile Include="Views\Settings\Cell\ButtonSettingCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
