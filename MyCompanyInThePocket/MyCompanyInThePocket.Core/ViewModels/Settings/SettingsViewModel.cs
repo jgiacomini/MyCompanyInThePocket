@@ -27,9 +27,12 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
                 new ToggleSettingViewModel("Mise à jour en arrière-plan", new RelayCommand<bool>(ToggleBackgroundUpdate), true),
 			}));
 
-			SettingsList.Add(new GroupedSettingsViewModel("Compte", new List<SettingViewModel>
-			{
+            SettingsList.Add(new GroupedSettingsViewModel("Compte", new List<SettingViewModel>
+            {
                 new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
+                {
+                    ColorStyle = Resources.ColorStyle.Danger
+                }
 			}));
         }
 

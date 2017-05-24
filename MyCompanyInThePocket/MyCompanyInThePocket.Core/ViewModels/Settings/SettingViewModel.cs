@@ -1,4 +1,6 @@
 ﻿using System;
+using MyCompanyInThePocket.Core.Resources;
+
 namespace MyCompanyInThePocket.Core.ViewModels.Settings
 {
 	public class SettingViewModel
@@ -9,5 +11,7 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 		}
 
 		public string Label { get; private set; }
+
+        public ColorStyle ColorStyle { get; set; }
 	}
 }

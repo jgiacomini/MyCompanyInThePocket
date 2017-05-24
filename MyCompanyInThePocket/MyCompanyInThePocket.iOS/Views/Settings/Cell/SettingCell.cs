@@ -34,6 +34,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
         public virtual void OnApplyBinding(SettingViewModel vm)
         {
             SettingView.Label.Text = vm.Label;
+            SettingView.Label.TextColor = vm.ColorStyle.ToTextColor();
         }
 
 		public SettingView SettingView { get; private set; }
