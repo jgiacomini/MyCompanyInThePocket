@@ -1,4 +1,5 @@
-﻿using MyCompanyInThePocket.Core.ViewModels;
+﻿using System;
+using MyCompanyInThePocket.Core.ViewModels;
 using UIKit;
 namespace MyCompanyInThePocket.iOS.Views
 {
@@ -68,10 +69,12 @@ namespace MyCompanyInThePocket.iOS.Views
         public override async void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
-			await ViewModel.InitializeAsync();
+
+            await ViewModel.InitializeAsync();
+			TableView.ReloadData();
+			
 			//ToastView.Show();
 
-			TableView.ReloadData();
 		}
 
 		public override void ViewWillDisappear(bool animated)

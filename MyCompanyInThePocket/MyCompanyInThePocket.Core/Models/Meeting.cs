@@ -26,6 +26,12 @@ namespace MyCompanyInThePocket.Core.Models
 		public bool IsHoliday { get; set; }
         [Ignore]
         public TimeSpan Duration => EndDate - StartDate;
+
+
+        public override string ToString()
+        {
+            return string.Format("[Meeting: Id={0}, StartDate={1}, EndDate={2}, Title={3}, Type={4}, AllDayEvent={5}, IsRecurrent={6}, IsHoliday={7}, Duration={8}]", Id, StartDate, EndDate, Title, Type, AllDayEvent, IsRecurrent, IsHoliday, Duration);
+        } 
     }
 
 

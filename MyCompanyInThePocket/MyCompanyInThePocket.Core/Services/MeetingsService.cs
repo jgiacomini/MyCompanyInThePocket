@@ -73,9 +73,10 @@ namespace MyCompanyInThePocket.Core.Services
 				}
             }
 
-			var meetingsDB = await _dbMeetingReposittory.GetMeetingsSuperiorOfDateAsync(DateTime.Now.Date, cancellationToken);
+            var today = DateTime.Today;
+			var meetingsDB = await _dbMeetingReposittory.GetMeetingsSuperiorOfDateAsync(today, cancellationToken);
 
-            var groupedMeetings = ToGroupedMeetings(meetingsDB);
+            var groupedMeetings = ToGroupedMeetings(meetingsDB, today.AddMonths(3));
 			var nativeCalendarIntegrationService = App.Instance.CalendarIntegrationService;
 
 			if (nativeCalendarIntegrationService != null)
@@ -96,7 +97,7 @@ namespace MyCompanyInThePocket.Core.Services
 		}
 
 
-        private List<GroupedMeetingViewModel> ToGroupedMeetings(List<Meeting> meetings)
+        private List<GroupedMeetingViewModel> ToGroupedMeetings(List<Meeting> meetings, DateTime maxDate)
         {
             var groupedMeetingsResult = new List<GroupedMeetingViewModel>();
             var flatMeetings = new List<MeetingViewModel>();
@@ -105,17 +106,21 @@ namespace MyCompanyInThePocket.Core.Services
                 var currentDate = meeting.StartDate;
                 while (currentDate < meeting.EndDate)
                 {
+                    if(currentDate >= maxDate)
+                    {
+                        break;
+                    }
                     flatMeetings.Add(new MeetingViewModel(meeting, currentDate));
                     currentDate = currentDate.AddDays(1);
                 }
             }
 
             var groupedMeetings = flatMeetings.GroupBy(m => m.Date).
-                                  ToDictionary(m => m.Key, m => m.ToList());
+                                              ToDictionary(m => m.Key, m => m.ToList());
 
-            var finalDate = DateTime.Now.Date.AddMonths(4);
+
             var currentGroupedDate = DateTime.Now.Date;
-            while (currentGroupedDate <= finalDate)
+            while (currentGroupedDate <= maxDate)
             {
                 if (groupedMeetings.ContainsKey(currentGroupedDate))
                 {
@@ -144,6 +149,22 @@ namespace MyCompanyInThePocket.Core.Services
 
                 currentGroupedDate = currentGroupedDate.AddDays(1);
             }
+
+
+            foreach (var item in groupedMeetingsResult)
+            {
+
+                foreach (var meeting in item)
+                {
+                    Debug.WriteLine($"{meeting.Title} {meeting.Date} {meeting.DurationFormated}");
+                }
+
+
+				Debug.WriteLine($"Nb meeting in group = {item.Count()}");
+
+			}
+
+            Debug.WriteLine($"Nb groupedMeetings = {groupedMeetingsResult.Count()}");
 
             return groupedMeetingsResult;
         }

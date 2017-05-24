@@ -49,7 +49,7 @@ namespace MyCompanyInThePocket.iOS
 				LeftRectangleView.AtLeftOf(this, hmargin),
 				Title.AtTopOf(this, vmargin),
 				Title.ToRightOf(LeftRectangleView, hmargin),
-                Title.WithSameWidth(this).Minus(2* hmargin + 4),
+                Title.WithSameWidth(this).Minus(3 * hmargin + 4),
                 DurationFormated.AtBottomOf(this, vmargin),
 				DurationFormated.ToRightOf(LeftRectangleView, hmargin),
                 DurationFormated.AtRightOf(Type,vmargin),
