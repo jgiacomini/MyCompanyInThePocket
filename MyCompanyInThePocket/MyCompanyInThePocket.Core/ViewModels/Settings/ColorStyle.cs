@@ -1,5 +1,5 @@
-﻿using System;
-namespace MyCompanyInThePocket.Core.Resources
+﻿﻿using System;
+namespace MyCompanyInThePocket.Core.ViewModels.Settings
 {
     public enum ColorStyle
     {

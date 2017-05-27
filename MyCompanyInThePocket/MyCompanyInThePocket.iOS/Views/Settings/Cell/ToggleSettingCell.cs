@@ -27,6 +27,8 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
 			base.Initialize();
 
             ToggleButton = new UISwitch();
+            ToggleButton.TintColor = ApplicationColors.MainColor;
+            ToggleButton.OnTintColor = ApplicationColors.MainColor;
             AddSubview(ToggleButton);
             this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
             this.AddConstraints(ToggleButton.AtRightOf(this, 15));

@@ -1,6 +1,6 @@
 ﻿using System;
 using UIKit;
-using MyCompanyInThePocket.Core.Resources;
+using MyCompanyInThePocket.Core.ViewModels.Settings;
 
 namespace MyCompanyInThePocket.iOS.Views
 {
@@ -8,6 +8,7 @@ namespace MyCompanyInThePocket.iOS.Views
     {
         public static UIColor ToTextColor(this ColorStyle colorStyle)
         {
+            //TODO : put the colors on ApplicationColors class
             switch(colorStyle)
 			{
 				case ColorStyle.Default:

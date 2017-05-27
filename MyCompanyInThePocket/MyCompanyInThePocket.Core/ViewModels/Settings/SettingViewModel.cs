@@ -13,5 +13,7 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 		public string Label { get; private set; }
 
         public ColorStyle ColorStyle { get; set; }
+
+
 	}
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Collections.Generic;
 using MyCompanyInThePocket.Core.Services;
 using GalaSoft.MvvmLight.Command;
 
@@ -31,7 +29,7 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
             {
                 new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
                 {
-                    ColorStyle = Resources.ColorStyle.Danger
+                    ColorStyle = ColorStyle.Danger
                 }
 			}));
         }

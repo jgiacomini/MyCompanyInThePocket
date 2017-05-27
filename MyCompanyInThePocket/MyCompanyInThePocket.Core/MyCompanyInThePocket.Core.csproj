@@ -110,8 +110,8 @@
     <Compile Include="ViewModels\Settings\ButtonSettingViewModel.cs" />
     <Compile Include="ViewModels\Settings\ToggleSettingViewModel.cs" />
     <Compile Include="ViewModels\Main\MainViewModel.cs" />
-    <Compile Include="Resources\ColorStyle.cs" />
     <Compile Include="Services\Interface\IAlertService.cs" />
+    <Compile Include="ViewModels\Settings\ColorStyle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

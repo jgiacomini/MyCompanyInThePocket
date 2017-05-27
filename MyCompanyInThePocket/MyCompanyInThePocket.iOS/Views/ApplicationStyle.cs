@@ -15,6 +15,8 @@ namespace MyCompanyInThePocket.iOS
 		public static nfloat TitleCellContentFontSize = 12;
 		public static nfloat TitleSectionCellFontSize = 12;
 		public static nfloat TitleCellSubContentFontSize = 8;
+		public static nfloat SettingButtonFontSize = 15;
+
 
 		public static string ContentFontName = "Raleway-Regular";
 		public static string ContentItalicFontName = "Raleway-Italic";
