@@ -33,11 +33,11 @@ namespace MyCompanyInThePocket.Core
             ISqliteConnectionFactory sqliteConnectionFactory,
             IAuthentificationPlatformFactory plaformFactory,
             ICalendarIntegrationService calendarIntegrationService,
-            IMessageService messageService,
+            IAlertService alertService,
             IBackgroundTaskService backgroundTaskService)
         {
             NavigationService = navigationService;
-            MessageService = messageService;
+            AlertService = alertService;
             CalendarIntegrationService = calendarIntegrationService;
             BackgroundTaskService = backgroundTaskService;
 
@@ -78,7 +78,7 @@ namespace MyCompanyInThePocket.Core
         }
 
         public INavigationService NavigationService { get; private set; }
-        public IMessageService MessageService { get; private set; }
+        public IAlertService AlertService { get; private set; }
         public ICalendarIntegrationService CalendarIntegrationService { get; private set; }
 		public IBackgroundTaskService BackgroundTaskService { get; private set; }
 

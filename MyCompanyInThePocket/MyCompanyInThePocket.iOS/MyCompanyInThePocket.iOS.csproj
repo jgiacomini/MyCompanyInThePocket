@@ -121,7 +121,6 @@
     <Compile Include="Views\ScreenHelper.cs" />
     <Compile Include="Views\BaseViewController\BaseViewController.cs" />
     <Compile Include="Views\BaseViewController\BaseTabBarViewController.cs" />
-    <Compile Include="Services\iOSMessageService.cs" />
     <Compile Include="Views\Meetings\MeetingsViewController.cs" />
     <Compile Include="Views\BaseViewController\INoHistoryViewController.cs" />
     <Compile Include="Views\StartupScreen\StartupPageFeatureViewController.cs" />
@@ -151,6 +150,7 @@
     <Compile Include="Views\Settings\Cell\ToggleSettingCell.cs" />
     <Compile Include="Views\Settings\Cell\ButtonSettingCell.cs" />
     <Compile Include="Views\ColorStyleExtension.cs" />
+    <Compile Include="Services\iOSAlertService*.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">

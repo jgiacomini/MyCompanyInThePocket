@@ -185,7 +185,8 @@ namespace MyCompanyInThePocket.iOS.Services
             }
             catch (Exception e)
             {
-                App.Instance.MessageService.ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
+				//TODO : localisation
+                await App.Instance.AlertService.ShowExceptionMessageAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
 
@@ -219,7 +220,7 @@ namespace MyCompanyInThePocket.iOS.Services
             }
             catch (Exception e)
             {
-                App.Instance.MessageService.ShowErrorToastAsync(e, "Impossible de renseigner votre calendrier iOS");
+                await App.Instance.AlertService.ShowExceptionMessageAsync(e, "Impossible de renseigner votre calendrier iOS");
             }
         }
     }

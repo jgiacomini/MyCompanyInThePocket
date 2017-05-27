@@ -78,7 +78,6 @@
     <Compile Include="Services\DatabaseService.cs" />
     <Compile Include="Services\Interface\IDatabaseService.cs" />
     <Compile Include="Services\Interface\IMeetingService.cs" />
-    <Compile Include="Services\Interface\IMessageService.cs" />
     <Compile Include="Services\Interface\ICalendarIntegrationService.cs" />
     <Compile Include="Services\Interface\INavigationService.cs" />
     <Compile Include="Services\MeetingsService.cs" />
@@ -112,6 +111,7 @@
     <Compile Include="ViewModels\Settings\ToggleSettingViewModel.cs" />
     <Compile Include="ViewModels\Main\MainViewModel.cs" />
     <Compile Include="Resources\ColorStyle.cs" />
+    <Compile Include="Services\Interface\IAlertService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

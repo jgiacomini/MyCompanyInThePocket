@@ -35,7 +35,7 @@ namespace MyCompanyInThePocket.Core
 			}
 			catch (Exception ex)
 			{
-                App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur lors de la récupération des liens utiles.");
+                App.Instance.AlertService.ShowExceptionMessageAsync(ex, "Erreur lors de la récupération des liens utiles.");
 				// TODO : log something
 			}
 			finally

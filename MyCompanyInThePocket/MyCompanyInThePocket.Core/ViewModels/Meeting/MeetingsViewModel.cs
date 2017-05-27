@@ -108,7 +108,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			catch (System.Exception ex)
 			{
 				Debug.WriteLine(ex.Message);
-                await App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur lors de la récupération des rendez-vous.");
+                await App.Instance.AlertService.ShowExceptionMessageAsync(ex, "Erreur lors de la récupération des rendez-vous.");
 			}
             finally
             {

@@ -26,8 +26,8 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
                 new ToggleSettingViewModel("Intégration dans les rappels", new RelayCommand<bool>(ToggleIsIntegrationReminder), true),
                 new ToggleSettingViewModel("Mise à jour en arrière-plan", new RelayCommand<bool>(ToggleBackgroundUpdate), true),
 			}));
-
-            SettingsList.Add(new GroupedSettingsViewModel(OnlineSettings.Identity, new List<SettingViewModel>
+			//TODO : localisation
+			SettingsList.Add(new GroupedSettingsViewModel(OnlineSettings.Identity, new List<SettingViewModel>
             {
                 new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
                 {
@@ -116,12 +116,18 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 			}
 		}
 
-		private void LogOutAction()
+        private async void LogOutAction()
 		{
-            _backgroundTaskService.UnRegister();
-			_authenService.Disconnect();
-			ApplicationSettings.Clear();
-			this.ShowViewModel<StartupViewModel>();
+			//TODO : localisation
+			var result = await App.Instance.AlertService.ShowDestructiveAlertAsync(null, "Souhaitez-vous vraiment vous déconnecter ?", "Déconnexion", "Annuler");
+
+            if (result)
+            {
+                _backgroundTaskService.UnRegister();
+                _authenService.Disconnect();
+                ApplicationSettings.Clear();
+                this.ShowViewModel<StartupViewModel>();
+            }
 		}
 
 		private void ToggleBackgroundUpdate(bool isOn)

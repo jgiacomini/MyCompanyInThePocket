@@ -51,7 +51,7 @@ namespace MyCompanyInThePocket.iOS
                     new IOSSqliteConnectionFactory(),
                     new IOSAuthentificationPlatformFactory(),
                     new iOSNativeCalendarIntegrationService(),
-                    new iOSMessageService(),
+                    new iOSAlertService(),
                     new iOSBackgroundTaskService());
             }
         }

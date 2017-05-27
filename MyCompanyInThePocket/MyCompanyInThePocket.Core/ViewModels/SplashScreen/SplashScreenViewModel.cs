@@ -41,7 +41,7 @@ namespace MyCompanyInThePocket.Core.ViewModels
             {
 				HasError = true;
                 ErrorMessage = "Erreur durant l'initialisation de l'application";
-                App.Instance.MessageService.ShowErrorToastAsync(ex, "Erreur durant l'initialisation de l'application");
+                await App.Instance.AlertService.ShowExceptionMessageAsync(ex, "Erreur durant l'initialisation de l'application");
                 // TODO : log something
             }
             finally
