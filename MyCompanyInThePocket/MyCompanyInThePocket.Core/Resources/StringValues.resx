@@ -148,7 +148,7 @@ sont ici...</value>
     <value>ACRA</value>
   </data>
   <data name="Main_Settings_Title_Text" xml:space="preserve">
-    <value>Préférences</value>
+    <value>Paramètres</value>
   </data>
   <data name="Main_Settings_Logout" xml:space="preserve">
     <value>Se déconnecter</value>
