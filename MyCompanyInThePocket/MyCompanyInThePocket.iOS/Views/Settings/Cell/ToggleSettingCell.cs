@@ -45,7 +45,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
 			base.OnApplyBinding(vm);
 
 			_toggleCommand = ((ToggleSettingViewModel)vm).ToggleCommand;
-
+         
 			ToggleButton.ValueChanged += OnToggled;
             ToggleButton.On = ((ToggleSettingViewModel)vm).IsOn;
 		}

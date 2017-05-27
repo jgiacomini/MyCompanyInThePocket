@@ -10,9 +10,8 @@ namespace MyCompanyInThePocket.iOS
 		public static UIColor ToastBackgroundColor = UIColor.Clear.FromHex(0x333333);
 		public static UIColor ToastForegroundColor = UIColor.White;
 
-
-
 		public static UIColor ForegroundHeaderCellColor = UIColor.Black;
+        public static UIColor ForegroundSettingCellColor = UIColor.Black;
 		public static UIColor ForegroundContentCellColor = UIColor.Clear.FromHex(0x5B5B5B);
 		public static UIColor CellHeaderBackgroundColor = UIColor.Clear.FromHex(0xF8F8F8);
 		public static UIColor CellHeaderForegroundColor = UIColor.Clear.FromHex(0x8B8B8D);

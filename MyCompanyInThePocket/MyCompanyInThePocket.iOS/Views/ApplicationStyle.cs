@@ -6,10 +6,9 @@ namespace MyCompanyInThePocket.iOS
 {
 	public static class ApplicationStyle
 	{
-		public static string TitleFontName = "RobotoSlab-Regular";
-		public static string TitleLightFontName = "RobotoSlab-Light";
-		public static string TitleBoldFontName = "RobotoSlab-Bold";
-		public static string TitleThinFontName = "RobotoSlab-Thin";
+		public static string TitleFontName = "Helvetica";
+		public static string TitleLightFontName = "Helvetica-Light";
+		public static string TitleBoldFontName = "Helvetica-Bold";
 
 		public static nfloat TitleCellFontSize = 16;
 		public static nfloat TitleCellContentFontSize = 12;

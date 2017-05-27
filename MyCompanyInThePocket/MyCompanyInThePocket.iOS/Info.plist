@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>MyCompanyInThePocket.iOS</string>
+	<string>IS in the pocket</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.MyCompanyInThePocket.iOS</string>
 	<key>CFBundleShortVersionString</key>
@@ -57,10 +57,10 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
 	<key>NSRemindersUsageDescription</key>
-	<string>Ajouter/Enlever les événements ACRA dans votre calendrier</string>
+	<string>Ajouter/Enlever les événements ACRA dans votre calendrier.</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>fetch</string>
+		<string>L&apos;application synchronise ses données régulièrement.</string>
 	</array>
 </dict>
 </plist>

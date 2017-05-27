@@ -27,12 +27,13 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
 			SettingView = new SettingView();
 			AddSubview(SettingView);
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
-			this.AddConstraints(SettingView.FullHeightOf(this, 2));
+			this.AddConstraints(SettingView.FullHeightOf(this));
 			this.AddConstraints(SettingView.WithSameWidth(this));
         }
 
         public virtual void OnApplyBinding(SettingViewModel vm)
         {
+			SettingView.HorizontalAlignment = vm.HorizontalAlignment;
             SettingView.Label.Text = vm.Label;
             SettingView.Label.TextColor = vm.ColorStyle.ToTextColor();
         }

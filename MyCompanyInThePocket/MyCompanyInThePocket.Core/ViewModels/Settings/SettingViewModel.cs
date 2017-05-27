@@ -14,6 +14,7 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
 
         public ColorStyle ColorStyle { get; set; }
 
+        public SettingsHorizontalAlignment HorizontalAlignment { get; set; }
 
 	}
 }

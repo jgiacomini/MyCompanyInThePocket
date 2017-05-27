@@ -12,7 +12,7 @@ namespace MyCompanyInThePocket.iOS.Views
             switch(colorStyle)
 			{
 				case ColorStyle.Default:
-					return UIColor.Clear.FromHex(0x5B5B5B);
+                    return ApplicationColors.ForegroundSettingCellColor;
                 case ColorStyle.Primary:
                     return ApplicationColors.MainColor;
                 case ColorStyle.Success:
@@ -22,7 +22,7 @@ namespace MyCompanyInThePocket.iOS.Views
 				case ColorStyle.Warning:
 					return UIColor.Clear.FromHex(0x8A6D3B);
                 case ColorStyle.Danger:
-					return UIColor.Clear.FromHex(0xA94442);
+                    return UIColor.Red;
                 default:
                     throw new NotImplementedException($"Unable to find the color corresponding to {colorStyle}");
             }

@@ -15,7 +15,7 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 			View.BackgroundColor = ApplicationColors.BackgroundColor;
 			// On désactive les barres de séparation native.
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-			TableView.RowHeight = 50;
+			TableView.RowHeight = 40;
 			TableView.AllowsSelection = false;
 			TableView.ScrollEnabled = false;
 			this.EdgesForExtendedLayout = UIRectEdge.None;

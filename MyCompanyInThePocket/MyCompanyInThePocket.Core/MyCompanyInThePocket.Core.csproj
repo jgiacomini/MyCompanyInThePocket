@@ -112,6 +112,7 @@
     <Compile Include="ViewModels\Main\MainViewModel.cs" />
     <Compile Include="Services\Interface\IAlertService.cs" />
     <Compile Include="ViewModels\Settings\ColorStyle.cs" />
+    <Compile Include="ViewModels\Settings\SettingsHorizontalAlignment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

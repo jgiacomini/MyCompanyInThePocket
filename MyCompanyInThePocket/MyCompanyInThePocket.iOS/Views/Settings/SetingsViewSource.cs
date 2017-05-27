@@ -61,12 +61,12 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 
 		public override nfloat EstimatedHeightForHeader(UITableView tableView, nint section)
 		{
-			return 50;
+			return 45;
 		}
 
 		public override nfloat GetHeightForHeader(UITableView tableView, nint section)
 		{
-			return 50;
+			return 45;
 		}
 
 		public override UIView GetViewForHeader(UITableView tableView, nint section)
@@ -77,7 +77,11 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			var vm = GetItemAt(indexPath);
+
+            bool isFirstCell;
+			bool isLastCell;
+
+            var vm = GetItemAt(indexPath, out isFirstCell, out isLastCell);
 
 			SettingCell cell;
 
@@ -106,21 +110,44 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 				}
 			}
 
+            cell.SettingView.HaveFullTopSeparator = isFirstCell;
+            cell.SettingView.HaveFullBottomSeparator = isLastCell;
 			cell.OnApplyBinding(vm);
+			cell.SettingView.CreateConstraints();
 			return cell;
 		}
 
-		protected SettingViewModel GetItemAt(NSIndexPath indexPath)
+		protected SettingViewModel GetItemAt(NSIndexPath indexPath, out bool isFirstCell, out bool isLastCell)
 		{
 			var groupedData = GetGroupedData();
 
 			if (!groupedData.Any())
 			{
+                isFirstCell = true;
+                isLastCell = true;
 				return null;
 			}
 
-			var group = groupedData[indexPath.Section];
-			return group[indexPath.Row];
+			var groupData = groupedData[indexPath.Section];
+            if (indexPath.Row == 0)
+            {
+                isFirstCell = true;
+            }
+            else
+            {
+                isFirstCell = false;
+            }
+
+            if (indexPath.Row == groupData.Count -1)
+            {
+                isLastCell = true;
+            }
+			else
+			{
+				isLastCell = false;
+			}
+			
+            return groupData[indexPath.Row];
 		}
 
 		public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)

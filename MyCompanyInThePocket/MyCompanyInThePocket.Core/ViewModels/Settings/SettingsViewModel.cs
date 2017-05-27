@@ -29,7 +29,8 @@ namespace MyCompanyInThePocket.Core.ViewModels.Settings
             {
                 new ButtonSettingViewModel("Déconnexion", new RelayCommand(LogOutAction))
                 {
-                    ColorStyle = ColorStyle.Danger
+                    ColorStyle = ColorStyle.Danger,
+                    HorizontalAlignment = SettingsHorizontalAlignment.Center
                 }
 			}));
         }
