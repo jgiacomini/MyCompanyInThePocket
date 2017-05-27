@@ -17,15 +17,16 @@ namespace MyCompanyInThePocket.iOS.Views.Settings.Cell
 			Label.TextColor = ApplicationColors.CellHeaderForegroundColor;
 			Label.Font = UIFont.FromName(ApplicationStyle.TitleBoldFontName, ApplicationStyle.TitleSectionCellFontSize);
 			nfloat hmargin = 15;
+			nfloat vmargin = 5;
+
 
 			this.AddSubviews(Label);
 
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 			this.AddConstraints(
-				Label.WithSameWidth(this).Minus(hmargin),
-				Label.WithSameHeight(this),
-				Label.WithSameCenterX(this),
-				Label.WithSameCenterY(this)
+				Label.WithSameWidth(this).Minus(hmargin * 2),
+                Label.AtLeftOf(this, hmargin),
+                Label.AtBottomOf(this, vmargin)
 			);
 		}
 

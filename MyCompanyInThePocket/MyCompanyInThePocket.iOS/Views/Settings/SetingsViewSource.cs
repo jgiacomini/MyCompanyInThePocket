@@ -61,12 +61,12 @@ namespace MyCompanyInThePocket.iOS.Views.Settings
 
 		public override nfloat EstimatedHeightForHeader(UITableView tableView, nint section)
 		{
-			return 20;
+			return 50;
 		}
 
 		public override nfloat GetHeightForHeader(UITableView tableView, nint section)
 		{
-			return 20;
+			return 50;
 		}
 
 		public override UIView GetViewForHeader(UITableView tableView, nint section)
