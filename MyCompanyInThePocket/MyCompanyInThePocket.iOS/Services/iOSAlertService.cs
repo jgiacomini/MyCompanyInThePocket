@@ -7,15 +7,11 @@ namespace MyCompanyInThePocket.iOS.Services
 {
     public class iOSAlertService : IAlertService
     {
-        public async Task<bool> ShowInformationAsync(string title, string message, string okMessage)
+        public async Task ShowInformationAsync(string title, string message, string okMessage)
         {
-            bool result = false;
-
             var alertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            alertController.AddAction(UIAlertAction.Create(okMessage, UIAlertActionStyle.Default, (obj) => result = true));
+            alertController.AddAction(UIAlertAction.Create(okMessage, UIAlertActionStyle.Default, null));
             await CurrentViewController.Current.PresentViewControllerAsync(alertController, true);
-
-            return result;
         }
 
 
@@ -33,28 +29,28 @@ namespace MyCompanyInThePocket.iOS.Services
 		}
 
 
-        public async Task<bool> ShowAlertAsync(string title, string message, string okMessage, string cancelMessage)
+        public Task<bool> ShowAlertAsync(string title, string message, string okMessage, string cancelMessage)
         {
-            bool result = false;
+			TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
-            var alertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            alertController.AddAction(UIAlertAction.Create(okMessage, UIAlertActionStyle.Default, (obj) => result = true));
-            alertController.AddAction(UIAlertAction.Create(cancelMessage, UIAlertActionStyle.Cancel, (obj) => result = false));
-            await CurrentViewController.Current.PresentViewControllerAsync(alertController, true);
+			var alertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            alertController.AddAction(UIAlertAction.Create(okMessage, UIAlertActionStyle.Default, (obj) => tcs.SetResult(true)));
+            alertController.AddAction(UIAlertAction.Create(cancelMessage, UIAlertActionStyle.Cancel, (obj) => tcs.SetResult(false)));
+            CurrentViewController.Current.PresentViewController(alertController, true, null);
 
-            return result;
+			return tcs.Task;
         }
 
-        public async Task<bool> ShowDestructiveAlertAsync(string title, string message, string destructiveMessage, string cancelMessage)
+        public Task<bool> ShowDestructiveAlertAsync(string title, string message, string destructiveMessage, string cancelMessage)
         {
-			bool result = false;
-
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+			
             var alertController = UIAlertController.Create(title, message, UIAlertControllerStyle.ActionSheet);
-            alertController.AddAction(UIAlertAction.Create(destructiveMessage, UIAlertActionStyle.Destructive, (obj) => result = true));
-			alertController.AddAction(UIAlertAction.Create(cancelMessage, UIAlertActionStyle.Cancel, (obj) => result = false));
-			await CurrentViewController.Current.PresentViewControllerAsync(alertController, true);
+            alertController.AddAction(UIAlertAction.Create(destructiveMessage, UIAlertActionStyle.Destructive, (obj) => tcs.SetResult(true)));
+            alertController.AddAction(UIAlertAction.Create(cancelMessage, UIAlertActionStyle.Cancel, (obj) => tcs.SetResult(false)));
+            CurrentViewController.Current.PresentViewController(alertController, true, null);
 
-			return result;
+            return tcs.Task;
         }
     }
 }
