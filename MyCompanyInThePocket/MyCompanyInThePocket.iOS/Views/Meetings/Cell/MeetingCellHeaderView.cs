@@ -21,7 +21,7 @@ namespace MyCompanyInThePocket.iOS
 
 			if (vm.IsNow)
 			{
-				//TODO : changer la couleur de fond et la couleur de font
+				//TODO : changer la couleur de fond et la couleur de fond
 			}
 
 			this.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();

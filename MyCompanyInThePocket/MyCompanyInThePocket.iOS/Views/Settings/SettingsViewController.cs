@@ -1,8 +1,4 @@
-﻿using System;
-using Cirrious.FluentLayouts.Touch;
-using UIKit;
-using MyCompanyInThePocket.Core.Resources;
-using GalaSoft.MvvmLight.Helpers;
+﻿using UIKit;
 using MyCompanyInThePocket.Core.ViewModels.Settings;
 
 namespace MyCompanyInThePocket.iOS.Views.Settings
