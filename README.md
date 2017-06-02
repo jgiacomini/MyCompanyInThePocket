@@ -1,11 +1,11 @@
 # My company in the Pocket
 
-C’est un application cross plateforme Windows/Android/iOS qui fournit la possibilité d’avoir des informations pratiques lié à la vie de l’entreprise. Elle servira aussi comme bac à sable géant pour découvrir la techno Xamarin. 
+C’est une application cross plateformes Windows/Android/iOS qui fournit la possibilité d’avoir des informations pratiques lié à la vie de l’entreprise. Elle servira aussi de bac à sable géant pour découvrir la techno Xamarin. 
 
 #Fonctionnalités V1  : 
 *   Page de présentation de IS in the pocket :
-    * [X] iOS (Jon)
-    * [X] Android (Jon)
+    * [X] iOS 
+    * [X] Android 
     * [ ] Windows 10  
 
 *   Rendez-vous : (Jérôme)
@@ -13,7 +13,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
   *	[X] Récupération MOCK 
   *	[X] Sauvegarde base de données locale 
   * [ ]	Possibilité de voir les rendez-vous d'autres personnes. 
-  * [X] Intégration de ces rendez-vous dans le calendrier de l’OS (Jon)
+  * [X] Intégration de ces rendez-vous dans le calendrier de l’OS
   * [\] Intégration des rappels ACRA (Jérôme) (IN PROGRESS)
 
   * Affichage des rendez-vous :
@@ -21,7 +21,7 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
     * [ ] Android
     * [ ] Windows 10
     
-*   Récupération des liens utile : (Charles)
+*   Récupération des liens utile :
   * [ ] Récupération sur le serveur (V2 ?)
   * [X] Récupération MOCK (DONE)
   * [ ] Sauvegarde base de données locale (V2 ?)
@@ -30,20 +30,15 @@ C’est un application cross plateforme Windows/Android/iOS qui fournit la possi
     * [ ] Android
     * [ ] Windows 10
     
- *	Récupération des documents utile : (Charles)
+ *	Récupération des documents utile :
  * [ ] Récupération sur le serveur 
  * [X] Récupération MOCK (DONE)
  * [\ ] Sauvegarde base de données locale (IN PROGRESS)
  
 * 	Page de Settings : 
  * [X] Bouton de déconnexion (iOS OK, Android KO, WP KO)
- * [ ] Bouton permettant d'activer les rendez vous dans le calendrier.
- * [ ] Bouton permettant d'activer les rappels.
-
- * Affichage :
-    * [ ] iOS
-    * [ ] Android
-    * [ ] Windows 10
+ * [X] Bouton permettant d'activer les rendez vous dans le calendrier.
+ * [X] Bouton permettant d'activer les rappels.
 
 #Fonctionnalités V2  :
 -   Création de Widgets pour iOS et Android.
