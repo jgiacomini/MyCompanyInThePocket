@@ -36,8 +36,8 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			}
 			catch (System.Exception ex)
 			{
-				//TODO : display error message
-			}
+                await App.Instance.AlertService.ShowExceptionMessageAsync(ex, "Erreur de lors de connexion");
+            }
 			finally
 			{
                 IsBusy = false;

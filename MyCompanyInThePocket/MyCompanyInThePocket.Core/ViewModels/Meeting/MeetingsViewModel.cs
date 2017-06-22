@@ -89,6 +89,10 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			try
 			{
 				Meetings.PauseNotifications();
+
+                //var test  = App.Instance.GetInstance<IUseFullDocumentService>();
+                //var documents = await test.GetDocumentsAsync();
+
 				var meetings = await _meetingService.GetMeetingsAsync(forceRefresh, token);
 
 				Meetings.Clear();

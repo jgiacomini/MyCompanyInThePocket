@@ -18,6 +18,14 @@ namespace MyCompanyInThePocket.iOS.Views
 			this.TabBar.TintColor = ApplicationColors.MainColor;
 			this.TabBar.BackgroundColor = UIColor.White;
 			this.EdgesForExtendedLayout = UIRectEdge.None;
+
+            //this.TabBar.BackgroundColor = UIColor.Clear;
+            //this.TabBar.TintColor = ApplicationColors.MainColor;
+            //this.TabBar.Translucent = true;
+            //this.ExtendedLayoutIncludesOpaqueBars = true;
+            //this.EdgesForExtendedLayout = UIRectEdge.All;
+            //this.AutomaticallyAdjustsScrollViewInsets = true;
+            //this.ExtendedLayoutIncludesOpaqueBars = false;
 		}
 
 		void Handle_ViewControllerSelected(object sender, UITabBarSelectionEventArgs e)
@@ -51,7 +59,6 @@ namespace MyCompanyInThePocket.iOS.Views
 		{
 			// Création de l'écran correspondant au viewModel;
             var screen = CreateViewControllerFor(title) as UIViewController;
-
 			var image = UIImage.FromBundle($"TabBar/{imageName}.png");
 			screen.Title = title;
 			screen.TabBarItem = new UITabBarItem(title, image, _nbTabBarCreated);

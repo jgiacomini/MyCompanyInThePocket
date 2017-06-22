@@ -46,12 +46,15 @@ namespace MyCompanyInThePocket.Core
             {
                 SimpleIoc.Default.Register<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.MeetingRepository());
                 SimpleIoc.Default.Register<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
-            }
+
+
+			}
             else
             {
                 var authentificationService = SimpleIoc.Default.GetInstanceWithoutCaching<IAuthentificationService>();
                 SimpleIoc.Default.Register<IOnlineMeetingRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.OnlineMeetingRepository(authentificationService));
                 SimpleIoc.Default.Register<IOnlineUseFullLinkRepository>(() => new MyCompanyInThePocket.Core.Repositories.MockRepositories.UseFullLinkRepository());
+                SimpleIoc.Default.Register<IOnlineUseFullDocumentRepository>(() => new MyCompanyInThePocket.Core.Repositories.OnlineRepositories.OnlineUseFullDocumentRepository(authentificationService));
 			}
 
 
@@ -65,11 +68,13 @@ namespace MyCompanyInThePocket.Core
             var onlineMeetingRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineMeetingRepository>();
             var dbMeetingRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IDbMeetingRepository>();
             var onlineUseFullLinkRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineUseFullLinkRepository>();
-
+            var onlineDocumentsRepository = SimpleIoc.Default.GetInstanceWithoutCaching<IOnlineUseFullDocumentRepository>();
 			         
             SimpleIoc.Default.Register<IMeetingService>(() => new MeetingsService(onlineMeetingRepository, dbMeetingRepository));
             SimpleIoc.Default.Register<IUseFullLinkService>(() => new UseFullLinkService(onlineUseFullLinkRepository));
-            IsInitialized = true;
+            SimpleIoc.Default.Register<IUseFullDocumentService>(() => new UseFullDocumentService(onlineDocumentsRepository));
+
+			IsInitialized = true;
         }
 
         public TService GetInstance<TService>()

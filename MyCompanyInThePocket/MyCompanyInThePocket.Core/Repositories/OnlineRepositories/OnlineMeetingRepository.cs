@@ -26,7 +26,8 @@ namespace MyCompanyInThePocket.Core.Repositories.OnlineRepositories
 			var date = DateTime.Now.AddMonths(-1).ToString("s");
             var identity = OnlineSettings.Identity;
             // identity = "cdevandiere".ToUpper();
-			var data = await _authentificationService.GetAsync<Rootobject>($"ACRA/_api/web/lists/getbytitle('{identity}')/items?$top=1000&$filter=EventDate gt DateTime'{date}'");
+		
+            var data = await _authentificationService.GetAsync<Rootobject>($"ACRA/_api/web/lists/getbytitle('{identity}')/items?$top=1000&$filter=EventDate gt DateTime'{date}'");
 
 			var sharePointMeetings = data.value.OrderBy(ap => ap.EventDate).ToArray();
 			// TODO : exception personalisé lors du mapping

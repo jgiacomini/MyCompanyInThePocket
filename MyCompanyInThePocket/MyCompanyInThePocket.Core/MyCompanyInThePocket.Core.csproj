@@ -93,7 +93,6 @@
     <Compile Include="Services\UseFullLinkService.cs" />
     <Compile Include="Repositories\Database\DbMeetingRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDbMeetingRepository.cs" />
-    <Compile Include="Repositories\OnlineRepositories\MeetingMapper.cs" />
     <Compile Include="Extension\DateTimeExtension.cs" />
     <Compile Include="ViewModels\SuspendableObservableCollection.cs" />
     <Compile Include="ViewModels\Meeting\GroupedMeetingViewModel.cs" />
@@ -113,6 +112,12 @@
     <Compile Include="Services\Interface\IAlertService.cs" />
     <Compile Include="ViewModels\Settings\ColorStyle.cs" />
     <Compile Include="ViewModels\Settings\SettingsHorizontalAlignment.cs" />
+    <Compile Include="Repositories\OnlineRepositories\OnlineUseFullDocumentRepository.cs" />
+    <Compile Include="Repositories\OnlineRepositories\Mapper\MeetingMapper.cs" />
+    <Compile Include="Repositories\OnlineRepositories\Mapper\UseFullDocumentMapper.cs" />
+    <Compile Include="Repositories\Interfaces\IOnlineUseFullDocumentsRepository.cs" />
+    <Compile Include="Services\UseFullDocumentService.cs" />
+    <Compile Include="Services\Interface\IUseFullDocumentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -181,6 +186,7 @@
   <ItemGroup />
   <ItemGroup>
     <Folder Include="ViewModels\Main\" />
+    <Folder Include="Repositories\OnlineRepositories\Mapper\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

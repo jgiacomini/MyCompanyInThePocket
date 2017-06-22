@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>IS in the pocket</string>
+	<string>MyCompanyInThePocket.iOS</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.infinitesquare.isinthepocket</string>
 	<key>CFBundleShortVersionString</key>
@@ -27,8 +27,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

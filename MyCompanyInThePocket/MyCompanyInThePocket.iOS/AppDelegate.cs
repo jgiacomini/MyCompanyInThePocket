@@ -21,7 +21,7 @@ namespace MyCompanyInThePocket.iOS
         {
             // On précise que la fenêtre prend toute la place de l’écran
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
+            Window.BackgroundColor = ApplicationColors.WindowBackgroundColor;
             InitializeIoC();
 
             // Initialisation du contrôleur de vue par défaut 

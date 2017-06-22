@@ -1,4 +1,4 @@
-﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
+﻿﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using MyCompanyInThePocket.Core.Helpers;
 using MyCompanyInThePocket.Core.Services;
 using System;
@@ -55,21 +55,6 @@ namespace MyCompanyInThePocket.Core.Services
             }
         }
 
-        public async Task AuthenticateAsync()
-        {
-            if (string.IsNullOrWhiteSpace(OnlineSettings.AccessToken))
-            {
-                var authResult = await GetAccessTokenAsync(ServiceResourceId, _plaformFactory.GetPlatformParameter());
-
-                var email = authResult.UserInfo.DisplayableId;
-
-                var identity = GetIdentity(email);
-                OnlineSettings.Identity = identity;
-                OnlineSettings.AccessToken = authResult.AccessToken;
-                OnlineSettings.FamilyName = authResult.UserInfo.FamilyName;
-            }
-        }
-
         private string GetIdentity(string email)
         {
             // TODO : gérer les erreurde parsing... 
@@ -106,6 +91,7 @@ namespace MyCompanyInThePocket.Core.Services
         {
             var client = GetClient();
             var queryString = $"{AuthentificationService.ServiceResourceId}{route}";
+
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, queryString);
             HttpResponseMessage response = await client.SendAsync(request);
 
@@ -151,6 +137,35 @@ namespace MyCompanyInThePocket.Core.Services
                 return JsonConvert.DeserializeObject(responseString, typeof(T)) as T;
             }
         }
+
+		public async Task<byte[]> GetBytesAsync(string url)
+		{
+			var client = GetClient();
+
+			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+			HttpResponseMessage response = await client.SendAsync(request);
+
+			if (!response.IsSuccessStatusCode)
+			{
+				if (response.StatusCode == HttpStatusCode.Forbidden ||
+					response.StatusCode == HttpStatusCode.Unauthorized)
+				{	
+					//var content = await response.Content.ReadAsStringAsync();
+					Disconnect();
+					throw new TokenExpiredException();
+				}
+				else
+				{
+					// TODO : gérer l'exception et faire une exception personalisée
+					throw new InvalidOperationException();
+				}
+			}
+			else
+			{
+                var rep = await response.Content.ReadAsByteArrayAsync();
+                return rep;
+			}
+		}
 
     }
 }
