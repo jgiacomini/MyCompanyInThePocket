@@ -79,8 +79,9 @@ namespace MyCompanyInThePocket.Core.ViewModels
 			{
                 LastUpdate = string.Empty;
 			}
+            var dateToUse = _lastUpdate.ToLocalTime();
 			// TODO : localisation
-            LastUpdate =  $"Dernière mise à jour {_lastUpdate.ToShortDateString()}";
+            LastUpdate =  $"Dernière mise à jour {dateToUse.ToShortDateString()} à {dateToUse.ToShortTimeString()}";
         }
 
         private async Task RefreshMeetings(bool forceRefresh, CancellationToken token)

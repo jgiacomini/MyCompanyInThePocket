@@ -27,6 +27,11 @@ namespace MyCompanyInThePocket.Core
             return $"{_abbreviatedDayNames[(int)date.DayOfWeek]} {date.Day:D2}/{date.Month:D2}/{year}";
         }
 
+        public static string ToShortTimeString(this DateTime date)
+        {
+            return date.ToString("T");
+        }
+
         public static string ToLongDateString(this DateTime date)
         {
             return FirstCharToUpper($"{_dayNames[(int)date.DayOfWeek]} {date.Day:D2} {_monthNames[date.Month - 1]}");
