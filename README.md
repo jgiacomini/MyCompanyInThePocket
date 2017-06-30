@@ -41,11 +41,11 @@ C’est une application cross plateformes Windows/Android/iOS qui fournit la pos
  * [X] Bouton permettant d'activer les rappels.
 
 # Fonctionnalités V2  :
--   Création de Widgets pour iOS et Android.
--	  Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
--	  Affichage d'un annuaire pour récupérer les informations des collaborateurs. 
--	  Effectuer un suivi de collaborateur (le collaborateur peut consulter ses suivis, la manager peut créer/modifier un suivit)
-- 	Listing du matériel/gestion du matériel (Soriya / Michel ?)
+ *  Création de Widgets pour iOS et Android.
+ *	Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
+ *	Affichage d'un annuaire pour récupérer les informations des collaborateurs. 
+ *	Effectuer un suivi de collaborateur (le collaborateur peut consulter ses suivis, la manager peut créer/modifier un suivit)
+ * 	Listing du matériel/gestion du matériel (Soriya / Michel ?)
 
 
 # Comment contribuer au projet :
