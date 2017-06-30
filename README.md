@@ -2,19 +2,19 @@
 
 C’est une application cross plateformes Windows/Android/iOS qui fournit la possibilité d’avoir des informations pratiques lié à la vie de l’entreprise. Elle servira aussi de bac à sable géant pour découvrir la techno Xamarin. 
 
-#Fonctionnalités V1  : 
+# Fonctionnalités V1  : 
 *   Page de présentation de IS in the pocket :
     * [X] iOS 
     * [X] Android 
     * [ ] Windows 10  
 
 *   Rendez-vous : (Jérôme)
-  * [X] Récupération sur le serveur 
-  *	[X] Récupération MOCK 
-  *	[X] Sauvegarde base de données locale 
+  * [X] Récupération sur le serveur (DONE)
+  *	[X] Récupération MOCK (DONE)
+  *	[X] Sauvegarde base de données locale  (DONE)
   * [ ]	Possibilité de voir les rendez-vous d'autres personnes. 
-  * [X] Intégration de ces rendez-vous dans le calendrier de l’OS
-  * [\] Intégration des rappels ACRA (Jérôme) (IN PROGRESS)
+  * [X] Intégration de ces rendez-vous dans le calendrier de l’OS (DONE)
+  * [X] Intégration des rappels ACRA (Jérôme) (DONE)
 
   * Affichage des rendez-vous :
     * [X] iOS
@@ -40,7 +40,7 @@ C’est une application cross plateformes Windows/Android/iOS qui fournit la pos
  * [X] Bouton permettant d'activer les rendez vous dans le calendrier.
  * [X] Bouton permettant d'activer les rappels.
 
-#Fonctionnalités V2  :
+# Fonctionnalités V2  :
 -   Création de Widgets pour iOS et Android.
 -	  Affichage d’une map pour aller à l'addresse de l'entreprise. Permettre à l'utilisateur d’ajouter les adresses de nos clients.
 -	  Affichage d'un annuaire pour récupérer les informations des collaborateurs. 
