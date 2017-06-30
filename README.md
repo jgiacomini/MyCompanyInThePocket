@@ -48,7 +48,7 @@ C’est une application cross plateformes Windows/Android/iOS qui fournit la pos
 - 	Listing du matériel/gestion du matériel (Soriya / Michel ?)
 
 
-#Comment contribuer au projet :
+# Comment contribuer au projet :
 - Dans GitHub : cliquer sur Fork en haut à droite.
 - Configurer votre repo local sur votre fork (celui de votre compte)
 - Ajouter dans VS un "remote" qui pointe sur le repo original (celui de Jérôme). Nommez-le "upstream" par exemple. (https://writeabout.net/2016/01/31/sync-your-git-github-fork-upstream-repository-from-within-visual-studio/)
